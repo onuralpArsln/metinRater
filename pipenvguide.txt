@@ -1,0 +1,18 @@
+install
+pip install --user pipenv
+
+init 
+pipenv --python 3.12
+
+install 
+pipenv install requests
+
+run
+pipenv run python main.py
+
+fishte :
+fish_add_path /Users/onuralparslan/Library/Python/3.14/bin
+
+deactivate if courtesy 
+deactivate
+
