@@ -9,9 +9,9 @@ scikit-learn = "*"
 matplotlib = "*"
 nltk = "*"
 sentence-transformers = "*"
+beautifulsoup4 = "*"
 
 [dev-packages]
 
 [requires]
 python_version = "3.12"
-
