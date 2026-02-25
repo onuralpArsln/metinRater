@@ -25,6 +25,8 @@ texts_to_test = load_texts("test_texts.txt")
 if not successful_texts or not unsuccessful_texts:
     print("Error: Need both successful and unsuccessful texts to continue.")
     exit()
+
+os.makedirs("kategori", exist_ok=True)
 # --- 3. THE LOGIC ---
 # Combine known texts to teach the vectorizer our vocabulary
 all_known_texts = successful_texts + unsuccessful_texts
@@ -96,7 +98,7 @@ plt.xlabel("Principal Component 1")
 plt.ylabel("Principal Component 2")
 plt.legend()
 plt.grid(True, linestyle='--', alpha=0.7)
-plt.savefig("pca_visualization.png")
+plt.savefig("kategori/1_pca_visualization.png")
 print("Saved: pca_visualization.png")
 
 # --- 6. VISUALIZATION 2: Feature Importance ---
@@ -119,5 +121,44 @@ def plot_top_words(profile, title, filename, color):
     plt.savefig(filename)
     print(f"Saved: {filename}")
 
-plot_top_words(succ_profile, "Top Words - Successful Profile", "top_words_success.png", "green")
-plot_top_words(unsucc_profile, "Top Words - Unsuccessful Profile", "top_words_unsuccess.png", "red")
+plot_top_words(succ_profile, "Top Words - Successful Profile", "kategori/1_top_words_success.png", "green")
+plot_top_words(unsucc_profile, "Top Words - Unsuccessful Profile", "kategori/1_top_words_unsuccess.png", "red")
+
+# --- 7. GENERATE TEXT REPORT ---
+print("\nGenerating Report...")
+report = []
+report.append("="*50)
+report.append("TEST 1 - REPORT SUMMARY")
+report.append("="*50)
+report.append("APPROACH:")
+report.append("- Method: Basic TF-IDF Vectorizer (TfidfVectorizer)")
+report.append("- Parameters: stop_words='english' (No Turkish stopwords), n-grams: default (unigrams)")
+report.append("- Mechanics: Calculates 'average' vector profiles for Known Success and Known Unsuccess. Uses Cosine Similarity to compare Test Texts to these profiles.")
+report.append("\nRESULTS FOR TEST TEXTS:")
+
+for i, text in enumerate(texts_to_test):
+    succ_score = cosine_similarity(new_vectors[i], succ_profile)[0][0]
+    unsucc_score = cosine_similarity(new_vectors[i], unsucc_profile)[0][0]
+    
+    if succ_score > unsucc_score:
+        result = "SUCCESSFUL"
+    elif unsucc_score > succ_score:
+        result = "UNSUCCESSFUL"
+    else:
+        result = "NEUTRAL / UNKNOWN"
+        
+    report.append(f"\n[Test Text {i+1}]")
+    report.append(f"Content: '{text}'")
+    report.append(f"Classification: {result}")
+    report.append(f"Scores -> Similarity to Success: {succ_score:.3f} | Similarity to Failure: {unsucc_score:.3f}")
+
+report.append("\nVISUALIZATIONS GENERATED:")
+report.append("- kategori/1_pca_visualization.png: PCA scatter plot of vectors.")
+report.append("- kategori/1_top_words_success.png: Top 10 words contributing to the Success profile.")
+report.append("- kategori/1_top_words_unsuccess.png: Top 10 words contributing to the Unsuccess profile.")
+report.append("\n")
+
+os.makedirs("kategori", exist_ok=True)
+with open("kategori/rapor.txt", "a", encoding="utf-8") as f:
+    f.write("\n".join(report))
+print("Report appended to kategori/rapor.txt")

@@ -23,6 +23,8 @@ if not successful_texts or not unsuccessful_texts:
     print("Error: Need texts to continue.")
     exit()
 
+os.makedirs("kategori", exist_ok=True)
+
 all_known_texts = successful_texts + unsuccessful_texts
 
 # --- 2. ENHANCED VECTORIZATION ---
@@ -93,5 +95,53 @@ for i, text in enumerate(texts_to_test):
 
 plt.title("Approach 1 Embedding Clusters")
 plt.legend()
-plt.savefig("test2_pca.png")
+plt.savefig("kategori/2_pca.png")
 print("Saved: test2_pca.png")
+
+# --- 5. GENERATE TEXT REPORT ---
+print("\nGenerating Report...")
+report = []
+report.append("="*50)
+report.append("TEST 2 - REPORT SUMMARY")
+report.append("="*50)
+report.append("APPROACH:")
+report.append("- Method: Enhanced TF-IDF Vectorizer (TfidfVectorizer)")
+report.append("- Parameters: stop_words='turkish' (Uses Turkish stopwords), n-grams: 1-2 (unigrams and bigrams)")
+report.append("- Mechanics: Calculates 'average' vector profiles for Known Success and Known Unsuccess. Uses Cosine Similarity to compare Test Texts to these profiles.")
+report.append("\nRESULTS FOR TEST TEXTS:")
+
+for i, text in enumerate(texts_to_test):
+    succ_score = cosine_similarity(new_vectors[i], succ_profile)[0][0]
+    unsucc_score = cosine_similarity(new_vectors[i], unsucc_profile)[0][0]
+    
+    if succ_score > unsucc_score:
+        result = "SUCCESSFUL"
+    elif unsucc_score > succ_score:
+        result = "UNSUCCESSFUL"
+    else:
+        result = "NEUTRAL"
+        
+    report.append(f"\n[Test Text {i+1}]")
+    report.append(f"Content: '{text}'")
+    report.append(f"Classification: {result}")
+    report.append(f"Scores -> Similarity to Success: {succ_score:.3f} | Similarity to Failure: {unsucc_score:.3f}")
+    
+    report.append("Key matching n-grams found in this text:")
+    vector = np.asarray(new_vectors[i].todense()).flatten()
+    top_indices = np.argsort(vector)[::-1]
+    found_any = False
+    for idx in top_indices[:5]:
+        if vector[idx] > 0:
+            report.append(f"  - '{feature_names[idx]}': TF-IDF score {vector[idx]:.3f}")
+            found_any = True
+    if not found_any:
+        report.append("  - (No matching vocabulary found)")
+
+report.append("\nVISUALIZATIONS GENERATED:")
+report.append("- kategori/2_pca.png: PCA scatter plot of vectors using the enhanced TF-IDF model.")
+report.append("\n")
+
+os.makedirs("kategori", exist_ok=True)
+with open("kategori/rapor.txt", "a", encoding="utf-8") as f:
+    f.write("\n".join(report))
+print("Report appended to kategori/rapor.txt")

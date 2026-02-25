@@ -5,7 +5,7 @@ init
 pipenv --python 3.12
 
 install 
-pipenv install requests
+pipenv install requirements.txt
 
 run
 pipenv run python main.py
@@ -16,3 +16,7 @@ fish_add_path /Users/onuralparslan/Library/Python/3.14/bin
 deactivate if courtesy 
 deactivate
 
+win
+python -m pipenv --python 3.12
+python -m pipenv install requirements.txt
+python -m pipenv run python main.py
