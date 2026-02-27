@@ -1,33 +1,39 @@
 # Metin Sınıflandırma Testleri Özeti (Workflow)
 
-Bu döküman, projedeki 6 farklı Python test dosyasının metinleri analiz ederken tam olarak neye baktığını ve nasıl çalıştığını basit bir dille açıklamaktadır.
+Bu döküman, projedeki 6 farklı Python test dosyasının metinleri analiz ederken tam olarak neye baktığını, kelimelerin sırasının/anlamının ne kadar önemli olduğunu ve sonuçların nasıl yorumlanacağını açıklamaktadır.
 
-## Test 1: Basit Kelime Eşleştirme (Temel TF-IDF)
-* **Neye Bakar:** Sadece tek tek kelimelere bakar.
-* **Nasıl Çalışır:** Kelimeleri sayar ve metnin geneline oranlar. Ancak İngilizce filtre (stop-words) kullandığı için Türkçedeki "ve", "ama", "bir" gibi bağlaçları elemeyi başaramaz.
-* **Kullanım Amacı:** Sadece en ilkel ve hızlı temel bir karşılaştırma yapmak içindir, Türkçe için yetersizdir.
+---
 
-## Test 2: Gelişmiş Kelime ve Kelime Grubu Eşleştirme (Gelişmiş TF-IDF)
-* **Neye Bakar:** Hem tekil kelimelere (örn: "boyun") hem de ikili kelime gruplarına (örn: "boyun destekli") yanyana bakar.
-* **Nasıl Çalışır:** Türkçe dil filtresi kullandığı için gereksiz kelimeleri ("ve", "ile") başarıyla temizler. Geçmişteki başarılı metinlerin "ortalama kelime profili" ile yeni metni karşılaştırır.
-* **Kullanım Amacı:** Birebir aynı kelimelerin veya kelime öbeklerinin geçtiği metinleri yakalamak için idealdir.
+## Test 1: Basit Kelime Frekansı (Temel TF-IDF)
+* **Odak Noktası:** Sadece kelimelerin **sıklığına (frekansına)** bakar. Kelimelerin sırasının hiçbir önemi yoktur. "Araba kırmızı" ile "Kırmızı araba" tamamen aynıdır.
+* **Nasıl Çalışır:** Hangi kelimenin kaç defa geçtiğini sayar. Ancak İngilizce filtre (stop-words) kullandığı için Türkçe metinlerde hatalı sonuçlar verir.
+* **Neye Bakmaz:** Anlama, kelime sırasına, büyük/küçük harfe, noktalama işaretlerine.
+* **Sonuç Ne İfade Eder:** Ekrana basılan "Skor" (0 ile 1 arası), metnin eski başarılı veya başarısız metinlerle içerdiği **ortak kelime sayısının ve sıklığının** benzerlik yüzdesidir. Çıkan PCA grafiğindeki noktaların yakınlığı, kullanılan kelimelerin ne kadar aynı olduğunu gösterir.
 
-## Test 3: Yapay Zeka ile Puanlama (Lojistik Regresyon)
-* **Neye Bakar:** Hangi kelimenin başarıya, hangi kelimenin başarısızlığa neden olduğuna karar verir.
-* **Nasıl Çalışır:** Test 2'deki kelime gruplarını alır ama ortalama almak yerine bir "Makine Öğrenmesi" modeli eğitir. "Ergonomik" kelimesinin başarı şansını %20 artırdığını, "Battaniye" kelimesinin %15 düşürdüğünü matematiksel olarak hesaplar.
-* **Kullanım Amacı:** Hangi kelimelerin metni daha başarılı yaptığını net bir puanla (olasılık yüzdesiyle) görmek istediğinizde kullanılır.
+## Test 2: Kelime ve İkili Kelime Dizilimleri (Gelişmiş TF-IDF)
+* **Odak Noktası:** Hem tek tek kelimelerin sıklığına hem de **kısmi kelime sırasına** (yan yana gelen 2 kelimeye) bakar.
+* **Nasıl Çalışır:** Türkçe bağlaçları temizler. Örneğin "kaliteli" kelimesini sayarken, aynı zamanda "çok kaliteli" ikilisinin de yan yana gelme **sıklığına** bakar.
+* **Neye Bakmaz:** Cümlenin genel anlamı, büyük/küçük harf, noktalama.
+* **Sonuç Ne İfade Eder:** Yeni test metninin, geçmişteki metinlerle ne kadar fazla ikili kelime kalıbı (örn: "boyun destekli") paylaştığını gösterir. Yüksek skor, geçmişte başarı getiren kelime kalıplarını birebir kopyaladığınız anlamına gelir.
 
-## Test 4: Anlamsal Analiz (Semantik Derin Öğrenme)
-* **Neye Bakar:** Kelimelerin yazılışına değil, cümlenin **toplam anlamına ve bağlamına** bakar.
-* **Nasıl Çalışır:** Çok dilli gelişmiş bir yapay zeka modeli (Sentence Configuration) kullanır. "Harika bir ürün" ile "Çok beğendim, kalite tesadüf değildir" cümlelerinde hiç ortak kelime olmasa bile, aynı anlama geldiklerini anlayabilir. Noktalama işaretlerinin yarattığı hissiyatı bile kavrar.
-* **Kullanım Amacı:** İnsan gibi okuyup, metinlerin ana fikrine ve anlamına göre gruplandırma yapmak istediğinizde kullanılır (En zeki modeldir).
+## Test 3: Yapay Zeka ile Kelime Ağırlığı Puanlaması (Lojistik Regresyon)
+* **Odak Noktası:** Kelimelerin frekansı önemlidir, kelime sırası (yan yana 2 kelime olarak) önemlidir. Anlam önemli değildir.
+* **Nasıl Çalışır:** TF-IDF ile kelimeleri sayar (Test 2'deki gibi) ama benzerlik ölçmek yerine bir "Yapay Zeka" (Machine Learning) modeli eğitir. Modele kelimeleri gösterir ve "Hangi kelimenin geçmesi başarı şansını ne kadar artırıyor?" sorusunun cevabını hesaplatır.
+* **Sonuç Ne İfade Eder:** Sonuçlar sadece benzerlik değil, **Net Matematiksel Olasılıktır (Confidence %)**. Eğer %95 Başarılı diyorsa, model içinde geçen kelimelerin (örn: "ergonomik" kelimesinin +2.5 puanlık ağırlığının) matematiksel olarak başarmaya yeterli olduğuna karar vermiştir. Bar grafiği (Feature Importance), hangi kelimelerin en büyük "torpil" sağladığını açıkça gösterir.
 
-## Test 5: Harf ve Hece Analizi (Karakter N-Gram)
-* **Neye Bakar:** Kelimelerin tamamına değil, 3 ila 5 harflik parçalara (hecelere veya uzun harf dizilerine) bakar. 
-* **Nasıl Çalışır:** Büyük/küçük harf ayrımı yapar ("A" ile "a" aynı değildir). Örneğin "MÜK" harf dizisini veya "!!!" üçlü ünlem dizisini yakalar. Kelimelerin son eklerini veya köklerini otomatik olarak parçalamış olur.
-* **Kullanım Amacı:** Hepsi büyük harfle yazılmış bağıran metinleri, tekrarlayan harfleri ("Süppppper") veya benzer ekleri alan farklı kelimeleri yakalamak için kullanılır.
+## Test 4: Derin Yapay Zeka ile Anlamsal Analiz (Semantik NLP)
+* **Odak Noktası:** Sadece cümlenin **GENEL ANLAMINA ve BAĞLAMINA** bakar. Kelime frekansı, sırası (anlamı değiştirmiyorsa) ve tam eşleşme hiç önemli değildir.
+* **Nasıl Çalışır:** Dünya çapında eğitilmiş çok dilli bir dil modeli (Sentence Transformer) kullanır. "Harika bir ürün" ile "Çok beğendim, kalite tesadüf değildir" cümlelerinde ortak bir kelime olmasa bile bu cümlelerin aynı "hissiyatı ve anlamı" barındırdığını bilir.
+* **Neye Bakmaz:** Hangi kelimenin kaç defa geçtiğine (kelime sayımı yapmaz).
+* **Sonuç Ne İfade Eder:** Olasılık veya kelime skoru değil, **Anlamsal Mesafe (Semantic Similarity)** verir. Yüksek bir skor, yeni yazılan metnin, geçmişteki başarılı metinlerin yaydığı "duygu veya mesaja" çok benzediği anlamına gelir. (En zeki ve insan gibi düşünen test budur.)
 
-## Test 6: Noktalama ve Özel Karakter Analizi (Özel Tokenizasyon)
-* **Neye Bakar:** Tam kelimelere ve yan yana gelmiş noktalama işaretlerine (bağımsız birer kelimeymiş gibi) bakar.
-* **Nasıl Çalışır:** Büyük harfleri korur. Cümledeki "!!!!", "???", ",", "|" gibi karakter gruplarını kelimelerden ayırarak onlara özel bir önem (ağırlık) verir.
-* **Kullanım Amacı:** Kullanıcıların noktalama işareti kullanım alışkanlıklarını, örneğin aşırı ünlem kullananların veya virgül ile düzgün cümle kuranların başarı/başarısızlık durumunu ölçmek için idealdir. 
+## Test 5: Harf ve Hece Taraması (Karakter N-Gram)
+* **Odak Noktası:** Sadece harf parçalarının (3 ila 5 harflik grupların) **sıklığına** ve harf büyüklüğüne bakar. Kelime sırası veya anlam umrunda değildir. "Kelimeler" bile umrunda değildir.
+* **Nasıl Çalışır:** "HARİKA!!!" yazıldığında sırasıyla "HAR", "ARİ", "RİK", "İKA", "KA!", "A!!", "!!!" gruplarının geçme sıklığını hesaplar.
+* **Neye Bakmaz:** Metnin diline, anlamına, mantığına. 
+* **Sonuç Ne İfade Eder:** Bir metnin biçimsel (format) olarak geçmiştekilere ne kadar benzediğini gösterir. Sonuçlar (Olasılık Yüzdesi), modelin aşırı büyük harf, ardışık noktalama işaretleri veya benzer ekler (örneğin -iyorlar eki) içeren metin kalıplarını yakaladığını gösterir. Çoğunlukla "Spam" özellikli sahte mesajları yakalamakta kullanılır.
+
+## Test 6: Noktalama Merkezli Sınıflandırma (Özel Tokenizasyon)
+* **Odak Noktası:** Tam kelimelerin ve özel olarak **noktalama işareti dizilerinin frekansına** bakar. Kelime sırası önemli değildir.
+* **Nasıl Çalışır:** "Büyük" ile "büyük" kelimesini farklı sayar. "???" grubunu, "ürün" kelimesi gibi tek başına anlamlı bir kelime olarak sınıflandırır ve sayar.
+* **Sonuç Ne İfade Eder:** Olasılık Skorları (Confidence %), yazarın tarzını (kamera arkası klavye alışkanlıklarını) puanlamaktır. Eğer başarısız metinler genelde bol ünlem (!) veya virgüller (,) ile yazılıyorsa, yeni test metni çok virgüle sahip olduğu için "Başarısız" veya "Başarılı" kategorisine daha fazla çekilecektir. Sonuç, noktalama kalıplarının kelimeler kadar güçlü bir kader belirleyici olduğu anlamına gelir.
