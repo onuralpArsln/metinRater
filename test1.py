@@ -101,6 +101,26 @@ plt.grid(True, linestyle='--', alpha=0.7)
 plt.savefig("kategori/1_pca_visualization.png")
 print("Saved: pca_visualization.png")
 
+# Save PCA coordinates to text file
+pca_data = []
+pca_data.append("SUCCESSFUL TEXTS (GREEN):")
+for i in range(n_succ):
+    pca_data.append(f"X: {coords[i, 0]:.3f}, Y: {coords[i, 1]:.3f} | Text: {successful_texts[i]}")
+
+pca_data.append("\nUNSUCCESSFUL TEXTS (RED):")
+for i in range(n_unsucc):
+    idx = n_succ + i
+    pca_data.append(f"X: {coords[idx, 0]:.3f}, Y: {coords[idx, 1]:.3f} | Text: {unsuccessful_texts[i]}")
+
+pca_data.append("\nTEST TEXTS (BLUE):")
+for i in range(len(texts_to_test)):
+    idx = n_succ + n_unsucc + i
+    pca_data.append(f"X: {coords[idx, 0]:.3f}, Y: {coords[idx, 1]:.3f} | Text: {texts_to_test[i]}")
+
+with open("kategori/1_pca_data.txt", "w", encoding="utf-8") as f:
+    f.write("\n".join(pca_data))
+print("Saved: kategori/1_pca_data.txt")
+
 # --- 6. VISUALIZATION 2: Feature Importance ---
 print("Generating Feature Importance visualization...")
 feature_names = vectorizer.get_feature_names_out()

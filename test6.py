@@ -1,11 +1,9 @@
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
-import nltk
-from nltk.corpus import stopwords
-import os
-import matplotlib.pyplot as plt
 from sklearn.decomposition import PCA
+import matplotlib.pyplot as plt
+import os
 
 def load_texts(filename):
     if not os.path.exists(filename):
@@ -26,61 +24,52 @@ if not successful_texts or not unsuccessful_texts:
 os.makedirs("kategori", exist_ok=True)
 
 all_known_texts = successful_texts + unsuccessful_texts
-# Create labels: 1 for Successful, 0 for Unsuccessful
 y_train = [1] * len(successful_texts) + [0] * len(unsuccessful_texts)
 
-# --- 2. VECTORIZATION ---
-print("Initializing TF-IDF Vectorizer...")
-try:
-    turkish_stop_words = stopwords.words('turkish')
-except LookupError:
-    nltk.download('stopwords')
-    turkish_stop_words = stopwords.words('turkish')
-
-vectorizer = TfidfVectorizer(stop_words=turkish_stop_words, ngram_range=(1, 2))
+# --- 2. VECTORIZATION (CUSTOM TOKENIZATION) ---
+print("Initializing Custom Tokenizer TF-IDF Vectorizer...")
+# Key changes: Custom Regex to treat chunks of punctuation as their own meaningful "words". Lowercase remains false.
+vectorizer = TfidfVectorizer(
+    lowercase=False,
+    token_pattern=r'(?u)\b\w+\b|[^\w\s]+', # Match standard words OR blocks of punctuation (!, ?, ..., etc.)
+    ngram_range=(1, 2)
+)
 X_train = vectorizer.fit_transform(all_known_texts)
 
 # --- 3. TRAIN CLASSIFIER ---
-print("Training Logistic Regression Model...")
-# C=10 is regularization strength. Higher means it trusts the sparse training data more.
+print("Training Logistic Regression Model on Custom Tokens...")
 model = LogisticRegression(class_weight='balanced', C=10)
 model.fit(X_train, y_train)
 
 # --- 4. CLASSIFY NEW TEXTS ---
-print("\n--- RESULTS (APPROACH 2: CLASSIFIER) ---")
+print("\n--- RESULTS (APPROACH 6: CUSTOM PUNCTUATION TOKENS) ---")
 X_test = vectorizer.transform(texts_to_test)
 predictions = model.predict(X_test)
 probabilities = model.predict_proba(X_test)
 
 for i, text in enumerate(texts_to_test):
-    # prob[0] is probability of class 0 (Unsuccessful)
-    # prob[1] is probability of class 1 (Successful)
     prob_unsucc, prob_succ = probabilities[i]
-    
     if predictions[i] == 1:
         result = "SUCCESSFUL"
         confidence = prob_succ * 100
     else:
         result = "UNSUCCESSFUL"
         confidence = prob_unsucc * 100
-
+        
     print(f"\nText: '{text}'")
     print(f"Classification: {result} (Confidence: {confidence:.1f}%)")
-    print(f"Raw Probabilities -> Success: {prob_succ:.3f} | Unsuccess: {prob_unsucc:.3f}")
 
-# Optional: Show what words the model thinks are most important overall
-print("\nModel's Most Important Keywords:")
+print("\nModel's Most Important Keywords (Custom Tokens):")
 feature_names = vectorizer.get_feature_names_out()
 coefs = model.coef_[0]
 
-# Top 5 successful words
+# Show top features
 top_succ_indices = np.argsort(coefs)[-5:][::-1]
 print("Strongest Indicators of Success:")
 for idx in top_succ_indices:
     if coefs[idx] > 0:
         print(f"  - '{feature_names[idx]}' (Weight +{coefs[idx]:.2f})")
 
-# Top 5 unsuccessful words
 top_unsucc_indices = np.argsort(coefs)[:5]
 print("Strongest Indicators of Failure:")
 for idx in top_unsucc_indices:
@@ -88,9 +77,9 @@ for idx in top_unsucc_indices:
         print(f"  - '{feature_names[idx]}' (Weight {coefs[idx]:.2f})")
 
 # --- 5. VISUALIZATIONS ---
-print("\nGenerating visualizations for test3...")
+print("\nGenerating visualizations for test6...")
+# Feature Importance
 plt.figure(figsize=(10, 6))
-# Get top 10 positive and top 10 negative
 top_pos_idx = np.argsort(coefs)[-10:]
 top_neg_idx = np.argsort(coefs)[:10]
 
@@ -100,25 +89,14 @@ features = [feature_names[i] for i in combined_idx]
 importances = [coefs[i] for i in combined_idx]
 
 plt.barh(features, importances, color=colors)
-plt.title("Top 10 Positive and Negative Features (Logistic Regression)")
+plt.title("Top Words & Punctuation Blocks (Logistic Regression)")
 plt.xlabel("Coefficient Value")
 plt.tight_layout()
-plt.savefig("kategori/3_feature_importance.png")
-print("Saved: kategori/3_feature_importance.png")
-
-# Probability Histogram
-succ_probs = probabilities[:, 1]
-plt.figure(figsize=(8, 5))
-plt.hist(succ_probs, bins=10, color='blue', alpha=0.7, range=(0,1))
-plt.title("Prediction Confidence for 'Successful' Class")
-plt.xlabel("Probability of being 'Successful' (0 to 1)")
-plt.ylabel("Number of Texts")
-plt.tight_layout()
-plt.savefig("kategori/3_confidence_histogram.png")
-print("Saved: kategori/3_confidence_histogram.png")
+plt.savefig("kategori/6_feature_importance.png")
+print("Saved: kategori/6_feature_importance.png")
 
 # PCA Visualization
-print("\nGenerating PCA visualization...")
+print("Generating PCA visualization...")
 all_vectors = vectorizer.transform(all_known_texts + texts_to_test).toarray()
 pca = PCA(n_components=2)
 coords = pca.fit_transform(all_vectors)
@@ -133,10 +111,10 @@ plt.scatter(coords[n_succ+n_unsucc:, 0], coords[n_succ+n_unsucc:, 1], c='blue', 
 for i, text in enumerate(texts_to_test):
     plt.annotate(f"Test {i+1}", (coords[n_succ+n_unsucc+i, 0], coords[n_succ+n_unsucc+i, 1]))
 
-plt.title("Approach 2 Embedding Clusters (TF-IDF)")
+plt.title("Approach 6 Embedding Clusters (Custom Tokens)")
 plt.legend()
-plt.savefig("kategori/3_pca.png")
-print("Saved: kategori/3_pca.png")
+plt.savefig("kategori/6_pca.png")
+print("Saved: test6_pca.png")
 
 # Save PCA coordinates to text file
 pca_data = []
@@ -154,33 +132,32 @@ for i in range(len(texts_to_test)):
     idx = n_succ + n_unsucc + i
     pca_data.append(f"X: {coords[idx, 0]:.3f}, Y: {coords[idx, 1]:.3f} | Text: {texts_to_test[i]}")
 
-with open("kategori/3_pca_data.txt", "w", encoding="utf-8") as f:
+with open("kategori/6_pca_data.txt", "w", encoding="utf-8") as f:
     f.write("\n".join(pca_data))
-print("Saved: kategori/3_pca_data.txt")
+print("Saved: kategori/6_pca_data.txt")
 
 # --- 6. GENERATE TEXT REPORT ---
 print("\nGenerating Report...")
 report = []
-report.append("="*50)
-report.append("TEST 3 - REPORT SUMMARY")
+report.append("\n" + "="*50)
+report.append("TEST 6 - REPORT SUMMARY")
 report.append("="*50)
 report.append("APPROACH:")
-report.append("- Method: Logistic Regression Classifier trained on Enhanced TF-IDF features")
-report.append("- Parameters: TF-IDF(turkish stopwords, n-grams 1-2), LR(class_weight='balanced', C=10)")
-report.append("- Mechanics: Learns which specific n-grams predict success vs. failure using logistic regression weights. Outputs mathematical probabilities.")
+report.append("- Method: Custom Token Pattern TF-IDF Vectorizer + Logistic Regression")
+report.append("- Parameters: token_pattern=r'(?u)\\b\\w+\\b|[^\\w\\s]+', lowercase=False")
+report.append("- Mechanics: Treats sequential blocks of punctuation (like '!!!' or '??') as their own distinct vocabulary words alongside fully capitalized words.")
 report.append("\nGLOBAL MODEL PROPERTIES:")
-report.append("Strongest Indicators of Success (Top 5 Positive Coefficients):")
+report.append("Strongest Indicators of Success (Top 5 Punctuation/Word Tokens):")
 for idx in top_succ_indices[:5]:
     if coefs[idx] > 0:
         report.append(f"  - '{feature_names[idx]}' (Weight +{coefs[idx]:.2f})")
 
-report.append("Strongest Indicators of Failure (Top 5 Negative Coefficients):")
+report.append("Strongest Indicators of Failure (Top 5 Punctuation/Word Tokens):")
 for idx in top_unsucc_indices[:5]:
     if coefs[idx] < 0:
         report.append(f"  - '{feature_names[idx]}' (Weight {coefs[idx]:.2f})")
 
 report.append("\nRESULTS FOR TEST TEXTS:")
-
 for i, text in enumerate(texts_to_test):
     prob_unsucc, prob_succ = probabilities[i]
     if predictions[i] == 1:
@@ -193,13 +170,6 @@ for i, text in enumerate(texts_to_test):
     report.append(f"\n[Test Text {i+1}]")
     report.append(f"Content: '{text}'")
     report.append(f"Classification: {result} (Confidence: {confidence:.1f}%)")
-    report.append(f"Raw Probabilities -> Success: {prob_succ:.3f} | Failure: {prob_unsucc:.3f}")
-
-report.append("\nVISUALIZATIONS GENERATED:")
-report.append("- kategori/3_feature_importance.png: Horizontal bar chart showing the top 10 positive and negative logistic regression features.")
-report.append("- kategori/3_confidence_histogram.png: Histogram showing the distribution of the model's confidence scores.")
-report.append("- kategori/3_pca.png: PCA scatter plot of vectors using the enhanced TF-IDF model.")
-report.append("\n")
 
 os.makedirs("kategori", exist_ok=True)
 with open("kategori/rapor.txt", "a", encoding="utf-8") as f:
