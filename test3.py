@@ -134,16 +134,30 @@ def main():
     plt.savefig("kategori/3_feature_importance.png")
     print("Saved: kategori/3_feature_importance.png")
 
-    # Probability Histogram
+    # Probability Spectrum (1D Dot Plot)
+    plt.figure(figsize=(12, 3))
+    
+    # Plot background zones
+    plt.axvspan(0, 0.5, color='red', alpha=0.1)
+    plt.axvspan(0.5, 1.0, color='green', alpha=0.1)
+    plt.axvline(x=0.5, color='black', linestyle='--', alpha=0.5)
+    
+    # Plot test texts as dots
     succ_probs = probabilities[:, 1]
-    plt.figure(figsize=(8, 5))
-    plt.hist(succ_probs, bins=10, color='blue', alpha=0.7, range=(0,1))
-    plt.title("Prediction Confidence for 'Successful' Class")
-    plt.xlabel("Probability of being 'Successful' (0 to 1)")
-    plt.ylabel("Number of Texts")
+    y_vals = np.zeros(len(texts_to_test)) # Plot all on a 1D line (y=0)
+    
+    plt.scatter(succ_probs, y_vals, c='blue', s=200, marker='o', edgecolors='white', zorder=5)
+    
+    for i, p in enumerate(succ_probs):
+        plt.annotate(f"Test {i+1}", (p, 0.02), ha='center', fontsize=10, rotation=45)
+
+    plt.title("Test Text Confidence Spectrum (Test 3)")
+    plt.xlabel("Probability of being 'SUCCESSFUL' (0.0 to 1.0)")
+    plt.yticks([]) # Hide y-axis
+    plt.xlim(-0.05, 1.05)
     plt.tight_layout()
-    plt.savefig("kategori/3_confidence_histogram.png")
-    print("Saved: kategori/3_confidence_histogram.png")
+    plt.savefig("kategori/3_confidence_spectrum.png")
+    print("Saved: kategori/3_confidence_spectrum.png")
 
     # PCA Visualization
     print("\nGenerating PCA visualization...")
@@ -224,9 +238,9 @@ def main():
         report.append(f"Raw Probabilities -> Success: {prob_succ:.3f} | Failure: {prob_unsucc:.3f}")
 
     report.append("\nVISUALIZATIONS GENERATED:")
-    report.append("- kategori/3_feature_importance.png: Horizontal bar chart showing the top 10 positive and negative logistic regression features.")
-    report.append("- kategori/3_confidence_histogram.png: Histogram showing the distribution of the model's confidence scores.")
-    report.append("- kategori/3_pca.png: PCA scatter plot of vectors using the enhanced TF-IDF model.")
+    report.append("- kategori/3_feature_importance.png: Horizontal bar chart showing the top positive and negative vocabulary features.")
+    report.append("- kategori/3_confidence_spectrum.png: 1D scale showing where texts land on the probability continuum.")
+    report.append("- kategori/3_pca.png: PCA scatter plot mapping the text neighborhood.")
     report.append("\n")
 
     os.makedirs("kategori", exist_ok=True)

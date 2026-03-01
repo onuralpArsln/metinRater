@@ -151,6 +151,29 @@ def main():
         f.write("\n".join(pca_data))
     print("Saved: kategori/1_pca_data.txt")
 
+    # --- 5B. VISUALIZATION: Similarity Bar Chart ---
+    print("Generating Closeness Bar Chart...")
+    test_labels = [f"Test {i+1}" for i in range(len(texts_to_test))]
+    succ_scores = [cosine_similarity(v, succ_profile)[0][0] for v in new_vectors]
+    unsucc_scores = [cosine_similarity(v, unsucc_profile)[0][0] for v in new_vectors]
+    
+    x = np.arange(len(test_labels))
+    width = 0.35
+    
+    fig, ax = plt.subplots(figsize=(12, 6))
+    ax.bar(x - width/2, succ_scores, width, label='Similarity to SUCCESS', color='green', alpha=0.7)
+    ax.bar(x + width/2, unsucc_scores, width, label='Similarity to FAILURE', color='red', alpha=0.7)
+    
+    ax.set_ylabel('Cosine Similarity Score')
+    ax.set_title('Test Text Closeness to Word Profiles (Test 1)')
+    ax.set_xticks(x)
+    ax.set_xticklabels(test_labels)
+    ax.legend()
+    plt.grid(axis='y', linestyle='--', alpha=0.7)
+    plt.tight_layout()
+    plt.savefig("kategori/1_similarity_bars.png")
+    print("Saved: kategori/1_similarity_bars.png")
+
     # --- 6. VISUALIZATION 2: Feature Importance ---
     print("Generating Feature Importance visualization...")
     feature_names = vectorizer.get_feature_names_out()
@@ -204,7 +227,8 @@ def main():
         report.append(f"Scores -> Similarity to Success: {succ_score:.3f} | Similarity to Failure: {unsucc_score:.3f}")
 
     report.append("\nVISUALIZATIONS GENERATED:")
-    report.append("- kategori/1_pca_visualization.png: PCA scatter plot of vectors.")
+    report.append("- kategori/1_pca_visualization.png: PCA scatter plot mapping the text neighborhood.")
+    report.append("- kategori/1_similarity_bars.png: 1D closeness chart comparing success vs failure similarity.")
     report.append("- kategori/1_top_words_success.png: Top 10 words contributing to the Success profile.")
     report.append("- kategori/1_top_words_unsuccess.png: Top 10 words contributing to the Unsuccess profile.")
     report.append("\n")

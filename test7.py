@@ -100,6 +100,32 @@ def main():
     plt.savefig("kategori/7_ensemble_weights.png")
     print("Saved: kategori/7_ensemble_weights.png")
 
+    # Probability Spectrum (1D Dot Plot)
+    print("\nGenerating Confidence Spectrum visualization...")
+    plt.figure(figsize=(12, 3))
+    
+    # Plot background zones
+    plt.axvspan(0, 0.5, color='red', alpha=0.1)
+    plt.axvspan(0.5, 1.0, color='green', alpha=0.1)
+    plt.axvline(x=0.5, color='black', linestyle='--', alpha=0.5)
+    
+    # Plot test texts as dots
+    succ_probs = probabilities[:, 1]
+    y_vals = np.zeros(len(texts_to_test)) # Plot all on a 1D line (y=0)
+    
+    plt.scatter(succ_probs, y_vals, c='blue', s=200, marker='o', edgecolors='white', zorder=5)
+    
+    for i, p in enumerate(succ_probs):
+        plt.annotate(f"Test {i+1}", (p, 0.02), ha='center', fontsize=10, rotation=45)
+
+    plt.title("Test Text Confidence Spectrum (Test 7 - Master Ensemble)")
+    plt.xlabel("Probability of being 'SUCCESSFUL' (0.0 to 1.0)")
+    plt.yticks([]) # Hide y-axis
+    plt.xlim(-0.05, 1.05)
+    plt.tight_layout()
+    plt.savefig("kategori/7_confidence_spectrum.png")
+    print("Saved: kategori/7_confidence_spectrum.png")
+
     # Generate Report
     report = []
     report.append("\n" + "="*50)
@@ -113,6 +139,10 @@ def main():
     for i in range(len(test_names)):
         report.append(f"  - {test_names[i]}: Weight {coefs[i]:.3f} ({'Trusted' if coefs[i] > 0 else 'Ignored/Reversed'})")
         
+    report.append("\nVISUALIZATIONS GENERATED:")
+    report.append("- kategori/7_ensemble_weights.png: Horizontal bar chart showing how much weight the Master AI gives each test.")
+    report.append("- kategori/7_confidence_spectrum.png: 1D scale showing where texts land on the probability continuum.")
+
     report.append("\nRESULTS FOR TEST TEXTS:")
     for i, text in enumerate(texts_to_test):
         prob_unsucc, prob_succ = probabilities[i]

@@ -139,27 +139,28 @@ def main():
     plt.savefig("kategori/4_tsne.png")
     print("Saved: kategori/4_tsne.png")
 
-    # --- 6. VISUALIZATION 3: Cosine Similarity Heatmap ---
-    print("\nGenerating Cosine Similarity Heatmap...")
-    sim_matrix = cosine_similarity(test_vectors, np.vstack([succ_profile, unsucc_profile]))
-
-    plt.figure(figsize=(8, 6))
-    plt.imshow(sim_matrix, cmap='Blues', aspect='auto', vmin=0, vmax=1)
-    plt.colorbar(label='Cosine Similarity')
-    plt.xticks([0, 1], ['Success Profile', 'Unsuccess Profile'])
-    plt.yticks(range(len(texts_to_test)), [f"Test {i+1}" for i in range(len(texts_to_test))])
-
-    # Add text annotations on the heatmap
-    for i in range(len(texts_to_test)):
-        for j in range(2):
-            val = sim_matrix[i, j]
-            color = 'white' if val > 0.6 else 'black'
-            plt.text(j, i, f"{val:.3f}", ha='center', va='center', color=color)
-
-    plt.title("Cosine Similarity to Profiles (Test Texts)")
+    # --- 6. VISUALIZATION 3: Similarity Bar Chart ---
+    print("\nGenerating Closeness Bar Chart...")
+    test_labels = [f"Test {i+1}" for i in range(len(texts_to_test))]
+    succ_scores = [cosine_similarity(test_vectors[i].reshape(1, -1), succ_profile)[0][0] for i in range(len(texts_to_test))]
+    unsucc_scores = [cosine_similarity(test_vectors[i].reshape(1, -1), unsucc_profile)[0][0] for i in range(len(texts_to_test))]
+    
+    x = np.arange(len(test_labels))
+    width = 0.35
+    
+    fig, ax = plt.subplots(figsize=(12, 6))
+    ax.bar(x - width/2, succ_scores, width, label='Similarity to SUCCESS', color='green', alpha=0.7)
+    ax.bar(x + width/2, unsucc_scores, width, label='Similarity to FAILURE', color='red', alpha=0.7)
+    
+    ax.set_ylabel('Cosine Similarity Score')
+    ax.set_title('Test Text Closeness to Semantic Profiles (Test 4)')
+    ax.set_xticks(x)
+    ax.set_xticklabels(test_labels)
+    ax.legend()
+    plt.grid(axis='y', linestyle='--', alpha=0.7)
     plt.tight_layout()
-    plt.savefig("kategori/4_similarity_heatmap.png")
-    print("Saved: kategori/4_similarity_heatmap.png")
+    plt.savefig("kategori/4_similarity_bars.png")
+    print("Saved: kategori/4_similarity_bars.png")
 
     # --- 7. GENERATE TEXT REPORT ---
     print("\nGenerating Report...")
@@ -192,8 +193,8 @@ def main():
 
     report.append("\nVISUALIZATIONS GENERATED:")
     report.append("- kategori/4_pca.png: PCA scatter plot of sentence embeddings.")
-    report.append("- kategori/4_tsne.png: t-SNE scatter plot of sentence embeddings (better at separating semantic clusters).")
-    report.append("- kategori/4_similarity_heatmap.png: Visual grid of the exact cosine similarity scores.")
+    report.append("- kategori/4_tsne.png: t-SNE scatter plot mapping the exact semantic neighborhood.")
+    report.append("- kategori/4_similarity_bars.png: 1D closeness chart comparing success vs failure similarity.")
     report.append("\n")
 
     os.makedirs("kategori", exist_ok=True)

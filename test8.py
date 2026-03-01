@@ -88,6 +88,32 @@ def main():
     plt.savefig("kategori/8_tsne_svm.png")
     print("Saved: kategori/8_tsne_svm.png")
 
+    # Probability Spectrum (1D Dot Plot)
+    print("\nGenerating Confidence Spectrum visualization...")
+    plt.figure(figsize=(12, 3))
+    
+    # Plot background zones
+    plt.axvspan(0, 0.5, color='red', alpha=0.1)
+    plt.axvspan(0.5, 1.0, color='green', alpha=0.1)
+    plt.axvline(x=0.5, color='black', linestyle='--', alpha=0.5)
+    
+    # Plot test texts as dots
+    succ_probs = probabilities[:, 1]
+    y_vals = np.zeros(len(texts_to_test)) # Plot all on a 1D line (y=0)
+    
+    plt.scatter(succ_probs, y_vals, c='blue', s=200, marker='o', edgecolors='white', zorder=5)
+    
+    for i, p in enumerate(succ_probs):
+        plt.annotate(f"Test {i+1}", (p, 0.02), ha='center', fontsize=10, rotation=45)
+
+    plt.title("Test Text Confidence Spectrum (Test 8 - Semantic SVM)")
+    plt.xlabel("Probability of being 'SUCCESSFUL' (0.0 to 1.0)")
+    plt.yticks([]) # Hide y-axis
+    plt.xlim(-0.05, 1.05)
+    plt.tight_layout()
+    plt.savefig("kategori/8_confidence_spectrum.png")
+    print("Saved: kategori/8_confidence_spectrum.png")
+
     report = []
     report.append("\n" + "="*50)
     report.append("TEST 8 - REPORT SUMMARY")
@@ -97,6 +123,10 @@ def main():
     report.append("* Nasıl Çalışır: Metinleri 384 boyutlu vektörlere çevirip 'Destek Vektör Makineleri' (SVM) ile kesin bir matematiksel sınır çeker.")
     report.append("* Neye Bakmaz: Kelimelerin frekansına veya sırasına.")
     report.append("* Sonuç Ne İfade Eder: SVM modelinin sınırlarının hangi tarafına düştüğünü gösteren Olasılık Skorudur (Confidence %).")
+    report.append("\nVISUALIZATIONS GENERATED:")
+    report.append("- kategori/8_tsne_svm.png: t-SNE scatter plot mapping the exact semantic neighborhood.")
+    report.append("- kategori/8_confidence_spectrum.png: 1D scale showing exactly where texts land on the mathematical probability continuum.")
+
     report.append("\nRESULTS FOR TEST TEXTS:")
     for i, text in enumerate(texts_to_test):
         prob_unsucc, prob_succ = probabilities[i]

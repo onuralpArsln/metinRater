@@ -1,6 +1,7 @@
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
+from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
 import os
@@ -59,6 +60,12 @@ def main():
         ngram_range=(1, 2)
     )
     X_train = vectorizer.fit_transform(all_known_texts)
+
+    # Pre-calculate the profiles for the bar chart later
+    succ_vectors = vectorizer.transform(successful_texts)
+    unsucc_vectors = vectorizer.transform(unsuccessful_texts)
+    succ_profile = np.asarray(np.mean(succ_vectors, axis=0))
+    unsucc_profile = np.asarray(np.mean(unsucc_vectors, axis=0))
 
     # --- 3. TRAIN CLASSIFIER ---
     print("Training Logistic Regression Model on Custom Tokens...")
@@ -156,6 +163,31 @@ def main():
         f.write("\n".join(pca_data))
     print("Saved: kategori/6_pca_data.txt")
 
+    # --- 5B. VISUALIZATION: Similarity Bar Chart ---
+    print("Generating Closeness Bar Chart...")
+    test_labels = [f"Test {i+1}" for i in range(len(texts_to_test))]
+    
+    from sklearn.metrics.pairwise import cosine_similarity
+    succ_scores = [cosine_similarity(v, succ_profile)[0][0] for v in X_test]
+    unsucc_scores = [cosine_similarity(v, unsucc_profile)[0][0] for v in X_test]
+    
+    x = np.arange(len(test_labels))
+    width = 0.35
+    
+    fig, ax = plt.subplots(figsize=(12, 6))
+    ax.bar(x - width/2, succ_scores, width, label='Similarity to SUCCESS', color='green', alpha=0.7)
+    ax.bar(x + width/2, unsucc_scores, width, label='Similarity to FAILURE', color='red', alpha=0.7)
+    
+    ax.set_ylabel('Cosine Similarity Score')
+    ax.set_title('Test Text Closeness to Profiles (Test 6 - Custom Punctuation Tokens)')
+    ax.set_xticks(x)
+    ax.set_xticklabels(test_labels)
+    ax.legend()
+    plt.grid(axis='y', linestyle='--', alpha=0.7)
+    plt.tight_layout()
+    plt.savefig("kategori/6_similarity_bars.png")
+    print("Saved: kategori/6_similarity_bars.png")
+
     # --- 6. GENERATE TEXT REPORT ---
     print("\nGenerating Report...")
     report = []
@@ -176,6 +208,10 @@ def main():
     for idx in top_unsucc_indices[:5]:
         if coefs[idx] < 0:
             report.append(f"  - '{feature_names[idx]}' (Weight {coefs[idx]:.2f})")
+
+    report.append("\nVISUALIZATIONS GENERATED:")
+    report.append("- kategori/6_pca.png: PCA scatter plot mapping the text neighborhood.")
+    report.append("- kategori/6_similarity_bars.png: 1D closeness chart comparing success vs failure similarity.")
 
     report.append("\nRESULTS FOR TEST TEXTS:")
     for i, text in enumerate(texts_to_test):
