@@ -167,10 +167,11 @@ def main():
     report.append("="*50)
     report.append("TEST 4 - REPORT SUMMARY")
     report.append("="*50)
-    report.append("APPROACH:")
-    report.append("- Method: Pre-trained Multilingual Sentence Transformer Model")
-    report.append("- Parameters: Model = 'paraphrase-multilingual-MiniLM-L12-v2' (Dense semantic embeddings)")
-    report.append("- Mechanics: Converts sentences into high-dimensional vectors based on semantic meaning, capturing context regardless of the exact wording. Uses Cosine Similarity to compare Test Texts to the average Meaning Profiles of Success/Failure.")
+        report.append("YAKLAŞIM (Test 4):")
+    report.append("* Odak Noktası: Sadece cümlenin GENEL ANLAMINA ve BAĞLAMINA bakar. Kelime frekansı, sırası önemsizdir.")
+    report.append("* Nasıl Çalışır: Çok dilli bir dil modeli (Sentence Transformer) kullanır.")
+    report.append("* Neye Bakmaz: Hangi kelimenin kaç defa geçtiğine (kelime sayımı yapmaz).")
+    report.append("* Sonuç Ne İfade Eder: Olasılık değil, Anlamsal Mesafe (Semantic Similarity) verir.")
     report.append("\nRESULTS FOR TEST TEXTS:")
 
     for i, text in enumerate(texts_to_test):

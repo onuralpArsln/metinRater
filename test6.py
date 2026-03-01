@@ -162,11 +162,10 @@ def main():
     report.append("\n" + "="*50)
     report.append("TEST 6 - REPORT SUMMARY")
     report.append("="*50)
-    report.append("APPROACH:")
-    report.append("- Method: Custom Token Pattern TF-IDF Vectorizer + Logistic Regression")
-    report.append("- Parameters: token_pattern=r'(?u)\\b\\w+\\b|[^\\w\\s]+', lowercase=False")
-    report.append("- Mechanics: Treats sequential blocks of punctuation (like '!!!' or '??') as their own distinct vocabulary words alongside fully capitalized words.")
-    
+        report.append("YAKLAŞIM (Test 6):")
+    report.append("* Odak Noktası: Tam kelimelerin ve özel olarak noktalama işareti dizilerinin frekansına bakar.")
+    report.append("* Nasıl Çalışır: '???' grubunu, 'ürün' kelimesi gibi tek başına anlamlı bir kelime olarak sayar.")
+    report.append("* Sonuç Ne İfade Eder: Yazarın tarzını (noktalama alışkanlıklarını) puanlar.")
     report.append("\nGLOBAL MODEL PROPERTIES:")
     report.append("Strongest Indicators of Success (Top 5 Punctuation/Word Tokens):")
     for idx in top_succ_indices[:5]:

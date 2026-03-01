@@ -105,10 +105,10 @@ def main():
     report.append("\n" + "="*50)
     report.append("TEST 7 - ENSEMBLE MASTER CLASSIFIER")
     report.append("="*50)
-    report.append("APPROACH:")
-    report.append("- Method: Logistic Regression acting as a Meta-Classifier.")
-    report.append("- Mechanics: Evaluates the individual predictions of Tests 1 through 6, learning mathematically which tests are accurate for your dataset and which ones cause false signals. It merges them into one final Confidence Score.")
-    
+        report.append("YAKLAŞIM (Test 7 - Master Ensemble):")
+    report.append("* Odak Noktası: Doğrudan metinlere bakmaz. Test 1'den 6'ya kadar olan sonuçları birleştirir.")
+    report.append("* Nasıl Çalışır: Hangi testin daha güvenilir sonuçlar verdiğini öğrenen bir 'Meta' Yapay Zeka kullanır.")
+    report.append("* Sonuç Ne İfade Eder: Tüm algoritmaların ortaklaşa ürettiği nihai Güven Skorudur (Confidence %).")
     report.append("\nWEIGHT OF INDIVIDUAL TESTS:")
     for i in range(len(test_names)):
         report.append(f"  - {test_names[i]}: Weight {coefs[i]:.3f} ({'Trusted' if coefs[i] > 0 else 'Ignored/Reversed'})")

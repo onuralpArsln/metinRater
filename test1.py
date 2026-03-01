@@ -180,10 +180,11 @@ def main():
     report.append("="*50)
     report.append("TEST 1 - REPORT SUMMARY")
     report.append("="*50)
-    report.append("APPROACH:")
-    report.append("- Method: Basic TF-IDF Vectorizer (TfidfVectorizer)")
-    report.append("- Parameters: stop_words='english' (No Turkish stopwords), n-grams: default (unigrams)")
-    report.append("- Mechanics: Calculates 'average' vector profiles for Known Success and Known Unsuccess. Uses Cosine Similarity to compare Test Texts to these profiles.")
+        report.append("YAKLAŞIM (Test 1):")
+    report.append("* Odak Noktası: Sadece kelimelerin sıklığına (frekansına) bakar.")
+    report.append("* Nasıl Çalışır: Hangi kelimenin kaç defa geçtiğini sayar.")
+    report.append("* Neye Bakmaz: Anlama, kelime sırasına, büyük/küçük harfe, noktalama işaretlerine.")
+    report.append("* Sonuç Ne İfade Eder: Eski metinlerle içerdiği ortak kelime sayısının ve sıklığının yüzdesidir.")
     report.append("\nRESULTS FOR TEST TEXTS:")
 
     for i, text in enumerate(texts_to_test):

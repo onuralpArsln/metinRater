@@ -162,11 +162,11 @@ def main():
     report.append("\n" + "="*50)
     report.append("TEST 5 - REPORT SUMMARY")
     report.append("="*50)
-    report.append("APPROACH:")
-    report.append("- Method: Character-level TF-IDF Vectorizer + Logistic Regression")
-    report.append("- Parameters: analyzer='char', ngram_range=(3, 5), lowercase=False")
-    report.append("- Mechanics: Evaluates combinations of 3-5 characters instead of full words, preserving capital letters and punctuation. Useful for catching spam patterns (like '!!!' or 'ALL CAPS').")
-    
+        report.append("YAKLAŞIM (Test 5):")
+    report.append("* Odak Noktası: Sadece harf parçalarının (3-5 harflik) sıklığına ve harf büyüklüğüne bakar.")
+    report.append("* Nasıl Çalışır: Karakter gruplarının geçme sıklığını hesaplar (Örn: 'HAR', 'ARİ', 'İKA').")
+    report.append("* Neye Bakmaz: Metnin diline, anlamına, mantığına.")
+    report.append("* Sonuç Ne İfade Eder: Bir metnin biçimsel (format) olarak geçmiştekilere ne kadar benzediğini gösterir.")
     report.append("\nGLOBAL MODEL PROPERTIES:")
     report.append("Strongest Indicators of Success (Top 5 Positive Character Chunks):")
     for idx in top_succ_indices[:5]:

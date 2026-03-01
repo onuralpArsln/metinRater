@@ -154,10 +154,11 @@ def main():
     report.append("="*50)
     report.append("TEST 2 - REPORT SUMMARY")
     report.append("="*50)
-    report.append("APPROACH:")
-    report.append("- Method: Enhanced TF-IDF Vectorizer (TfidfVectorizer)")
-    report.append("- Parameters: stop_words='turkish' (Uses Turkish stopwords), n-grams: 1-2 (unigrams and bigrams)")
-    report.append("- Mechanics: Calculates 'average' vector profiles for Known Success and Known Unsuccess. Uses Cosine Similarity to compare Test Texts to these profiles.")
+        report.append("YAKLAŞIM (Test 2):")
+    report.append("* Odak Noktası: Hem tek tek kelimelerin sıklığına hem de kısmi kelime sırasına (yan yana gelen 2 kelimeye) bakar.")
+    report.append("* Nasıl Çalışır: Türkçe bağlaçları temizler ve ikili kelimelerin yan yana gelme sıklığına bakar.")
+    report.append("* Neye Bakmaz: Cümlenin genel anlamı, büyük/küçük harf, noktalama.")
+    report.append("* Sonuç Ne İfade Eder: Yeni metnin geçmişteki metinlerle ne kadar fazla ikili kelime kalıbı paylaştığını gösterir.")
     report.append("\nRESULTS FOR TEST TEXTS:")
 
     for i, text in enumerate(texts_to_test):

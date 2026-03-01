@@ -37,3 +37,15 @@ Bu döküman, projedeki 6 farklı Python test dosyasının metinleri analiz eder
 * **Odak Noktası:** Tam kelimelerin ve özel olarak **noktalama işareti dizilerinin frekansına** bakar. Kelime sırası önemli değildir.
 * **Nasıl Çalışır:** "Büyük" ile "büyük" kelimesini farklı sayar. "???" grubunu, "ürün" kelimesi gibi tek başına anlamlı bir kelime olarak sınıflandırır ve sayar.
 * **Sonuç Ne İfade Eder:** Olasılık Skorları (Confidence %), yazarın tarzını (kamera arkası klavye alışkanlıklarını) puanlamaktır. Eğer başarısız metinler genelde bol ünlem (!) veya virgüller (,) ile yazılıyorsa, yeni test metni çok virgüle sahip olduğu için "Başarısız" veya "Başarılı" kategorisine daha fazla çekilecektir. Sonuç, noktalama kalıplarının kelimeler kadar güçlü bir kader belirleyici olduğu anlamına gelir.
+
+## Test 7: Master Ensemble Sınıflandırıcısı (Lojistik Regresyon)
+* **Odak Noktası:** Doğrudan metinlere bakmaz. Bunun yerine Test 1'den 6'ya kadar olan tüm testlerin sonuçlarını birleştirerek son kararı vermeye odaklanır.
+* **Nasıl Çalışır:** Diğer tüm testlerin ürettiği matematiksel skorları alıp bir "Meta" Yapay Zeka (Logistic Regression) kullanır. Hangi testin sizin veritabanınızda daha çok yanıldığını, hangisinin daha güvenilir sonuçlar verdiğini öğrenip, o testin karar aşamasındaki söz hakkını (ağırlığını) artırır veya azaltır. 
+* **Neye Bakmaz:** Kelimelere veya cümlenin anlamına (çünkü diğer 6 test zaten onlara bakmıştır).
+* **Sonuç Ne İfade Eder:** Tüm algoritmaların ortaklaşa ürettiği nihai **Güven Skorudur (Confidence %)**. Çıkan bar grafiğinde, hangi testlerin başarılı veya hatalı sinyaller verdiğini net olarak görebilirsiniz.
+
+## Test 8: Yüksek Boyutlu Semantik SVM (Makine Öğrenimi)
+* **Odak Noktası:** Test 4 gibi sadece cümlenin **GENEL ANLAMINA ve BAĞLAMINA** bakar, ancak daha hassas ve keskin bir sınır çizer.
+* **Nasıl Çalışır:** Çok dilli bir yapay zeka (Sentence Transformer) ile metinleri 384 boyutlu matematiksel uzaya dönüştürür. Test 4'te olduğu gibi "ortalama bir profille" kıyaslama yapmak yerine, "Destek Vektör Makineleri" (SVM) adlı güçlü bir M.Ö algoritması kullanarak Başarılı ve Başarısız cümle yapıları arasına 384 boyutlu uzayda bizzat keskin bir sınır çizer.
+* **Neye Bakmaz:** Kelimelerin frekansına veya sırasına. Sadece cümlenin görünmez "anlamsal haritasına".
+* **Sonuç Ne İfade Eder:** SVM modelinin sınırlarının hangi tarafına düştüğünü gösteren **Olasılık Skorudur (Confidence %)**. Gelişmiş anlam farklılıkları Test 4'ü yanıltabilse bile, Test 8 bu ince sınırları (örneğin "Orto Yastık" ile "Masaj Yastığı" arasındaki anlamsal uçurumu) SVM sayesinde daha net çizer.

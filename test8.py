@@ -87,11 +87,11 @@ def main():
     report.append("\n" + "="*50)
     report.append("TEST 8 - REPORT SUMMARY")
     report.append("="*50)
-    report.append("APPROACH:")
-    report.append("- Method: Support Vector Machine (Linear Kernel) trained on Semantic Embeddings")
-    report.append("- Parameters: Model = 'paraphrase-multilingual-MiniLM-L12-v2', SVM C=1.0")
-    report.append("- Mechanics: Instead of simple averaging (Test 4), it maps sentence meanings into 384-dimensional space and uses an SVM to mathematically draw the optimal dividing line between successful and unsuccessful context structures.")
-    
+        report.append("YAKLAŞIM (Test 8 - Semantik SVM):")
+    report.append("* Odak Noktası: Sadece cümlenin GENEL ANLAMINA ve BAĞLAMINA bakar, hassas bir sınır çizer.")
+    report.append("* Nasıl Çalışır: Metinleri 384 boyutlu vektörlere çevirip 'Destek Vektör Makineleri' (SVM) ile kesin bir matematiksel sınır çeker.")
+    report.append("* Neye Bakmaz: Kelimelerin frekansına veya sırasına.")
+    report.append("* Sonuç Ne İfade Eder: SVM modelinin sınırlarının hangi tarafına düştüğünü gösteren Olasılık Skorudur (Confidence %).")
     report.append("\nRESULTS FOR TEST TEXTS:")
     for i, text in enumerate(texts_to_test):
         prob_unsucc, prob_succ = probabilities[i]
