@@ -5,8 +5,7 @@ import nltk
 from nltk.corpus import stopwords
 import os
 import matplotlib.pyplot as plt
-from sklearn.decomposition import PCA, TruncatedSVD
-from sklearn.manifold import TSNE
+from sklearn.decomposition import PCA
 
 def load_texts(filename):
     if not os.path.exists(filename):
@@ -135,50 +134,22 @@ def main():
     plt.savefig("kategori/3_feature_importance.png")
     print("Saved: kategori/3_feature_importance.png")
 
-    # --- 5B. VISUALIZATION: 1D Confidence Slider ---
-    print("\nGenerating Confidence Slider Plot...")
-    # Plot test texts on a 1D line based on their predicted probability of success
-    test_probs = probabilities[:, 1]
-    
-    plt.figure(figsize=(12, 4))
-    
-    # Draw the background probability gradient and center line
-    plt.axvspan(0, 0.5, facecolor='red', alpha=0.1)
-    plt.axvspan(0.5, 1.0, facecolor='green', alpha=0.1)
-    plt.axvline(0.5, color='gray', linestyle='--', label='Decision Boundary (50%)')
-    
-    # Plot the texts on the line
-    y_jitter = np.random.uniform(-0.1, 0.1, size=len(texts_to_test))
-    plt.scatter(test_probs, y_jitter, color='blue', s=150, zorder=5, edgecolors='black')
-    
-    for i, text in enumerate(texts_to_test):
-        plt.annotate(f"Test {i+1}", 
-                     (test_probs[i], y_jitter[i]),
-                     textcoords="offset points", 
-                     xytext=(0, 10), 
-                     ha='center')
-
-    plt.title("Test Text Placements on the Confidence Spectrum (Test 3)")
+    # Probability Histogram
+    succ_probs = probabilities[:, 1]
+    plt.figure(figsize=(8, 5))
+    plt.hist(succ_probs, bins=10, color='blue', alpha=0.7, range=(0,1))
+    plt.title("Prediction Confidence for 'Successful' Class")
     plt.xlabel("Probability of being 'Successful' (0 to 1)")
-    plt.yticks([]) # Hide y-axis
-    plt.xlim(-0.05, 1.05)
-    plt.legend(loc='upper left')
+    plt.ylabel("Number of Texts")
     plt.tight_layout()
-    plt.savefig("kategori/3_confidence_slider.png")
-    print("Saved: kategori/3_confidence_slider.png")
+    plt.savefig("kategori/3_confidence_histogram.png")
+    print("Saved: kategori/3_confidence_histogram.png")
 
-    # --- 5C. VISUALIZATION: t-SNE Scatter Plot ---
-    print("\nGenerating t-SNE visualization...")
-    all_vectors = vectorizer.transform(all_known_texts + texts_to_test)
-    
-    # SVD to 50D, then t-SNE to 2D
-    n_components = min(50, all_vectors.shape[0] - 1)
-    svd = TruncatedSVD(n_components=n_components, random_state=42)
-    dense_vectors = svd.fit_transform(all_vectors)
-    
-    perplexity = min(30, dense_vectors.shape[0] - 1) if dense_vectors.shape[0] > 1 else 1
-    tsne = TSNE(n_components=2, perplexity=perplexity, random_state=42)
-    coords = tsne.fit_transform(dense_vectors)
+    # PCA Visualization
+    print("\nGenerating PCA visualization...")
+    all_vectors = vectorizer.transform(all_known_texts + texts_to_test).toarray()
+    pca = PCA(n_components=2)
+    coords = pca.fit_transform(all_vectors)
 
     plt.figure(figsize=(10, 7))
     n_succ = len(successful_texts)
@@ -190,30 +161,30 @@ def main():
     for i, text in enumerate(texts_to_test):
         plt.annotate(f"Test {i+1}", (coords[n_succ+n_unsucc+i, 0], coords[n_succ+n_unsucc+i, 1]))
 
-    plt.title("Approach 2 Embedding Clusters (SVD + t-SNE)")
+    plt.title("Approach 2 Embedding Clusters (TF-IDF)")
     plt.legend()
-    plt.savefig("kategori/3_tsne.png")
-    print("Saved: kategori/3_tsne.png")
+    plt.savefig("kategori/3_pca.png")
+    print("Saved: kategori/3_pca.png")
 
-    # Save t-SNE coordinates to text file
-    tsne_data = []
-    tsne_data.append("SUCCESSFUL TEXTS (GREEN):")
+    # Save PCA coordinates to text file
+    pca_data = []
+    pca_data.append("SUCCESSFUL TEXTS (GREEN):")
     for i in range(n_succ):
-        tsne_data.append(f"X: {coords[i, 0]:.3f}, Y: {coords[i, 1]:.3f} | Text: {successful_texts[i]}")
+        pca_data.append(f"X: {coords[i, 0]:.3f}, Y: {coords[i, 1]:.3f} | Text: {successful_texts[i]}")
 
-    tsne_data.append("\nUNSUCCESSFUL TEXTS (RED):")
+    pca_data.append("\nUNSUCCESSFUL TEXTS (RED):")
     for i in range(n_unsucc):
         idx = n_succ + i
-        tsne_data.append(f"X: {coords[idx, 0]:.3f}, Y: {coords[idx, 1]:.3f} | Text: {unsuccessful_texts[i]}")
+        pca_data.append(f"X: {coords[idx, 0]:.3f}, Y: {coords[idx, 1]:.3f} | Text: {unsuccessful_texts[i]}")
 
-    tsne_data.append("\nTEST TEXTS (BLUE):")
+    pca_data.append("\nTEST TEXTS (BLUE):")
     for i in range(len(texts_to_test)):
         idx = n_succ + n_unsucc + i
-        tsne_data.append(f"X: {coords[idx, 0]:.3f}, Y: {coords[idx, 1]:.3f} | Text: {texts_to_test[i]}")
+        pca_data.append(f"X: {coords[idx, 0]:.3f}, Y: {coords[idx, 1]:.3f} | Text: {texts_to_test[i]}")
 
-    with open("kategori/3_tsne_data.txt", "w", encoding="utf-8") as f:
-        f.write("\n".join(tsne_data))
-    print("Saved: kategori/3_tsne_data.txt")
+    with open("kategori/3_pca_data.txt", "w", encoding="utf-8") as f:
+        f.write("\n".join(pca_data))
+    print("Saved: kategori/3_pca_data.txt")
 
     # --- 6. GENERATE TEXT REPORT ---
     print("\nGenerating Report...")
@@ -254,8 +225,8 @@ def main():
 
     report.append("\nVISUALIZATIONS GENERATED:")
     report.append("- kategori/3_feature_importance.png: Horizontal bar chart showing the top 10 positive and negative logistic regression features.")
-    report.append("- kategori/3_confidence_slider.png: 1D closeness slider mapping exact text probability.")
-    report.append("- kategori/3_tsne.png: t-SNE scatter plot of vectors using the enhanced TF-IDF model.")
+    report.append("- kategori/3_confidence_histogram.png: Histogram showing the distribution of the model's confidence scores.")
+    report.append("- kategori/3_pca.png: PCA scatter plot of vectors using the enhanced TF-IDF model.")
     report.append("\n")
 
     os.makedirs("kategori", exist_ok=True)

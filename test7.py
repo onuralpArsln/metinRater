@@ -105,7 +105,7 @@ def main():
     report.append("\n" + "="*50)
     report.append("TEST 7 - ENSEMBLE MASTER CLASSIFIER")
     report.append("="*50)
-        report.append("YAKLAŞIM (Test 7 - Master Ensemble):")
+    report.append("YAKLAŞIM (Test 7 - Master Ensemble):")
     report.append("* Odak Noktası: Doğrudan metinlere bakmaz. Test 1'den 6'ya kadar olan sonuçları birleştirir.")
     report.append("* Nasıl Çalışır: Hangi testin daha güvenilir sonuçlar verdiğini öğrenen bir 'Meta' Yapay Zeka kullanır.")
     report.append("* Sonuç Ne İfade Eder: Tüm algoritmaların ortaklaşa ürettiği nihai Güven Skorudur (Confidence %).")

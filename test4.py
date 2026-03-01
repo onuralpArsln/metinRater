@@ -167,7 +167,7 @@ def main():
     report.append("="*50)
     report.append("TEST 4 - REPORT SUMMARY")
     report.append("="*50)
-        report.append("YAKLAŞIM (Test 4):")
+    report.append("YAKLAŞIM (Test 4):")
     report.append("* Odak Noktası: Sadece cümlenin GENEL ANLAMINA ve BAĞLAMINA bakar. Kelime frekansı, sırası önemsizdir.")
     report.append("* Nasıl Çalışır: Çok dilli bir dil modeli (Sentence Transformer) kullanır.")
     report.append("* Neye Bakmaz: Hangi kelimenin kaç defa geçtiğine (kelime sayımı yapmaz).")

@@ -1,8 +1,7 @@
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-from sklearn.decomposition import PCA, TruncatedSVD
-from sklearn.manifold import TSNE
+from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
 import nltk
 from nltk.corpus import stopwords
@@ -102,19 +101,11 @@ def main():
         print(f"Classification: {result}")
         print(f"(Scores -> Success: {succ_score:.3f} | Unsuccess: {unsucc_score:.3f})") 
 
-    # --- 5. VISUALIZATION 1: t-SNE Scatter Plot ---
-    print("\nGenerating t-SNE visualization...")
-    all_vectors = vectorizer.transform(all_known_texts + texts_to_test)
-    
-    # 1. Reduce high-dimensional sparse TF-IDF to 50D dense using SVD
-    n_components = min(50, all_vectors.shape[0] - 1)
-    svd = TruncatedSVD(n_components=n_components, random_state=42)
-    dense_vectors = svd.fit_transform(all_vectors)
-    
-    # 2. Map dense 50D to 2D using t-SNE for clustering
-    perplexity = min(30, dense_vectors.shape[0] - 1) if dense_vectors.shape[0] > 1 else 1
-    tsne = TSNE(n_components=2, perplexity=perplexity, random_state=42)
-    coords = tsne.fit_transform(dense_vectors)
+    # --- 5. VISUALIZATION 1: PCA Scatter Plot ---
+    print("\nGenerating PCA visualization...")
+    all_vectors = vectorizer.transform(all_known_texts + texts_to_test).toarray()
+    pca = PCA(n_components=2)
+    coords = pca.fit_transform(all_vectors)
 
     plt.figure(figsize=(10, 7))
 
@@ -132,54 +123,33 @@ def main():
     for i, text in enumerate(texts_to_test):
         plt.annotate(f"Test {i+1}", (coords[n_succ+n_unsucc+i, 0], coords[n_succ+n_unsucc+i, 1]))
 
-    plt.title("Text Embedding Clusters (SVD + t-SNE)")
+    plt.title("Text Embedding Clusters (PCA)")
+    plt.xlabel("Principal Component 1")
+    plt.ylabel("Principal Component 2")
     plt.legend()
     plt.grid(True, linestyle='--', alpha=0.7)
-    plt.savefig("kategori/1_tsne_visualization.png")
-    print("Saved: kategori/1_tsne_visualization.png")
-    
-    # --- 5B. VISUALIZATION 1.5: Similarity Bar Chart ---
-    print("Generating Closeness Bar Chart...")
-    test_labels = [f"Test {i+1}" for i in range(len(texts_to_test))]
-    succ_scores = [cosine_similarity(v, succ_profile)[0][0] for v in new_vectors]
-    unsucc_scores = [cosine_similarity(v, unsucc_profile)[0][0] for v in new_vectors]
-    
-    x = np.arange(len(test_labels))
-    width = 0.35
-    
-    fig, ax = plt.subplots(figsize=(12, 6))
-    ax.bar(x - width/2, succ_scores, width, label='Similarity to SUCCESS', color='green', alpha=0.7)
-    ax.bar(x + width/2, unsucc_scores, width, label='Similarity to FAILURE', color='red', alpha=0.7)
-    
-    ax.set_ylabel('Cosine Similarity Score')
-    ax.set_title('Test Text Closeness to Profiles (Test 1)')
-    ax.set_xticks(x)
-    ax.set_xticklabels(test_labels)
-    ax.legend()
-    plt.grid(axis='y', linestyle='--', alpha=0.7)
-    plt.tight_layout()
-    plt.savefig("kategori/1_similarity_bars.png")
-    print("Saved: kategori/1_similarity_bars.png")
+    plt.savefig("kategori/1_pca_visualization.png")
+    print("Saved: pca_visualization.png")
 
-    # Save t-SNE coordinates to text file
-    tsne_data = []
-    tsne_data.append("SUCCESSFUL TEXTS (GREEN):")
+    # Save PCA coordinates to text file
+    pca_data = []
+    pca_data.append("SUCCESSFUL TEXTS (GREEN):")
     for i in range(n_succ):
-        tsne_data.append(f"X: {coords[i, 0]:.3f}, Y: {coords[i, 1]:.3f} | Text: {successful_texts[i]}")
+        pca_data.append(f"X: {coords[i, 0]:.3f}, Y: {coords[i, 1]:.3f} | Text: {successful_texts[i]}")
 
-    tsne_data.append("\nUNSUCCESSFUL TEXTS (RED):")
+    pca_data.append("\nUNSUCCESSFUL TEXTS (RED):")
     for i in range(n_unsucc):
         idx = n_succ + i
-        tsne_data.append(f"X: {coords[idx, 0]:.3f}, Y: {coords[idx, 1]:.3f} | Text: {unsuccessful_texts[i]}")
+        pca_data.append(f"X: {coords[idx, 0]:.3f}, Y: {coords[idx, 1]:.3f} | Text: {unsuccessful_texts[i]}")
 
-    tsne_data.append("\nTEST TEXTS (BLUE):")
+    pca_data.append("\nTEST TEXTS (BLUE):")
     for i in range(len(texts_to_test)):
         idx = n_succ + n_unsucc + i
-        tsne_data.append(f"X: {coords[idx, 0]:.3f}, Y: {coords[idx, 1]:.3f} | Text: {texts_to_test[i]}")
+        pca_data.append(f"X: {coords[idx, 0]:.3f}, Y: {coords[idx, 1]:.3f} | Text: {texts_to_test[i]}")
 
-    with open("kategori/1_tsne_data.txt", "w", encoding="utf-8") as f:
-        f.write("\n".join(tsne_data))
-    print("Saved: kategori/1_tsne_data.txt")
+    with open("kategori/1_pca_data.txt", "w", encoding="utf-8") as f:
+        f.write("\n".join(pca_data))
+    print("Saved: kategori/1_pca_data.txt")
 
     # --- 6. VISUALIZATION 2: Feature Importance ---
     print("Generating Feature Importance visualization...")
@@ -210,7 +180,7 @@ def main():
     report.append("="*50)
     report.append("TEST 1 - REPORT SUMMARY")
     report.append("="*50)
-        report.append("YAKLAŞIM (Test 1):")
+    report.append("YAKLAŞIM (Test 1):")
     report.append("* Odak Noktası: Sadece kelimelerin sıklığına (frekansına) bakar.")
     report.append("* Nasıl Çalışır: Hangi kelimenin kaç defa geçtiğini sayar.")
     report.append("* Neye Bakmaz: Anlama, kelime sırasına, büyük/küçük harfe, noktalama işaretlerine.")
@@ -234,8 +204,7 @@ def main():
         report.append(f"Scores -> Similarity to Success: {succ_score:.3f} | Similarity to Failure: {unsucc_score:.3f}")
 
     report.append("\nVISUALIZATIONS GENERATED:")
-    report.append("- kategori/1_similarity_bars.png: 1D closeness chart pitting success vs failure similarity.")
-    report.append("- kategori/1_tsne_visualization.png: t-SNE scatter plot of vectors (shows natural clusters).")
+    report.append("- kategori/1_pca_visualization.png: PCA scatter plot of vectors.")
     report.append("- kategori/1_top_words_success.png: Top 10 words contributing to the Success profile.")
     report.append("- kategori/1_top_words_unsuccess.png: Top 10 words contributing to the Unsuccess profile.")
     report.append("\n")
