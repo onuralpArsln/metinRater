@@ -58,14 +58,19 @@ def main():
         print(f"\nText: '{text}'")
         print(f"Semantic Classification: {result} (Confidence: {confidence:.1f}%)")
 
-    print("\nGenerating PCA visualization for Test 8...")
+    print("\nGenerating t-SNE visualization for Test 8...")
     os.makedirs("kategori", exist_ok=True)
     
-    # We visualize the decision boundary in 2D using PCA.
-    # Note: A linear boundary in 384D looks complex in 2D.
+    # We visualize the semantic groupings in 2D using t-SNE.
+    # t-SNE preserves local neighborhood relationships.
     all_vectors = np.vstack((X_train, X_test))
-    pca = PCA(n_components=2)
-    coords = pca.fit_transform(all_vectors)
+    
+    # Auto-adjust perplexity for small datasets to avoid warnings/errors
+    n_samples = len(all_vectors)
+    perplexity = min(30, n_samples - 1) if n_samples > 1 else 1
+    
+    tsne = TSNE(n_components=2, perplexity=perplexity, random_state=42)
+    coords = tsne.fit_transform(all_vectors)
 
     plt.figure(figsize=(10, 7))
     n_succ = len(successful_texts)
@@ -78,16 +83,16 @@ def main():
     for i, text in enumerate(texts_to_test):
         plt.annotate(f"Test {i+1}", (coords[n_succ+n_unsucc+i, 0], coords[n_succ+n_unsucc+i, 1]))
 
-    plt.title("Approach 8: SVM clusters in Semantic Space (PCA mapped)")
+    plt.title("Approach 8: SVM clusters in Semantic Space (t-SNE mapped)")
     plt.legend()
-    plt.savefig("kategori/8_pca_svm.png")
-    print("Saved: kategori/8_pca_svm.png")
+    plt.savefig("kategori/8_tsne_svm.png")
+    print("Saved: kategori/8_tsne_svm.png")
 
     report = []
     report.append("\n" + "="*50)
     report.append("TEST 8 - REPORT SUMMARY")
     report.append("="*50)
-        report.append("YAKLAŞIM (Test 8 - Semantik SVM):")
+    report.append("YAKLAŞIM (Test 8 - Semantik SVM):")
     report.append("* Odak Noktası: Sadece cümlenin GENEL ANLAMINA ve BAĞLAMINA bakar, hassas bir sınır çizer.")
     report.append("* Nasıl Çalışır: Metinleri 384 boyutlu vektörlere çevirip 'Destek Vektör Makineleri' (SVM) ile kesin bir matematiksel sınır çeker.")
     report.append("* Neye Bakmaz: Kelimelerin frekansına veya sırasına.")
