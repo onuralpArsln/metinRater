@@ -1,11 +1,11 @@
-from bs4 import BeautifulSoup
+import sys
 
-def extract_products():
+def extract_products(target_file='target.html'):
     try:
-        with open('target.html', 'r', encoding='utf-8') as f:
+        with open(target_file, 'r', encoding='utf-8') as f:
             html_content = f.read()
     except FileNotFoundError:
-        print("Error: 'target.html' not found in the current directory.")
+        print(f"Error: '{target_file}' not found.")
         return
 
     # Parse the HTML content
@@ -67,4 +67,6 @@ def extract_products():
     print(f"Successfully wrote {len(last_20)} items to unsuccessful.txt")
 
 if __name__ == '__main__':
-    extract_products()
+    target = sys.argv[1] if len(sys.argv) > 1 else 'target.html'
+    from bs4 import BeautifulSoup
+    extract_products(target)

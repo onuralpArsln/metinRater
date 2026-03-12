@@ -228,9 +228,7 @@ def main():
         report.append(f"Content: '{text}'")
         report.append(f"Classification: {result} (Confidence: {confidence:.1f}%)")
 
-    with open("kategori/rapor.txt", "a", encoding="utf-8") as f:
-        f.write("\n".join(report))
-    print("Report appended to kategori/rapor.txt")
+    print("\n".join(report))
 
 if __name__ == "__main__":
     main()

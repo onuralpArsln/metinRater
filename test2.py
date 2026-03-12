@@ -217,9 +217,7 @@ def main():
     report.append("\n")
 
     os.makedirs("kategori", exist_ok=True)
-    with open("kategori/rapor.txt", "a", encoding="utf-8") as f:
-        f.write("\n".join(report))
-    print("Report appended to kategori/rapor.txt")
+    print("\n".join(report))
 
 if __name__ == "__main__":
     main()
