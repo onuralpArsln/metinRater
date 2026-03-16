@@ -48,88 +48,111 @@ def main():
         print("No HTML files found in targets/")
         return
 
-    # Clear previous results
+    # Clear previous results and logs
     with open("kategori/rapor.txt", "w", encoding="utf-8") as f:
-        f.write("--- MULTI-TARGET TEST LOG ---\n")
+        f.write("--- AGGREGATE BIG-DATA TEST LOG ---\n")
 
-    # Clear group files
-    for f in ["grup1.txt", "grup2.txt"]:
-        if os.path.exists(f): 
-            os.remove(f)
+    # 1. PHASE 1: CORPUS BUILDING
+    print("PHASE 1: Building Aggregate Corpus from all targets...")
+    for f_path in ["grup1.txt", "grup2.txt", "successful.txt", "unsuccessful.txt"]:
+        if os.path.exists(f_path): 
+            os.remove(f_path)
+
+    for target in target_files:
+        target_name = os.path.basename(target)
+        print(f"  > Extracting: {target_name}")
+        run_command(["extractor.py", target])
+
+        # Aggregate into group files
+        try:
+            for source, dest in [("successful.txt", "grup1.txt"), ("unsuccessful.txt", "grup2.txt")]:
+                if os.path.exists(source):
+                    with open(source, "r", encoding="utf-8") as f:
+                        content = f.read().strip()
+                        if content:
+                            with open(dest, "a", encoding="utf-8") as d_file:
+                                d_file.write(content + "\n")
+        except Exception as e:
+            print(f"Error during aggregation: {e}")
+
+    # Prepare final training sets for Phase 2
+    import shutil
+    if os.path.exists("grup1.txt"): shutil.copy("grup1.txt", "successful.txt")
+    if os.path.exists("grup2.txt"): shutil.copy("grup2.txt", "unsuccessful.txt")
+
+    # 2. PHASE 2: AGGREGATE TESTING
+    print("\nPHASE 2: Testing Headlines against Aggregate Corpus...")
+    
+    # Read original headlines
+    if not os.path.exists("test_texts.txt"):
+        print("Error: test_texts.txt not found.")
+        return
+    with open("test_texts.txt", "r", encoding="utf-8") as f:
+        headlines = [line.strip() for line in f if line.strip()]
 
     all_data = []
     test_scripts = ["test1.py", "test2.py", "test3.py", "test4.py", "test5.py", "test6.py", "test8.py", "test7.py"]
 
-    for target in target_files:
-        target_name = os.path.basename(target)
-        print(f"\nProcessing: {target_name}")
+    for headline in headlines:
+        print(f"  > Testing Global Performance: {headline[:50]}...")
         
-        # 1. Extraction
-        run_command(["extractor.py", target])
-
-        # Append to group files immediately after extraction
-        try:
-            with open("successful.txt", "r", encoding="utf-8") as f:
-                succ_lines = f.read().strip()
-                if succ_lines:
-                    with open("grup1.txt", "a", encoding="utf-8") as g1:
-                        g1.write(succ_lines + "\n")
-            
-            with open("unsuccessful.txt", "r", encoding="utf-8") as f:
-                unsucc_lines = f.read().strip()
-                if unsucc_lines:
-                    with open("grup2.txt", "a", encoding="utf-8") as g2:
-                        g2.write(unsucc_lines + "\n")
-        except Exception as e:
-            print(f"Error appending to group files: {e}")
+        # Write only this headline for scripts to read
+        with open("test_texts.txt", "w", encoding="utf-8") as f:
+            f.write(headline)
         
-        target_row = {"Target": target_name}
+        row_data = {"Headline": headline, "Target": "AGGREGATE_POOL"}
         
-        # 2. Run Tests and Extract Scores
         for i, script in enumerate(test_scripts):
             script_num = script.replace("test", "").replace(".py", "")
             if os.path.exists(script):
                 output = run_command([script])
-                # Save full output to the main report
                 with open("kategori/rapor.txt", "a", encoding="utf-8") as f:
-                    f.write(f"\n\n--- TARGET: {target_name} | SCRIPT: {script} ---\n")
+                    f.write(f"\n\n--- HEADLINE: {headline} | SCRIPT: {script} ---\n")
                     f.write(output)
                 
-                # Extract score for CSV
                 sdata = extract_scores_from_output(output)
                 score_val = sdata.get('confidence') or sdata.get('success_sim') or "N/A"
                 verdict = sdata.get('verdict', "?")
-                target_row[f"Test{script_num}_Score"] = f"{score_val} ({verdict[0]})"
+                row_data[f"Test{script_num}_Score"] = f"{score_val} ({verdict[0]})"
                 
                 if script == "test7.py":
-                    target_row["Final_Verdict"] = verdict
-                    target_row["Final_Confidence"] = score_val
+                    row_data["Final_Verdict"] = verdict
+                    row_data["Final_Confidence"] = score_val
 
-        all_data.append(target_row)
+        all_data.append(row_data)
 
-    # 3. Save to CSV
+    # Restore original test_texts.txt
+    with open("test_texts.txt", "w", encoding="utf-8") as f:
+        f.write("\n".join(headlines))
+
+    # 3. OUTPUT GENERATION
     if all_data:
+        # CSV
         keys = all_data[0].keys()
         with open("target_scores_summary.csv", "w", newline="", encoding="utf-8") as f:
             dict_writer = csv.DictWriter(f, fieldnames=keys)
             dict_writer.writeheader()
             dict_writer.writerows(all_data)
-        print("\nStructured data saved to target_scores_summary.csv")
 
-    # 4. Generate Final Turkish Paragraph
-    success_count = sum(1 for d in all_data if d.get("Final_Verdict") == "SUCCESSFUL")
-    total = len(all_data)
-    
-    summary_para = f"Tam kapsamlı analiz tamamlandı. 'targets' klasöründeki {total} kategorinin tamamı için 8 farklı test algoritması koşturulmuş ve sonuçlar 'target_scores_summary.csv' dosyasına kaydedilmiştir. "
-    summary_para += f"Master Ensemble modeline göre {success_count} kategoride başarı sinyali alınırken, {total - success_count} kategoride metinler yetersiz bulunmuştur. "
-    summary_para += "Detaylı skor tablosu, her bir algoritmanın (TF-IDF, Karakter N-Gram, Semantik NLP vb.) ilgili hedef üzerindeki spesifik güven yüzdelerini göstermektedir."
-    
-    print("\n" + "-"*50)
-    print(summary_para)
-    print("-" * 50)
-    
-    with open("aggregator_summary.txt", "w", encoding="utf-8") as f:
-        f.write(summary_para)
+        # Vote Summary TXT
+        vote_score_cols = ["Test1_Score", "Test2_Score", "Test3_Score", "Test4_Score",
+                           "Test5_Score", "Test6_Score", "Test8_Score", "Test7_Score"]
+        with open("target_votes_summary.txt", "w", encoding="utf-8") as vf:
+            vf.write("headline-Final_Verdict-Final_Confidence-unsucces_votes-succes_votes\n")
+            for row in all_data:
+                s_votes = sum(1 for col in vote_score_cols if row.get(col, "").endswith("(S)"))
+                u_votes = sum(1 for col in vote_score_cols if row.get(col, "").endswith("(U)"))
+                verdict = "SUCCESSFUL" if s_votes > u_votes else "UNSUCCESSFUL"
+                vf.write(f"{row['Headline']}-{verdict}-{row.get('Final_Confidence','N/A')}-{u_votes}-{s_votes}\n")
+
+    print("\n" + "="*50)
+    print("COMPREHENSIVE AGGREGATE ANALYSIS COMPLETE")
+    print("="*50)
+    for d in all_data:
+        print(f"TITLE: {d['Headline'][:40]}...")
+        print(f"RESULT: {d.get('Final_Verdict')} | Confidence: {d.get('Final_Confidence')}%")
+        print("-" * 30)
+
 
 if __name__ == "__main__":
     main()

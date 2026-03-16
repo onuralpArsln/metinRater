@@ -1,15 +1,4 @@
-target-Final_Verdict-Final_Confidence-unsucces_votes-succes_votes
-beldestyas-target.html-UNSUCCESSFUL-0.332-6-1
-boydesortyas.html-SUCCESSFUL-0.390-6-1
-boyfityas.html-UNSUCCESSFUL-0.439-2-5
-boyun-target.html-UNSUCCESSFUL-0.361-5-2
-boyundüuz-target.html-UNSUCCESSFUL-0.420-6-1
-ergyas-target.html-SUCCESSFUL-0.473-5-2
-hamile-target.html-SUCCESSFUL-0.318-1-6
-okyast-target.html-UNSUCCESSFUL-0.511-0-7
-ortboydes-target.html-UNSUCCESSFUL-0.457-6-1
-ortopedik-target.html-UNSUCCESSFUL-0.364-1-6
-sırtdayayst-target.html-UNSUCCESSFUL-0.351-4-3
-sırtdest-target.html-SUCCESSFUL-0.457-7-0
-tvyas-target.html-UNSUCCESSFUL-0.169-0-7
-yastık-target.html-UNSUCCESSFUL-57.2-5-2
+headline-Final_Verdict-Final_Confidence-unsucces_votes-succes_votes
+Kolçaklı Okuma Yastığı Sırt Minderi TV İzleme Yastığı Bel Destek Ergonomik Fermuarlı Yastık-SUCCESSFUL-75.9-0-8
+Okuma Yastığı Kol Destekli Sırt Minderi TV İzleme Yastığı Ortopedik Bel Destek Fermuarlı-SUCCESSFUL-70.1-0-8
+Kollu Okuma Yastığı Sırt Minderi TV İzleme Yastığı Ortopedik Bel Destek Fermuarlı-SUCCESSFUL-72.5-0-8

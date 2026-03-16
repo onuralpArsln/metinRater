@@ -1,15 +1,4 @@
-Target,Test1_Score,Test2_Score,Test3_Score,Test4_Score,Test5_Score,Test6_Score,Test8_Score,Test7_Score,Final_Verdict,Final_Confidence
-beldestyas-target.html,0.385 (S),0.282 (U),56.5 (U),0.428 (U),52.4 (S),54.3 (U),28.2 (U),53.8 (U),UNSUCCESSFUL,53.8
-boydesortyas.html,0.332 (U),0.295 (U),59.7 (U),0.231 (S),54.9 (U),59.4 (U),34.5 (U),56.1 (U),UNSUCCESSFUL,56.1
-boyfityas.html,0.390 (S),0.276 (S),53.3 (S),0.380 (S),50.1 (U),50.6 (U),16.4 (S),51.1 (S),SUCCESSFUL,51.1
-boyun-target.html,0.439 (U),0.295 (U),61.7 (U),0.409 (S),55.2 (U),52.9 (U),35.2 (S),54.6 (U),UNSUCCESSFUL,54.6
-boyundüuz-target.html,0.361 (U),0.303 (U),54.4 (U),0.337 (U),51.7 (S),50.6 (U),13.4 (U),51.9 (U),UNSUCCESSFUL,51.9
-ergyas-target.html,0.420 (U),0.342 (U),51.9 (U),0.369 (U),53.1 (S),52.0 (U),40.4 (U),50.7 (S),SUCCESSFUL,50.7
-hamile-target.html,0.473 (S),0.399 (S),64.5 (S),0.323 (U),64.7 (S),58.5 (S),56.5 (S),56.6 (S),SUCCESSFUL,56.6
-okyast-target.html,0.318 (S),0.243 (S),64.8 (S),0.256 (S),58.9 (S),62.7 (S),14.9 (S),57.6 (S),SUCCESSFUL,57.6
-ortboydes-target.html,0.511 (U),0.368 (U),51.0 (U),0.335 (U),51.5 (U),51.1 (U),12.3 (S),50.9 (U),UNSUCCESSFUL,50.9
-ortopedik-target.html,0.457 (U),0.343 (S),51.9 (S),0.284 (S),53.8 (S),51.6 (S),45.3 (U),51.3 (S),SUCCESSFUL,51.3
-sırtdayayst-target.html,0.364 (U),0.251 (U),52.0 (U),0.492 (S),56.2 (U),56.8 (S),63.7 (S),50.8 (U),UNSUCCESSFUL,50.8
-sırtdest-target.html,0.351 (U),0.240 (U),79.2 (U),0.502 (U),70.6 (U),74.2 (U),22.6 (U),63.9 (U),UNSUCCESSFUL,63.9
-tvyas-target.html,0.457 (S),0.391 (S),58.1 (S),0.693 (S),58.1 (S),56.5 (S),12.0 (S),55.6 (S),SUCCESSFUL,55.6
-yastık-target.html,0.169 (U),0.138 (U),59.9 (U),0.170 (S),64.4 (U),57.8 (U),47.0 (S),57.2 (U),UNSUCCESSFUL,57.2
+Headline,Target,Test1_Score,Test2_Score,Test3_Score,Test4_Score,Test5_Score,Test6_Score,Test8_Score,Test7_Score,Final_Verdict,Final_Confidence
+Kolçaklı Okuma Yastığı Sırt Minderi TV İzleme Yastığı Bel Destek Ergonomik Fermuarlı Yastık,AGGREGATE_POOL,0.480 (S),0.410 (S),70.7 (S),0.500 (S),72.7 (S),60.3 (S),17.5 (S),75.9 (S),SUCCESSFUL,75.9
+Okuma Yastığı Kol Destekli Sırt Minderi TV İzleme Yastığı Ortopedik Bel Destek Fermuarlı,AGGREGATE_POOL,0.522 (S),0.415 (S),67.7 (S),0.500 (S),65.2 (S),56.5 (S),42.8 (S),70.1 (S),SUCCESSFUL,70.1
+Kollu Okuma Yastığı Sırt Minderi TV İzleme Yastığı Ortopedik Bel Destek Fermuarlı,AGGREGATE_POOL,0.399 (S),0.360 (S),68.1 (S),0.451 (S),67.8 (S),59.3 (S),35.0 (S),72.5 (S),SUCCESSFUL,72.5
