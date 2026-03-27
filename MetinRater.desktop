@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=MetinRater
+Comment=Run Batch Analysis
+Exec=/home/onuralp/projects/metinRater/run_batch.sh
+Icon=utilities-terminal
+Terminal=true
+Categories=Development;

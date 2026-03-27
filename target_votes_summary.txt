@@ -1,4 +1,4 @@
 headline-Final_Verdict-Final_Confidence-unsucces_votes-succes_votes
-Kolçaklı Okuma Yastığı Sırt Minderi TV İzleme Yastığı Bel Destek Ergonomik Fermuarlı Yastık-SUCCESSFUL-75.9-0-8
-Okuma Yastığı Kol Destekli Sırt Minderi TV İzleme Yastığı Ortopedik Bel Destek Fermuarlı-SUCCESSFUL-70.1-0-8
-Kollu Okuma Yastığı Sırt Minderi TV İzleme Yastığı Ortopedik Bel Destek Fermuarlı-SUCCESSFUL-72.5-0-8
+Kolçaklı Okuma Yastığı Sırt Minderi TV İzleme Yastığı Bel Destek Ergonomik Fermuarlı Yastık-SUCCESSFUL-N/A-0-5
+Okuma Yastığı Kol Destekli Sırt Minderi TV İzleme Yastığı Ortopedik Bel Destek Fermuarlı-SUCCESSFUL-N/A-0-5
+Kollu Okuma Yastığı Sırt Minderi TV İzleme Yastığı Ortopedik Bel Destek Fermuarlı-SUCCESSFUL-N/A-0-5

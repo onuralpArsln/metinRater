@@ -1,4 +1,4 @@
 Headline,Target,Test1_Score,Test2_Score,Test3_Score,Test4_Score,Test5_Score,Test6_Score,Test8_Score,Test7_Score,Final_Verdict,Final_Confidence
-Kolçaklı Okuma Yastığı Sırt Minderi TV İzleme Yastığı Bel Destek Ergonomik Fermuarlı Yastık,AGGREGATE_POOL,0.480 (S),0.410 (S),70.7 (S),0.500 (S),72.7 (S),60.3 (S),17.5 (S),75.9 (S),SUCCESSFUL,75.9
-Okuma Yastığı Kol Destekli Sırt Minderi TV İzleme Yastığı Ortopedik Bel Destek Fermuarlı,AGGREGATE_POOL,0.522 (S),0.415 (S),67.7 (S),0.500 (S),65.2 (S),56.5 (S),42.8 (S),70.1 (S),SUCCESSFUL,70.1
-Kollu Okuma Yastığı Sırt Minderi TV İzleme Yastığı Ortopedik Bel Destek Fermuarlı,AGGREGATE_POOL,0.399 (S),0.360 (S),68.1 (S),0.451 (S),67.8 (S),59.3 (S),35.0 (S),72.5 (S),SUCCESSFUL,72.5
+Kolçaklı Okuma Yastığı Sırt Minderi TV İzleme Yastığı Bel Destek Ergonomik Fermuarlı Yastık,AGGREGATE_POOL,0.390 (S),0.308 (S),54.6 (S),N/A (?),54.5 (S),50.7 (S),N/A (?),N/A (?),?,N/A
+Okuma Yastığı Kol Destekli Sırt Minderi TV İzleme Yastığı Ortopedik Bel Destek Fermuarlı,AGGREGATE_POOL,0.390 (S),0.308 (S),54.6 (S),N/A (?),54.5 (S),50.7 (S),N/A (?),N/A (?),?,N/A
+Kollu Okuma Yastığı Sırt Minderi TV İzleme Yastığı Ortopedik Bel Destek Fermuarlı,AGGREGATE_POOL,0.464 (S),0.366 (S),60.0 (S),N/A (?),60.4 (S),55.1 (S),N/A (?),N/A (?),?,N/A
