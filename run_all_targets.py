@@ -4,6 +4,18 @@ import glob
 import re
 import sys
 import csv
+from tqdm import tqdm
+from rich.console import Console
+from rich.table import Table
+from rich.panel import Panel
+
+console = Console()
+
+def send_notification(title, message):
+    try:
+        os.system(f'notify-send "{title}" "{message}"')
+    except:
+        pass
 
 def run_command(command):
     # Use the current interpreter
@@ -53,14 +65,15 @@ def main():
         f.write("--- AGGREGATE BIG-DATA TEST LOG ---\n")
 
     # 1. PHASE 1: CORPUS BUILDING
-    print("PHASE 1: Building Aggregate Corpus from all targets...")
+    send_notification("MetinRater", "Phase 1: Building Aggregate Corpus...")
+    console.print(Panel("[bold blue]PHASE 1: Building Aggregate Corpus from all targets...[/bold blue]"))
     for f_path in ["grup1.txt", "grup2.txt", "successful.txt", "unsuccessful.txt"]:
         if os.path.exists(f_path): 
             os.remove(f_path)
 
-    for target in target_files:
+    for target in tqdm(target_files, desc="Extracting Targets", unit="file"):
         target_name = os.path.basename(target)
-        print(f"  > Extracting: {target_name}")
+        # console.print(f"  > Extracting: {target_name}") # Move to tqdm desc if needed
         run_command(["extractor.py", target])
 
         # Aggregate into group files
@@ -81,7 +94,8 @@ def main():
     if os.path.exists("grup2.txt"): shutil.copy("grup2.txt", "unsuccessful.txt")
 
     # 2. PHASE 2: AGGREGATE TESTING
-    print("\nPHASE 2: Testing Headlines against Aggregate Corpus...")
+    send_notification("MetinRater", "Phase 2: Testing headlines...")
+    console.print(Panel("[bold green]PHASE 2: Testing Headlines against Aggregate Corpus...[/bold green]"))
     
     # Read original headlines
     if not os.path.exists("test_texts.txt"):
@@ -93,8 +107,7 @@ def main():
     all_data = []
     test_scripts = ["test1.py", "test2.py", "test3.py", "test4.py", "test5.py", "test6.py", "test8.py", "test7.py"]
 
-    for headline in headlines:
-        print(f"  > Testing Global Performance: {headline[:50]}...")
+    for headline in tqdm(headlines, desc="Testing Headlines", unit="headline"):
         
         # Write only this headline for scripts to read
         with open("test_texts.txt", "w", encoding="utf-8") as f:
@@ -145,13 +158,26 @@ def main():
                 verdict = "SUCCESSFUL" if s_votes > u_votes else "UNSUCCESSFUL"
                 vf.write(f"{row['Headline']}-{verdict}-{row.get('Final_Confidence','N/A')}-{u_votes}-{s_votes}\n")
 
-    print("\n" + "="*50)
-    print("COMPREHENSIVE AGGREGATE ANALYSIS COMPLETE")
-    print("="*50)
+    console.print("\n" + "="*50)
+    console.print("[bold cyan]COMPREHENSIVE AGGREGATE ANALYSIS COMPLETE[/bold cyan]")
+    console.print("="*50)
+
+    table = Table(title="Analysis Summary")
+    table.add_column("Headline", style="magenta", no_wrap=True)
+    table.add_column("Result", style="green")
+    table.add_column("Confidence", justify="right", style="cyan")
+
     for d in all_data:
-        print(f"TITLE: {d['Headline'][:40]}...")
-        print(f"RESULT: {d.get('Final_Verdict')} | Confidence: {d.get('Final_Confidence')}%")
-        print("-" * 30)
+        res = d.get('Final_Verdict', '?')
+        style = "green" if res == "SUCCESSFUL" else "red" if res == "UNSUCCESSFUL" else "white"
+        table.add_row(
+            d['Headline'][:40] + "...",
+            f"[{style}]{res}[/{style}]",
+            f"{d.get('Final_Confidence')}%"
+        )
+    
+    console.print(table)
+    send_notification("MetinRater", "Phase 2 Complete. Analysis Ready.")
 
 
 if __name__ == "__main__":

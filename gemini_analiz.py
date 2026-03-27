@@ -9,6 +9,15 @@ except ImportError:
     print("HATA: 'google-genai' kütüphanesi bulunamadı. Lütfen 'pip install google-genai' komutunu çalıştırın.")
     sys.exit(1)
 
+from rich.console import Console
+console = Console()
+
+def send_notification(title, message):
+    try:
+        os.system(f'notify-send "{title}" "{message}"')
+    except:
+        pass
+
 from dotenv import load_dotenv
 
 # Load API key from .env file
@@ -42,7 +51,8 @@ def load_scores_csv(path):
         return ""
 
 def main():
-    print("--- Stage 2: Gemini 'Kör Test' Analizi Başlatılıyor... ---")
+    send_notification("MetinRater", "Starting Stage 2: Gemini Analysis...")
+    console.print("[bold yellow]--- Stage 2: Gemini 'Kör Test' Analizi Başlatılıyor... ---[/bold yellow]")
 
     # Load data
     grup_a = read_file("grup1.txt")
@@ -102,14 +112,16 @@ Yanıtını detaylı ama anlaşılır bir şekilde ver. CSV'deki 'S' (Success) G
     model_name = os.getenv("GEMINI_MODEL", "gemini-2.5-flash-lite")
 
     try:
-        response = client.models.generate_content(
-            model=model_name,
-            contents=prompt
-        )
+        with console.status("[bold green]Waiting for Gemini analysis...[/bold green]", spinner="dots"):
+            response = client.models.generate_content(
+                model=model_name,
+                contents=prompt
+            )
         os.makedirs("kategori", exist_ok=True)
         with open("kategori/gemini_yaniti.txt", "w", encoding="utf-8") as f:
             f.write(response.text)
-        print("✅ Gemini detaylı analizi başarıyla tamamlandı.")
+        console.print("✅ [bold green]Gemini detaylı analizi başarıyla tamamlandı.[/bold green]")
+        send_notification("MetinRater", "Gemini Analysis Complete.")
     except Exception as e:
         print(f"❌ Gemini API hatası: {e}")
 

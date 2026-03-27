@@ -1,4 +1,5 @@
 import os
+import sys
 import csv
 import markdown
 
@@ -224,7 +225,7 @@ def main():
     <body>
         <div class="container">
             <header>
-                <h1>MetinRater Elite</h1>
+                <h1>MetinRater</h1>
                 <div class="subtitle">Yapay Zeka Destekli Başlık Analizi & Skor Paneli</div>
             </header>
             
@@ -252,6 +253,12 @@ def main():
     with open(report_path, "w", encoding="utf-8") as f:
         f.write(html_template)
         
+    # Notification
+    try:
+        os.system('notify-send "MetinRater" "Final Elite Report Generated Successfully!"')
+    except:
+        pass
+
     print(f"\n✅ Elite HTML raporu başarıyla oluşturuldu: {report_path}")
 
 if __name__ == "__main__":
