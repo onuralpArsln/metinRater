@@ -10,6 +10,8 @@ matplotlib = "*"
 nltk = "*"
 sentence-transformers = "*"
 beautifulsoup4 = "*"
+google-generativeai = "*"
+python-dotenv = "*"
 
 [dev-packages]
 
