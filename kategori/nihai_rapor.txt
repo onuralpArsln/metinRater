@@ -1,0 +1,29 @@
+============================================================
+  🚀 METİNRATER: TAM KAPSAMLI ANALİZ RAPORU 🚀  
+============================================================
+
+Analiz tamamlandı! İşte sonuçlarınızın özeti ve yapay zeka yorumları ✨
+
+📊 [1] SKOR ÖZETİ (Grup Yakınlıkları)
+------------------------------
+📍 Hedef: AGGREGATE_POOL
+   Final Karar: SUCCESSFUL
+   Güven Skoru: %51.7
+--------------------
+📍 Hedef: AGGREGATE_POOL
+   Final Karar: SUCCESSFUL
+   Güven Skoru: %54.1
+--------------------
+📍 Hedef: AGGREGATE_POOL
+   Final Karar: SUCCESSFUL
+   Güven Skoru: %55.1
+--------------------
+
+****************************************
+🧠 [2] YAPAY ZEKA (GEMINI) DERİN ANALİZİ
+----------------------------------------
+❌ Gemini analizi henüz hazır değil.
+
+============================================================
+🎯 Bu rapor, MetinRater AI Asistanı tarafından hazırlanmıştır :)
+============================================================

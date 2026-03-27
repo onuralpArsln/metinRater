@@ -1,0 +1,87 @@
+Elbette, bu analizi sizin için detaylı bir şekilde yapabilirim.
+
+---
+
+### 1. Grup A ve Grup B Arasındaki Dilbilimsel ve Yapısal Farklar
+
+**Grup A (Stil 1) - Detay Odaklı ve Bilgilendirici:**
+
+*   **Detay Seviyesi:** Grup A örnekleri, ürün hakkında daha fazla teknik ve kullanım detayı içerir. Örneğin, "Özel Dikişli Bağcıklı", "40x40cm", "Ortopedik", "Hemeroid Kuyruk Sokumu Coccyx", "Visco", "38x33x12 cm", "Arkalıklı", "Yeşil", "Gri Bahçe Balkon Salon", "Ergonomik", "Bel ve Kalça Destekli", "Kuyruk Sokumu Destekli", "Ofis, Araba, Sandalye, Koltuk, Sırt Yastığı", "Baskılı", "Hafızalı", "Ev Ofis Oto", "Sallanan Sandalye", "%100 VİSCO", "Tabure Minderi", "Orjinal Pembe Desensiz Seri", "Cocix Oturma Minderi", "Makrome Salıncak Minderi". Bu, müşterinin ürünü anlaması ve ihtiyaçlarına uygunluğunu değerlendirmesi için daha fazla bilgi sunar.
+*   **Kelime Seçimi:** Teknik terimler (Visco, Ortopedik, Coccyx, Ergonomik, Hafızalı, TF-IDF vb.) ve nitelik belirten sıfatlar (Pofidik, Özel Dikişli, Bağcıklı, Arkalıklı, Baskılı, Sallanan) sıkça kullanılır.
+*   **Yapı:** Cümle yapıları genellikle daha uzundur ve anahtar kelimelerle birlikte ek tanımlayıcılar içerir. Bazı örneklerde, birden fazla fonksiyon veya kullanım alanı belirtilir (örn. "Ofis, Araba, Sandalye, Koltuk, Sırt Yastığı Minderi").
+*   **Tonlama:** Daha bilgilendirici, fonksiyonellik ve kalite vurgusu yapan bir tonlama hakimdir.
+
+**Grup B (Stil 2) - Daha Kısa ve Özetleyici:**
+
+*   **Detay Seviyesi:** Grup B örnekleri, Grup A'ya kıyasla genellikle daha kısa ve özettir. Bazı örnekler, Grup A'daki aynı ürünlere benzese de, detay seviyesi daha düşüktür.
+*   **Kelime Seçimi:** Grup A'daki bazı teknik terimler korunsa da (Ortopedik, Visco, Pofidik, Bağcıklı), daha genel ifadeler de görülür (örn. "YUVARLAK EKRU SANDALYE MİNDERİ-LÜKS EVİM", "4'lü Gold Krem Pofidik Sandalye Minderi", "Iç Ve Dış Mekan Güneş Dayanımlı Bank Minderi GRİ GULLFOSS"). Yeni eklenen örneklerde "Lüks Evim", "Gold Krem", "Gullfoss" gibi daha stilistik veya marka/model belirten ifadeler yer alır.
+*   **Yapı:** Daha basit ve doğrudan başlıklar tercih edilir. Bazı örnekler, Grup A'dakilere paralel olsa da, ek açıklayıcı detaylardan yoksundur.
+*   **Tonlama:** Daha pazarlamacı ve dikkat çekici, ancak Grup A kadar bilgilendirici olmayan bir tonlama söz konusudur.
+
+**Ortak Noktalar:**
+
+*   Her iki grup da "Sandalye Minderi", "Ortopedik", "Visco", "Pofidik", "Bağcıklı", "Bel Yastığı", "Koltuk Minderi" gibi anahtar kelimeleri kullanır.
+*   Her iki grup da ürünün özelliklerini belirtmek için sıfatlar kullanır.
+
+---
+
+### 2. Skor Tablosundaki Testler İçin Çıkarımlar
+
+**Genel Durum:** CSV dosyasındaki tek veri satırı için Test 1'den Test 8'e kadar skorlar ve "S" (Success) veya "U" (Unsuccess) bilgisi olmadan, sadece "N/A" (Not Applicable) veya "?" gibi değerler verilmiştir. Bu nedenle, bu tek satır üzerinden kesin analizler yapmak yerine, algoritmaların mantığına göre tahminlerde bulunabiliriz. Ancak, ana hedefimiz Grup A ve Grup B arasındaki farkları anlamak olduğu için, var olan bilgilerden yola çıkarak bu testlerin ne anlama geldiğini ve olası sonuçlarını yorumlayacağız.
+
+**Test 1 (TF-IDF): Kelime kullanım sıklığı ve nadirliği.**
+*   **Potansiyel Çıkarım:** Eğer test edilen metin, Grup A'daki ürün isimlerinin kelime sıklığı ve nadirlik profiline daha yakınsa, bu testin skoru Grup A için yüksek olacaktır. Eğer Grup B'deki kelime setine daha yakınsa, Grup B için yüksek olacaktır. Verilen CSV'de 'S' (Success) Grup A'yı temsil ettiğinden, bu testin sonucu Grup A'ya yönelik bir eğilim gösterebilir.
+
+**Test 2 (Bigram): Kelime ikilileri (kalıplar).**
+*   **Potansiyel Çıkarım:** Kelime çiftlerinin kullanımındaki uyum önemlidir. Grup A, "Sırt Minderi", "Bel Destek", "Oturma Minderi" gibi ikilileri sık kullanıyorsa ve test metni bu kalıplara sahipse, bu testin skoru Grup A için yüksek olacaktır. Eğer test metni, Grup B'nin daha farklı veya daha az yaygın ikililerini kullanıyorsa, Grup B'ye yakın olacaktır.
+
+**Test 3 (LR Keywords): Başarıyı tetikleyen kritik anahtar kelimelerin matematiksel ağırlıklandırılması.**
+*   **Potansiyel Çıkarım:** Bu test, ürün başlığındaki kritik kelimelerin (örn. "Ortopedik", "Visco", "Coccyx") Grup A'nın kullandığı anahtar kelimelerle ne kadar örtüştüğüne bakacaktır. Eğer test metni, Grup A'nın başarıyı tetikleyen temel terimlerini içeriyorsa, bu testin sonucu Grup A lehine olacaktır.
+
+**Test 4 (Semantics): Metnin genel anlamı ve bağlamı.**
+*   **Potansiyel Çıkarım:** Bu test, kelimeler farklı olsa bile konunun aynı olup olmadığını ölçer. Grup A örneklerinin genel olarak "oturma destekleri" veya "sırt minderleri" konularında yoğunlaştığı düşünüldüğünde, test metninin anlam olarak bu konulara odaklanması, bu testin sonucunu olumlu etkileyecektir (Grup A tarzı). Eğer anlam farklı bir alana kayarsa, Grup A tarzından uzaklaşır.
+
+**Test 5 (Char N-grams): Karakter dizilimleri ve ek/kök analizi.**
+*   **Potansiyel Çıkarım:** Bu test, kelime morfolojisi ve yapısındaki benzerlikleri yakalar. Grup A'nın genellikle daha uzun ve tanımlayıcı kelimeler (örn. "Ortopedik", "Bağcıklı", "Kuyruk Sokumu") kullanma eğilimi varsa, test metnindeki karakter dizilimlerinin Grup A'ya benzerliği bu testin sonucunu belirleyecektir.
+
+**Test 6 (Punctuation): Noktalama işaretleri ve özel karakterlerin kullanımı.**
+*   **Potansiyel Çıkarım:** Grup A, tire (-), parantez (()), virgül (,) gibi işaretleri daha detaylı ve yapılandırılmış başlıklar oluşturmak için kullanma eğilimindedir. Eğer test metni de benzer noktalama kullanımına sahipse (örn. "38x33x12 cm", "(120X50)", "40x40 cm"), bu testin skoru Grup A için yüksek olacaktır. Grup B'de ise bazen daha düz ve kısa başlıklar görüldüğünden, farklı bir noktalama eğilimi olabilir.
+
+**Test 8 (Semantic SVM): 384 boyutlu semantik uzayda kümelenme.**
+*   **Potansiyel Çıkarım:** Bu gelişmiş semantik test, metnin derin anlamsal benzerliğini ölçer. Grup A'nın belirli ürün kategorileri ve özellikleriyle olan güçlü anlamsal bağlantısı, eğer test metni bu alana giriyorsa, yüksek bir skorla sonuçlanacaktır (Grup A tarzı).
+
+**Test 7 (Master Ensemble): Diğer testlerin oylaması.**
+*   **Potansiyel Çıkarım:** Bu test, tüm önceki testlerin sonuçlarını birleştirerek nihai kararı verir. Eğer genel olarak diğer testler Grup A tarzına işaret ediyorsa, Test 7'nin sonucu da Grup A'ya yönelik olacaktır.
+
+---
+
+### 3. Total Durum İçin Genel Çıkarım
+
+Mevcut veri setindeki tek bir satırlık test sonucunu (CSV) tam olarak yorumlayabilmek için daha fazla veri gereklidir. Ancak, verilen "Headline,Target,Test1_Score,Test2_Score,Test3_Score,Test4_Score,Test5_Score,Test6_Score,Test8_Score,Test7_Score,Final_Verdict,Final_Confidence" formatındaki tek satırda "Kollu Okuma Yastığı Sırt Minderi TV İzleme Yastığı Ortopedik Bel Destek Fermuarlı" başlığı ve çeşitli N/A değerleri bulunmaktadır.
+
+Eğer **'S' (Success) Grup A'yı ve 'U' (Unsuccess) Grup B'yi temsil ediyorsa** ve örneklerde sadece 'S' ibaresi bulunuyorsa, bu testin genel olarak **Grup A Tarzı'na daha yakın olduğu** düşünülebilir.
+Testin diğer skorları (Test1'den Test8'e) ve 'Final_Verdict' alanları olsaydı, daha kesin bir çıkarım yapmak mümkün olurdu. "N/A (?)", "60.0 (S)", "60.4 (S)", "55.1 (S)" gibi skorlar, bu başlığın Grup A'nın stilistik ve anlamsal özellikleriyle bir miktar uyum gösterdiğini ima edebilir. Özellikle (S) ile belirtilen skorlar, bu metnin Grup A'ya daha yakın olduğunu düşündürmektedir.
+
+**Genel Çıkarım (Varsayıma Dayalı):**
+Mevcut verilerle (tek satır ve sadece 'S' ibarelerinin varlığıyla), test edilen "Kollu Okuma Yastığı Sırt Minderi TV İzleme Yastığı Ortopedik Bel Destek Fermuarlı" başlığının, **Grup A'nın sunduğu detaylı, fonksiyonel ve yapısal özelliklerle bir miktar örtüştüğünü** gösteriyor olabilir. Bu, başlığın, Grup A'daki örneklerde görülen "bel destek", "sırt minder" gibi terimler, "ortopedik" gibi teknik nitelikler ve fermuar gibi ek detaylar içermesinden kaynaklanıyor olabilir.
+
+---
+
+### 4. Grup A Tarzına Uygun 3 Yeni ve İyileştirilmiş Başlık Önerisi
+
+Mevcut Grup A örneklerindeki detaycılık, fonksiyonellik vurgusu ve teknik terim kullanımı göz önüne alındığında, aşağıdaki gibi başlıklar önerilebilir:
+
+1.  **Ergonomik Visco Jel Destekli Oturma Minderi – Bel ve Kuyruk Sokumu Ağrıları İçin Ortopedik Minder (40x40x7 cm) – Ofis, Araba ve Sandalye Kullanımı İçin**
+    *   *Gerekçe:* "Ergonomik", "Visco Jel Destekli", "Ortopedik", "Bel ve Kuyruk Sokumu Ağrıları", "Ofis, Araba ve Sandalye Kullanımı" gibi detaylar ve teknik terimler Grup A'nın stilini yansıtıyor. Boyut bilgisi de eklenmiştir.
+
+2.  **Pofidik Kadife Kaplı Sandalye Minderi – Özel Dikişli, Bağcıklı ve Kaymaz Tabanlı – Bahçe, Balkon ve Salon Kullanımına Uygun (45x45 cm)**
+    *   *Gerekçe:* "Pofidik", "Kadife Kaplı", "Özel Dikişli", "Bağcıklı", "Kaymaz Tabanlı", "Bahçe, Balkon ve Salon Kullanımına Uygun" gibi nitelik ve kullanım alanı detayları Grup A'nın stilindedir. Boyut da belirtilmiştir.
+
+3.  **Visco Elastik Yüksek Yoğunluklu Bel ve Sırt Minderi Seti – Fermuarlı ve Nefes Alabilen Kumaş – Araç, Ofis Koltuğu ve Ev Kullanımı İçin (35x30x10 cm)**
+    *   *Gerekçe:* "Visco Elastik", "Yüksek Yoğunluklu", "Bel ve Sırt Minderi Seti", "Fermuarlı", "Nefes Alabilen Kumaş", "Araç, Ofis Koltuğu ve Ev Kullanımı İçin" gibi teknik ve fonksiyonel açıklamalar Grup A tarzını güçlendirir. Boyut bilgisi eklenmiştir.
+
+---
+
+### 5. Tarafsız Analiz
+
+Bu analizde, verilen skorları ve metin örneklerini objektif olarak inceledim. "Başarılı" veya "Başarısız" gibi yargılardan kaçınarak, her bir grup ve test sonuçları üzerinden dilbilimsel ve yapısal tespitlerimi paylaştım. Grubun birinin diğerine göre daha "iyi" olduğunu belirtmek yerine, hangi stilin hangi özelliklere sahip olduğunu ve test skorlarının bu özelliklerle nasıl ilişkilendirilebileceğini ortaya koydum.

@@ -1,0 +1,298 @@
+
+    <!DOCTYPE html>
+    <html lang="tr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Analiz Sonuçları </title>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+        <style>
+            :root {
+                --primary: #6366f1;
+                --success: #22c55e;
+                --danger: #ef4444;
+                --bg: #0f172a;
+                --card-bg: rgba(30, 41, 59, 0.7);
+                --text: #f8fafc;
+                --text-muted: #94a3b8;
+            }
+            
+            body {
+                font-family: 'Inter', sans-serif;
+                background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+                color: var(--text);
+                margin: 0;
+                padding: 40px 20px;
+                min-height: 100vh;
+            }
+            
+            .container {
+                max-width: 1000px;
+                margin: 0 auto;
+            }
+            
+            header {
+                text-align: center;
+                margin-bottom: 50px;
+            }
+            
+            h1 {
+                font-size: 3rem;
+                font-weight: 800;
+                margin: 0;
+                background: linear-gradient(to right, #818cf8, #c084fc);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            
+            .subtitle {
+                color: var(--text-muted);
+                font-size: 1.1rem;
+                margin-top: 10px;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+                font-weight: 700;
+                margin: 40px 0 20px;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            .card {
+                background: var(--card-bg);
+                backdrop-filter: blur(12px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 20px;
+                padding: 30px;
+                margin-bottom: 30px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            }
+            
+            .card-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                margin-bottom: 25px;
+                gap: 20px;
+            }
+            
+            .headline-title {
+                font-size: 1.25rem;
+                margin: 0;
+                line-height: 1.4;
+            }
+            
+            .verdict-tag {
+                padding: 6px 16px;
+                border-radius: 100px;
+                font-size: 0.85rem;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                white-space: nowrap;
+            }
+            
+            .status-success { background: rgba(34, 197, 94, 0.2); color: #4ade80; border: 1px solid #22c55e; }
+            .status-danger { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid #ef4444; }
+            
+            .test-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+                gap: 15px;
+            }
+            
+            .test-item {
+                background: rgba(255, 255, 255, 0.03);
+                border-radius: 12px;
+                padding: 12px 15px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font-size: 0.9rem;
+            }
+            
+            .test-name { color: var(--text-muted); }
+            
+            .badge-success { color: #4ade80; font-weight: 600; }
+            .badge-danger { color: #f87171; font-weight: 600; }
+            .badge-neutral { color: var(--text-muted); }
+            
+            .ai-insight {
+                line-height: 1.7;
+                color: #e2e8f0;
+            }
+            
+            .ai-insight h1, .ai-insight h2, .ai-insight h3 {
+                color: #818cf8;
+                margin-top: 30px;
+            }
+            
+            .ai-insight code {
+                background: rgba(255, 255, 255, 0.1);
+                color: #fce7f3;
+                padding: 2px 6px;
+                border-radius: 4px;
+            }
+            
+            footer {
+                text-align: center;
+                padding: 40px;
+                color: var(--text-muted);
+                font-size: 0.9rem;
+            }
+            
+            @media (max-width: 768px) {
+                .card-header { flex-direction: column; }
+                h1 { font-size: 2.2rem; }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <h1>MetinRater</h1>
+                <div class="subtitle">Yapay Zeka Destekli Başlık Analizi & Skor Paneli</div>
+            </header>
+            
+            <div class="section-title">📊 Analiz Edilen Başlıklar</div>
+            
+    <div class="card">
+        <div class="card-header">
+            <h3 class="headline-title">Kollu Okuma Yastığı Sırt Minderi TV İzleme Yastığı Ortopedik Bel Destek Fermuarlı</h3>
+            <span class="verdict-tag status-danger">? (%N/A)</span>
+        </div>
+        <div class="test-grid">
+            
+            <div class="test-item">
+                <span class="test-name">Kelime Frekansı (TF-IDF)</span>
+                <span class="test-score badge-success">0.464 (S)</span>
+            </div>
+        
+            <div class="test-item">
+                <span class="test-name">Bigram (Kelime İkilileri)</span>
+                <span class="test-score badge-success">0.366 (S)</span>
+            </div>
+        
+            <div class="test-item">
+                <span class="test-name">AI Anahtar Kelime Ağırlığı</span>
+                <span class="test-score badge-success">60.0 (S)</span>
+            </div>
+        
+            <div class="test-item">
+                <span class="test-name">Derin Semantik Analiz</span>
+                <span class="test-score badge-neutral">N/A (?)</span>
+            </div>
+        
+            <div class="test-item">
+                <span class="test-name">Karakter N-Gram</span>
+                <span class="test-score badge-success">60.4 (S)</span>
+            </div>
+        
+            <div class="test-item">
+                <span class="test-name">Noktalama İşaretleri</span>
+                <span class="test-score badge-success">55.1 (S)</span>
+            </div>
+        
+            <div class="test-item">
+                <span class="test-name">Semantik SVM (Yüksek Boyutlu)</span>
+                <span class="test-score badge-neutral">N/A (?)</span>
+            </div>
+        
+            <div class="test-item">
+                <span class="test-name">Master Ensemble (Nihai Karar)</span>
+                <span class="test-score badge-neutral">N/A (?)</span>
+            </div>
+        
+        </div>
+    </div>
+    
+            
+            <div class="section-title">🧠 Gemini  Analizi & Öneriler</div>
+            <div class="card">
+                <div class="ai-insight">
+                    <p>Elbette, bu analizi sizin için detaylı bir şekilde yapabilirim.</p>
+<hr />
+<h3>1. Grup A ve Grup B Arasındaki Dilbilimsel ve Yapısal Farklar</h3>
+<p><strong>Grup A (Stil 1) - Detay Odaklı ve Bilgilendirici:</strong></p>
+<ul>
+<li><strong>Detay Seviyesi:</strong> Grup A örnekleri, ürün hakkında daha fazla teknik ve kullanım detayı içerir. Örneğin, "Özel Dikişli Bağcıklı", "40x40cm", "Ortopedik", "Hemeroid Kuyruk Sokumu Coccyx", "Visco", "38x33x12 cm", "Arkalıklı", "Yeşil", "Gri Bahçe Balkon Salon", "Ergonomik", "Bel ve Kalça Destekli", "Kuyruk Sokumu Destekli", "Ofis, Araba, Sandalye, Koltuk, Sırt Yastığı", "Baskılı", "Hafızalı", "Ev Ofis Oto", "Sallanan Sandalye", "%100 VİSCO", "Tabure Minderi", "Orjinal Pembe Desensiz Seri", "Cocix Oturma Minderi", "Makrome Salıncak Minderi". Bu, müşterinin ürünü anlaması ve ihtiyaçlarına uygunluğunu değerlendirmesi için daha fazla bilgi sunar.</li>
+<li><strong>Kelime Seçimi:</strong> Teknik terimler (Visco, Ortopedik, Coccyx, Ergonomik, Hafızalı, TF-IDF vb.) ve nitelik belirten sıfatlar (Pofidik, Özel Dikişli, Bağcıklı, Arkalıklı, Baskılı, Sallanan) sıkça kullanılır.</li>
+<li><strong>Yapı:</strong> Cümle yapıları genellikle daha uzundur ve anahtar kelimelerle birlikte ek tanımlayıcılar içerir. Bazı örneklerde, birden fazla fonksiyon veya kullanım alanı belirtilir (örn. "Ofis, Araba, Sandalye, Koltuk, Sırt Yastığı Minderi").</li>
+<li><strong>Tonlama:</strong> Daha bilgilendirici, fonksiyonellik ve kalite vurgusu yapan bir tonlama hakimdir.</li>
+</ul>
+<p><strong>Grup B (Stil 2) - Daha Kısa ve Özetleyici:</strong></p>
+<ul>
+<li><strong>Detay Seviyesi:</strong> Grup B örnekleri, Grup A'ya kıyasla genellikle daha kısa ve özettir. Bazı örnekler, Grup A'daki aynı ürünlere benzese de, detay seviyesi daha düşüktür.</li>
+<li><strong>Kelime Seçimi:</strong> Grup A'daki bazı teknik terimler korunsa da (Ortopedik, Visco, Pofidik, Bağcıklı), daha genel ifadeler de görülür (örn. "YUVARLAK EKRU SANDALYE MİNDERİ-LÜKS EVİM", "4'lü Gold Krem Pofidik Sandalye Minderi", "Iç Ve Dış Mekan Güneş Dayanımlı Bank Minderi GRİ GULLFOSS"). Yeni eklenen örneklerde "Lüks Evim", "Gold Krem", "Gullfoss" gibi daha stilistik veya marka/model belirten ifadeler yer alır.</li>
+<li><strong>Yapı:</strong> Daha basit ve doğrudan başlıklar tercih edilir. Bazı örnekler, Grup A'dakilere paralel olsa da, ek açıklayıcı detaylardan yoksundur.</li>
+<li><strong>Tonlama:</strong> Daha pazarlamacı ve dikkat çekici, ancak Grup A kadar bilgilendirici olmayan bir tonlama söz konusudur.</li>
+</ul>
+<p><strong>Ortak Noktalar:</strong></p>
+<ul>
+<li>Her iki grup da "Sandalye Minderi", "Ortopedik", "Visco", "Pofidik", "Bağcıklı", "Bel Yastığı", "Koltuk Minderi" gibi anahtar kelimeleri kullanır.</li>
+<li>Her iki grup da ürünün özelliklerini belirtmek için sıfatlar kullanır.</li>
+</ul>
+<hr />
+<h3>2. Skor Tablosundaki Testler İçin Çıkarımlar</h3>
+<p><strong>Genel Durum:</strong> CSV dosyasındaki tek veri satırı için Test 1'den Test 8'e kadar skorlar ve "S" (Success) veya "U" (Unsuccess) bilgisi olmadan, sadece "N/A" (Not Applicable) veya "?" gibi değerler verilmiştir. Bu nedenle, bu tek satır üzerinden kesin analizler yapmak yerine, algoritmaların mantığına göre tahminlerde bulunabiliriz. Ancak, ana hedefimiz Grup A ve Grup B arasındaki farkları anlamak olduğu için, var olan bilgilerden yola çıkarak bu testlerin ne anlama geldiğini ve olası sonuçlarını yorumlayacağız.</p>
+<p><strong>Test 1 (TF-IDF): Kelime kullanım sıklığı ve nadirliği.</strong>
+*   <strong>Potansiyel Çıkarım:</strong> Eğer test edilen metin, Grup A'daki ürün isimlerinin kelime sıklığı ve nadirlik profiline daha yakınsa, bu testin skoru Grup A için yüksek olacaktır. Eğer Grup B'deki kelime setine daha yakınsa, Grup B için yüksek olacaktır. Verilen CSV'de 'S' (Success) Grup A'yı temsil ettiğinden, bu testin sonucu Grup A'ya yönelik bir eğilim gösterebilir.</p>
+<p><strong>Test 2 (Bigram): Kelime ikilileri (kalıplar).</strong>
+*   <strong>Potansiyel Çıkarım:</strong> Kelime çiftlerinin kullanımındaki uyum önemlidir. Grup A, "Sırt Minderi", "Bel Destek", "Oturma Minderi" gibi ikilileri sık kullanıyorsa ve test metni bu kalıplara sahipse, bu testin skoru Grup A için yüksek olacaktır. Eğer test metni, Grup B'nin daha farklı veya daha az yaygın ikililerini kullanıyorsa, Grup B'ye yakın olacaktır.</p>
+<p><strong>Test 3 (LR Keywords): Başarıyı tetikleyen kritik anahtar kelimelerin matematiksel ağırlıklandırılması.</strong>
+*   <strong>Potansiyel Çıkarım:</strong> Bu test, ürün başlığındaki kritik kelimelerin (örn. "Ortopedik", "Visco", "Coccyx") Grup A'nın kullandığı anahtar kelimelerle ne kadar örtüştüğüne bakacaktır. Eğer test metni, Grup A'nın başarıyı tetikleyen temel terimlerini içeriyorsa, bu testin sonucu Grup A lehine olacaktır.</p>
+<p><strong>Test 4 (Semantics): Metnin genel anlamı ve bağlamı.</strong>
+*   <strong>Potansiyel Çıkarım:</strong> Bu test, kelimeler farklı olsa bile konunun aynı olup olmadığını ölçer. Grup A örneklerinin genel olarak "oturma destekleri" veya "sırt minderleri" konularında yoğunlaştığı düşünüldüğünde, test metninin anlam olarak bu konulara odaklanması, bu testin sonucunu olumlu etkileyecektir (Grup A tarzı). Eğer anlam farklı bir alana kayarsa, Grup A tarzından uzaklaşır.</p>
+<p><strong>Test 5 (Char N-grams): Karakter dizilimleri ve ek/kök analizi.</strong>
+*   <strong>Potansiyel Çıkarım:</strong> Bu test, kelime morfolojisi ve yapısındaki benzerlikleri yakalar. Grup A'nın genellikle daha uzun ve tanımlayıcı kelimeler (örn. "Ortopedik", "Bağcıklı", "Kuyruk Sokumu") kullanma eğilimi varsa, test metnindeki karakter dizilimlerinin Grup A'ya benzerliği bu testin sonucunu belirleyecektir.</p>
+<p><strong>Test 6 (Punctuation): Noktalama işaretleri ve özel karakterlerin kullanımı.</strong>
+*   <strong>Potansiyel Çıkarım:</strong> Grup A, tire (-), parantez (()), virgül (,) gibi işaretleri daha detaylı ve yapılandırılmış başlıklar oluşturmak için kullanma eğilimindedir. Eğer test metni de benzer noktalama kullanımına sahipse (örn. "38x33x12 cm", "(120X50)", "40x40 cm"), bu testin skoru Grup A için yüksek olacaktır. Grup B'de ise bazen daha düz ve kısa başlıklar görüldüğünden, farklı bir noktalama eğilimi olabilir.</p>
+<p><strong>Test 8 (Semantic SVM): 384 boyutlu semantik uzayda kümelenme.</strong>
+*   <strong>Potansiyel Çıkarım:</strong> Bu gelişmiş semantik test, metnin derin anlamsal benzerliğini ölçer. Grup A'nın belirli ürün kategorileri ve özellikleriyle olan güçlü anlamsal bağlantısı, eğer test metni bu alana giriyorsa, yüksek bir skorla sonuçlanacaktır (Grup A tarzı).</p>
+<p><strong>Test 7 (Master Ensemble): Diğer testlerin oylaması.</strong>
+*   <strong>Potansiyel Çıkarım:</strong> Bu test, tüm önceki testlerin sonuçlarını birleştirerek nihai kararı verir. Eğer genel olarak diğer testler Grup A tarzına işaret ediyorsa, Test 7'nin sonucu da Grup A'ya yönelik olacaktır.</p>
+<hr />
+<h3>3. Total Durum İçin Genel Çıkarım</h3>
+<p>Mevcut veri setindeki tek bir satırlık test sonucunu (CSV) tam olarak yorumlayabilmek için daha fazla veri gereklidir. Ancak, verilen "Headline,Target,Test1_Score,Test2_Score,Test3_Score,Test4_Score,Test5_Score,Test6_Score,Test8_Score,Test7_Score,Final_Verdict,Final_Confidence" formatındaki tek satırda "Kollu Okuma Yastığı Sırt Minderi TV İzleme Yastığı Ortopedik Bel Destek Fermuarlı" başlığı ve çeşitli N/A değerleri bulunmaktadır.</p>
+<p>Eğer <strong>'S' (Success) Grup A'yı ve 'U' (Unsuccess) Grup B'yi temsil ediyorsa</strong> ve örneklerde sadece 'S' ibaresi bulunuyorsa, bu testin genel olarak <strong>Grup A Tarzı'na daha yakın olduğu</strong> düşünülebilir.
+Testin diğer skorları (Test1'den Test8'e) ve 'Final_Verdict' alanları olsaydı, daha kesin bir çıkarım yapmak mümkün olurdu. "N/A (?)", "60.0 (S)", "60.4 (S)", "55.1 (S)" gibi skorlar, bu başlığın Grup A'nın stilistik ve anlamsal özellikleriyle bir miktar uyum gösterdiğini ima edebilir. Özellikle (S) ile belirtilen skorlar, bu metnin Grup A'ya daha yakın olduğunu düşündürmektedir.</p>
+<p><strong>Genel Çıkarım (Varsayıma Dayalı):</strong>
+Mevcut verilerle (tek satır ve sadece 'S' ibarelerinin varlığıyla), test edilen "Kollu Okuma Yastığı Sırt Minderi TV İzleme Yastığı Ortopedik Bel Destek Fermuarlı" başlığının, <strong>Grup A'nın sunduğu detaylı, fonksiyonel ve yapısal özelliklerle bir miktar örtüştüğünü</strong> gösteriyor olabilir. Bu, başlığın, Grup A'daki örneklerde görülen "bel destek", "sırt minder" gibi terimler, "ortopedik" gibi teknik nitelikler ve fermuar gibi ek detaylar içermesinden kaynaklanıyor olabilir.</p>
+<hr />
+<h3>4. Grup A Tarzına Uygun 3 Yeni ve İyileştirilmiş Başlık Önerisi</h3>
+<p>Mevcut Grup A örneklerindeki detaycılık, fonksiyonellik vurgusu ve teknik terim kullanımı göz önüne alındığında, aşağıdaki gibi başlıklar önerilebilir:</p>
+<ol>
+<li>
+<p><strong>Ergonomik Visco Jel Destekli Oturma Minderi – Bel ve Kuyruk Sokumu Ağrıları İçin Ortopedik Minder (40x40x7 cm) – Ofis, Araba ve Sandalye Kullanımı İçin</strong></p>
+<ul>
+<li><em>Gerekçe:</em> "Ergonomik", "Visco Jel Destekli", "Ortopedik", "Bel ve Kuyruk Sokumu Ağrıları", "Ofis, Araba ve Sandalye Kullanımı" gibi detaylar ve teknik terimler Grup A'nın stilini yansıtıyor. Boyut bilgisi de eklenmiştir.</li>
+</ul>
+</li>
+<li>
+<p><strong>Pofidik Kadife Kaplı Sandalye Minderi – Özel Dikişli, Bağcıklı ve Kaymaz Tabanlı – Bahçe, Balkon ve Salon Kullanımına Uygun (45x45 cm)</strong></p>
+<ul>
+<li><em>Gerekçe:</em> "Pofidik", "Kadife Kaplı", "Özel Dikişli", "Bağcıklı", "Kaymaz Tabanlı", "Bahçe, Balkon ve Salon Kullanımına Uygun" gibi nitelik ve kullanım alanı detayları Grup A'nın stilindedir. Boyut da belirtilmiştir.</li>
+</ul>
+</li>
+<li>
+<p><strong>Visco Elastik Yüksek Yoğunluklu Bel ve Sırt Minderi Seti – Fermuarlı ve Nefes Alabilen Kumaş – Araç, Ofis Koltuğu ve Ev Kullanımı İçin (35x30x10 cm)</strong></p>
+<ul>
+<li><em>Gerekçe:</em> "Visco Elastik", "Yüksek Yoğunluklu", "Bel ve Sırt Minderi Seti", "Fermuarlı", "Nefes Alabilen Kumaş", "Araç, Ofis Koltuğu ve Ev Kullanımı İçin" gibi teknik ve fonksiyonel açıklamalar Grup A tarzını güçlendirir. Boyut bilgisi eklenmiştir.</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h3>5. Tarafsız Analiz</h3>
+<p>Bu analizde, verilen skorları ve metin örneklerini objektif olarak inceledim. "Başarılı" veya "Başarısız" gibi yargılardan kaçınarak, her bir grup ve test sonuçları üzerinden dilbilimsel ve yapısal tespitlerimi paylaştım. Grubun birinin diğerine göre daha "iyi" olduğunu belirtmek yerine, hangi stilin hangi özelliklere sahip olduğunu ve test skorlarının bu özelliklerle nasıl ilişkilendirilebileceğini ortaya koydum.</p>
+                </div>
+            </div>
+            
+            <footer>
+                &copy; 2026 MetinRater AI Dashboard
+            </footer>
+        </div>
+    </body>
+    </html>
+    

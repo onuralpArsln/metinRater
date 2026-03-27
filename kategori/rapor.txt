@@ -1,0 +1,43 @@
+--- AGGREGATE BIG-DATA TEST LOG ---
+
+
+--- HEADLINE: Kollu Okuma Yastığı Sırt Minderi TV İzleme Yastığı Ortopedik Bel Destek Fermuarlı | SCRIPT: test1.py ---
+--- RESULTS ---
+
+Text: 'Kollu Okuma Yastığı Sırt Minderi TV İzleme Yastığı Ortopedik Bel Destek Fermuarlı'
+Classification: SUCCESSFUL
+(Scores -> Success: 0.464 | Unsuccess: 0.401)
+
+Generating PCA visualization...
+Saved: pca_visualization.png
+Saved: kategori/1_pca_data.txt
+Generating Closeness Bar Chart...
+Saved: kategori/1_similarity_bars.png
+Generating Feature Importance visualization...
+Saved: kategori/1_top_words_success.png
+Saved: kategori/1_top_words_unsuccess.png
+
+Generating Report...
+==================================================
+TEST 1 - REPORT SUMMARY
+==================================================
+YAKLAŞIM (Test 1):
+* Odak Noktası: Sadece kelimelerin sıklığına (frekansına) bakar.
+* Nasıl Çalışır: Hangi kelimenin kaç defa geçtiğini sayar.
+* Neye Bakmaz: Anlama, kelime sırasına, büyük/küçük harfe, noktalama işaretlerine.
+* Sonuç Ne İfade Eder: Eski metinlerle içerdiği ortak kelime sayısının ve sıklığının yüzdesidir.
+
+RESULTS FOR TEST TEXTS:
+
+[Test Text 1]
+Content: 'Kollu Okuma Yastığı Sırt Minderi TV İzleme Yastığı Ortopedik Bel Destek Fermuarlı'
+Classification: SUCCESSFUL
+Scores -> Similarity to Success: 0.464 | Similarity to Failure: 0.401
+
+VISUALIZATIONS GENERATED:
+- kategori/1_pca_visualization.png: PCA scatter plot mapping the text neighborhood.
+- kategori/1_similarity_bars.png: 1D closeness chart comparing success vs failure similarity.
+- kategori/1_top_words_success.png: Top 10 words contributing to the Success profile.
+- kategori/1_top_words_unsuccess.png: Top 10 words contributing to the Unsuccess profile.
+
+

@@ -1,0 +1,46 @@
+SUCCESSFUL TEXTS (GREEN):
+X: -0.373, Y: -0.359 | Text: Lina Sarı Pofidik Sandalye Minderi Özel Dikişli Bağcıklı 40x40cm
+X: -0.383, Y: -0.373 | Text: Pofidik Sandalye Minderi, Bağcıklı 40x40
+X: 0.153, Y: 0.010 | Text: Ortopedik Oturma Minderi Hemeroid Kuyruk Sokumu Coccyx Oturma Minderi Visco Minder Siyah
+X: 0.457, Y: -0.096 | Text: Visco Ortopedik Bel Destek Yastığı, Ofis, Araba, Sandalye, Koltuk, Sırt Yastığı Minderi, 38x33x12 cm
+X: -0.409, Y: -0.414 | Text: Candy Pofidik Arkalıklı Yeşil Sandalye Minderi Özel Dikişli Bağcıklı 43x88 Cm
+X: 0.075, Y: 0.179 | Text: ORTOPEDİK BEL YASTIĞI ORTOPEDİK SIRT MİNDERİ ARAÇ BEL DESTEK MİNDERİ ORTOPEDİK YASTIK
+X: -0.319, Y: -0.052 | Text: Gri Bahçe Balkon Salon Sandalye Minderi 40x40 cm
+X: 0.195, Y: 0.019 | Text: Ergonomik Ortopedik Oturma Minderi – Bel ve Kalça Destekli Araba Minderi | Kuyruk Sokumu Destekli
+X: 0.533, Y: -0.012 | Text: Ortopedik Bel ve Sırt Minderi Ofis ve Araç Koltuğu Destek Yastığı
+X: -0.297, Y: -0.210 | Text: Lemoncello Yellow Baskılı Sandalye Minderi Sarı (40x40 cm)
+X: 0.230, Y: -0.075 | Text: Koltuk Sandalye Minderi Kuyruk Sokumu Ortopedik Hafızalı Koltuk Ev Ofis Oto Oturma Minderi
+X: -0.017, Y: 0.187 | Text: % 100 VİSCO ORTOPEDİK OTURMA MİNDERİ % 100 VİSCO ORTOPEDİK BEL MİNDERİ 2 Lİ TAKIM SİYAH
+X: -0.161, Y: -0.034 | Text: Sallanan Sandalye Minderi Pofuduk (120X50)
+X: 0.603, Y: -0.071 | Text: Ortopedik Bel ve Oturma Minderi Seti Araç Ofis Koltuk Sandalye Bel Destek Yastığı
+X: 0.432, Y: 0.027 | Text: Visco Bel Yastığı Sırt Minderi Ortopedik Bel Minderi %100 Visco Destek Minder
+X: -0.346, Y: 0.737 | Text: Giglio Tabure Minderi Gri 35Ø
+X: -0.440, Y: -0.439 | Text: Pofidik Sandalye Minderi Özel Dikişli Bağcıklı Orjinal Pembe Desensiz Seri 40x40 Cm (1 ADET)
+X: 0.338, Y: -0.098 | Text: Cocix Oturma Minderi Oturma Yastığı Koltuk Sandalye Yastığı
+X: -0.187, Y: 0.041 | Text: Makrome Salıncak Minderi ( 80 X 110 Cm ) Siyah (SADECE MİNDER)
+X: -0.334, Y: 0.728 | Text: Giglio Tabure Minderi Krem 35Ø
+
+UNSUCCESSFUL TEXTS (RED):
+X: -0.409, Y: -0.414 | Text: Candy Pofidik Arkalıklı Yeşil Sandalye Minderi Özel Dikişli Bağcıklı 43x88 Cm
+X: 0.075, Y: 0.179 | Text: ORTOPEDİK BEL YASTIĞI ORTOPEDİK SIRT MİNDERİ ARAÇ BEL DESTEK MİNDERİ ORTOPEDİK YASTIK
+X: -0.319, Y: -0.052 | Text: Gri Bahçe Balkon Salon Sandalye Minderi 40x40 cm
+X: 0.195, Y: 0.019 | Text: Ergonomik Ortopedik Oturma Minderi – Bel ve Kalça Destekli Araba Minderi | Kuyruk Sokumu Destekli
+X: 0.533, Y: -0.012 | Text: Ortopedik Bel ve Sırt Minderi Ofis ve Araç Koltuğu Destek Yastığı
+X: -0.297, Y: -0.210 | Text: Lemoncello Yellow Baskılı Sandalye Minderi Sarı (40x40 cm)
+X: 0.230, Y: -0.075 | Text: Koltuk Sandalye Minderi Kuyruk Sokumu Ortopedik Hafızalı Koltuk Ev Ofis Oto Oturma Minderi
+X: -0.017, Y: 0.187 | Text: % 100 VİSCO ORTOPEDİK OTURMA MİNDERİ % 100 VİSCO ORTOPEDİK BEL MİNDERİ 2 Lİ TAKIM SİYAH
+X: -0.161, Y: -0.034 | Text: Sallanan Sandalye Minderi Pofuduk (120X50)
+X: 0.603, Y: -0.071 | Text: Ortopedik Bel ve Oturma Minderi Seti Araç Ofis Koltuk Sandalye Bel Destek Yastığı
+X: 0.432, Y: 0.027 | Text: Visco Bel Yastığı Sırt Minderi Ortopedik Bel Minderi %100 Visco Destek Minder
+X: -0.346, Y: 0.737 | Text: Giglio Tabure Minderi Gri 35Ø
+X: -0.440, Y: -0.439 | Text: Pofidik Sandalye Minderi Özel Dikişli Bağcıklı Orjinal Pembe Desensiz Seri 40x40 Cm (1 ADET)
+X: 0.338, Y: -0.098 | Text: Cocix Oturma Minderi Oturma Yastığı Koltuk Sandalye Yastığı
+X: -0.187, Y: 0.041 | Text: Makrome Salıncak Minderi ( 80 X 110 Cm ) Siyah (SADECE MİNDER)
+X: -0.334, Y: 0.728 | Text: Giglio Tabure Minderi Krem 35Ø
+X: 0.445, Y: -0.066 | Text: Oto Araç Ofis Koltuk Sandalye Bel Destek Minderi ve Visco Cocix Oturma Minderi Seti
+X: -0.127, Y: 0.059 | Text: YUVARLAK EKRU SANDALYE MİNDERİ-LÜKS EVİM
+X: -0.364, Y: -0.225 | Text: 4'lü Gold Krem Pofidik Sandalye Minderi Özel Dikişli Bağcıklı 40x40cm
+X: -0.107, Y: 0.042 | Text: Iç Ve Dış Mekan Güneş Dayanımlı Bank Minderi GRİ GULLFOSS 100-45-8 Cm Sandalye Minderi
+
+TEST TEXTS (BLUE):
+X: 0.507, Y: -0.019 | Text: Kollu Okuma Yastığı Sırt Minderi TV İzleme Yastığı Ortopedik Bel Destek Fermuarlı
