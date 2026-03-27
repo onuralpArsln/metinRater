@@ -12,8 +12,13 @@ export TRANSFORMERS_VERBOSITY=error
 
 # Determine the correct python3 to call pipenv (prefer system python to avoid virtualenv conflicts)
 SYSTEM_PYTHON=$(which python3)
+# If we are in a virtualenv (pipenv shell), python3 might not have pipenv module.
+# Check if current python3 is in a virtualenv path
 if [[ "$SYSTEM_PYTHON" == *"/virtualenvs/"* ]]; then
-    SYSTEM_PYTHON="/usr/bin/python3"
+    # Usually the system python is at /usr/bin/python3
+    if [ -f "/usr/bin/python3" ]; then
+        SYSTEM_PYTHON="/usr/bin/python3"
+    fi
 fi
 
 # PHASE 1: Run the batch analysis
@@ -21,20 +26,20 @@ echo "Starting batch analysis in $SCRIPT_DIR..."
 $SYSTEM_PYTHON -m pipenv run python run_all_targets.py
 
 # PHASE 2: Gemini AI Analysis
-echo "📊 Stage 2: Gemini AI Analysis (Blind Study)..."
+echo "STAGE 2: Gemini AI Analysis (Blind Study)..."
 $SYSTEM_PYTHON -m pipenv run python gemini_analiz.py
 
 # PHASE 3: Generate the Final Elite HTML Report
-echo "✨ Stage 3: Generating Final HTML Report..."
+echo "STAGE 3: Generating Final HTML Report..."
 $SYSTEM_PYTHON -m pipenv run python rapor_olusturucu.py
 
 echo "------------------------------------------------------------"
-echo "✅ Analysis complete! Opening report: kategori/nihai_rapor.html"
+echo "DONE: Analysis complete! Opening report: kategori/nihai_rapor.html"
 echo "------------------------------------------------------------"
 
 # Attempt to open the report automatically (Linux standard)
 if command -v xdg-open > /dev/null; then
-    xdg-open "kategori/nihai_rapor.html"
+    xdg-open "kategori/nihai_rapor.html" 2>/dev/null &
 fi
 
 echo "Press enter to close."
