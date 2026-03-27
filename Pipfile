@@ -3,6 +3,11 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 name = "pypi"
 
+[[source]]
+url = "https://download.pytorch.org/whl/cpu"
+verify_ssl = true
+name = "downloadpytorch"
+
 [packages]
 numpy = "*"
 scikit-learn = "*"
@@ -12,6 +17,8 @@ sentence-transformers = "*"
 beautifulsoup4 = "*"
 google-generativeai = "*"
 python-dotenv = "*"
+pydantic = "*"
+markdown = "*"
 
 [dev-packages]
 

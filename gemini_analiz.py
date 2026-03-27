@@ -1,5 +1,14 @@
 import os
-import google.generativeai as genai
+import sys
+import csv
+
+# Try importing the new google-genai library
+try:
+    from google import genai
+except ImportError:
+    print("HATA: 'google-genai' kütüphanesi bulunamadı. Lütfen 'pip install google-genai' komutunu çalıştırın.")
+    sys.exit(1)
+
 from dotenv import load_dotenv
 
 # Load API key from .env file
@@ -8,9 +17,14 @@ api_key = os.getenv("GEMINI_API_KEY")
 
 if not api_key or api_key == "your_actual_key_here":
     print("HATA: .env dosyasında geçerli bir GEMINI_API_KEY bulunamadı!")
-    exit(1)
+    sys.exit(1)
 
-genai.configure(api_key=api_key)
+# Initialize the client
+try:
+    client = genai.Client(api_key=api_key)
+except Exception as e:
+    print(f"HATA: Gemini istemcisi başlatılamadı: {e}")
+    sys.exit(1)
 
 def read_file(path):
     if os.path.exists(path):
@@ -18,54 +32,86 @@ def read_file(path):
             return f.read().strip()
     return ""
 
+def load_scores_csv(path):
+    if not os.path.exists(path):
+        return ""
+    try:
+        with open(path, mode='r', encoding='utf-8') as f:
+            return f.read().strip()
+    except Exception:
+        return ""
+
 def main():
-    print("Gemini 'Kör Test' Analizi Başlatılıyor...")
+    print("--- Stage 2: Gemini 'Kör Test' Analizi Başlatılıyor... ---")
 
     # Load data
     grup_a = read_file("grup1.txt")
     grup_b = read_file("grup2.txt")
     test_texts = read_file("test_texts.txt")
+    scores_csv = load_scores_csv("target_scores_summary.csv")
     
     if not grup_a or not grup_b:
-        print("HATA: Analiz için grup dosyaları bulunamadı.")
+        print("HATA: Analiz için grup dosyaları (grup1.txt, grup2.txt) bulunamadı.")
         return
 
-    # Create the prompt (Turkish, Blind Study)
+    # Test Descriptions for Gemini
+    test_descs = """
+Sana ileteceğim skorlar şu 8 testin sonucudur:
+1. Test 1 (TF-IDF): Kelime kullanım sıklığı ve nadirliği. Metnin kelime haznesinin Grup A veya B ile olan uyumuna bakar. 
+2. Test 2 (Bigram): Kelime ikilileri (kalıplar). Kelimelerin yan yana geliş sırasına odaklanır.
+3. Test 3 (LR Keywords): Başarıyı tetikleyen kritik anahtar kelimelerin matematiksel ağırlıklandırılması.
+4. Test 4 (Semantics): Metnin genel anlamı ve bağlamı. Kelimeler farklı olsa bile aynı konuyu ifade edip etmediğine bakar.
+5. Test 5 (Char N-grams): Karakter dizilimleri ve ek/kök analizi. Kelime morfolojisindeki benzerliği yakalar.
+6. Test 6 (Punctuation): Noktalama işaretleri ve özel karakterlerin (tire, parantez vb.) kullanım tarzı.
+7. Test 8 (Semantic SVM): 384 boyutlu semantik uzayda en doğru kümelenmeyi bulan gelişmiş algoritma.
+8. Test 7 (Master Ensemble): Tüm diğer testlerin (1-6 ve 8) sonuçlarını oylayarak nihai kararı veren ana kontrolcü Zeka.
+"""
+
+    # Create the prompt (Turkish, Detailed Analysis)
     prompt = f"""
-Sana iki farklı ürün ismi grubu gönderiyorum: Grup A ve Grup B. 
-Ayrıca, test etmek istediğimiz yeni bir metin listesi var.
+Sana iki farklı ürün ismi grubu gönderiyorum: Grup A (Stil 1) ve Grup B (Stil 2). 
+Ayrıca, test ettiğimiz metinlerin 8 farklı algoritmadan aldığı skorlar aşağıdadır.
 
 ---
-GRUP A ÖRNEKLERİ:
+GRUP A ÖRNEKLERİ (Stil 1):
 {grup_a}
 
 ---
-GRUP B ÖRNEKLERİ:
+GRUP B ÖRNEKLERİ (Stil 2):
 {grup_b}
 
 ---
-TEST EDİLECEK METİNLER:
-{test_texts}
+TEST EDİLEN METİNLER VE SKORLARI (CSV):
+{scores_csv}
+
+---
+{test_descs}
 
 ---
 GÖREVLERİN (Lütfen Türkçe yanıtla):
-1. Grup A ve Grup B arasındaki dilbilimsel ve yapısal farkları analiz et (Hangi grup daha teknik, hangisi daha duygusal, kelime uzunlukları, büyük harf kullanımı vb.).
-2. Test edilecek metinlerin neden bu gruplardan birine daha yakın olduğunu (skorlarımıza göre öyle görünüyor) mantıksal olarak açıkla.
-3. Test metinlerini, 'Grup A' nın tarzına (genetiğine) daha uygun hale getirecek 3 adet yeni ve iyileştirilmiş başlık öner.
-4. Lütfen "Başarılı" veya "Başarısız" kelimelerini kullanma, sadece "Grup A Tarzı" veya "Grup B Tarzı" şeklinde tarafsız bir analiz yap.
+1. Grup A ve Grup B arasındaki dilbilimsel ve yapısal farkları analiz et (tarz, tonlama, uzunluk, teknik detay vb.).
+2. Skor tablosundaki her bir test için ayrı ayrı küçük çıkarımlar yap. (Örneğin: "Test 4 skoru düşük çünkü anlam olarak farklı," veya "Test 6 skoru yüksek çünkü noktalama kullanımı Grup A ile aynı").
+3. Tüm test sonuçlarını birleştirerek "Total Durum" için genel bir çıkarım yap.
+4. Test metinlerini, 'Grup A' nın tarzına (genetiğine) daha uygun hale getirecek 3 adet yeni ve iyileştirilmiş başlık öner.
+5. Lütfen "Başarılı" veya "Başarısız" kelimelerini kullanma, sadece "Grup A Tarzı" veya "Grup B Tarzı" şeklinde tarafsız bir analiz yap.
 
-Yanıtını detaylı ama anlaşılır bir şekilde ver.
+Yanıtını detaylı ama anlaşılır bir şekilde ver. CSV'deki 'S' (Success) Grup A'yı, 'U' (Unsuccess) Grup B'yi temsil eder.
 """
 
-    model = genai.GenerativeModel('gemini-1.5-flash')
+    # Choose model from .env or fallback
+    model_name = os.getenv("GEMINI_MODEL", "gemini-2.5-flash-lite")
+
     try:
-        response = model.generate_content(prompt)
+        response = client.models.generate_content(
+            model=model_name,
+            contents=prompt
+        )
         os.makedirs("kategori", exist_ok=True)
         with open("kategori/gemini_yaniti.txt", "w", encoding="utf-8") as f:
             f.write(response.text)
-        print("Gemini analizi tamamlandı ve kategori/gemini_yaniti.txt dosyasına kaydedildi.")
+        print("✅ Gemini detaylı analizi başarıyla tamamlandı.")
     except Exception as e:
-        print(f"Gemini API hatası: {e}")
+        print(f"❌ Gemini API hatası: {e}")
 
 if __name__ == "__main__":
     main()
