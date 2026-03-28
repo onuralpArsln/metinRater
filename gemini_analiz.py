@@ -103,7 +103,6 @@ GÖREVLERİN (Lütfen Türkçe yanıtla):
 2. Skor tablosundaki her bir test için ayrı ayrı küçük çıkarımlar yap. (Örneğin: "Test 4 skoru düşük çünkü anlam olarak farklı," veya "Test 6 skoru yüksek çünkü noktalama kullanımı Grup A ile aynı").
 3. Tüm test sonuçlarını birleştirerek "Total Durum" için genel bir çıkarım yap.
 4. Test metinlerini, 'Grup A' nın tarzına (genetiğine) daha uygun hale getirecek 3 adet yeni ve iyileştirilmiş başlık öner.
-5. Lütfen "Başarılı" veya "Başarısız" kelimelerini kullanma, sadece "Grup A Tarzı" veya "Grup B Tarzı" şeklinde tarafsız bir analiz yap.
 
 Yanıtını detaylı ama anlaşılır bir şekilde ver. CSV'deki 'S' (Success) Grup A'yı, 'U' (Unsuccess) Grup B'yi temsil eder.
 """
