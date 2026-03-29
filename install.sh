@@ -32,7 +32,7 @@ python3 -m pipenv run playwright install
 if [ ! -f .env ]; then
     echo "📝 .env dosyası oluşturuluyor..."
     echo "# MetinRater Configuration" > .env
-    echo "GEMINI_API_KEY=AIzaSyCLbj2kVPcc4FGOSRzb-e2pA6qVf06psXY" >> .env
+    echo "GEMINI_API_KEY=YOUR_KEY_HERE" >> .env
     echo "GEMINI_MODEL=gemini-2.5-flash-lite" >> .env
     echo "SCRAPE_ENABLED=false" >> .env
     echo "✅ .env oluşturuldu. (Not: Kendi API anahtarını kullanabilirsin)"
