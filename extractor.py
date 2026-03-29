@@ -1,4 +1,8 @@
 import sys
+import os
+import glob
+from bs4 import BeautifulSoup
+
 
 def extract_products(target_file='target.html'):
     try:
@@ -6,7 +10,7 @@ def extract_products(target_file='target.html'):
             html_content = f.read()
     except FileNotFoundError:
         print(f"Error: '{target_file}' not found.")
-        return
+        return [], []
 
     # Parse the HTML content
     soup = BeautifulSoup(html_content, 'html.parser')
@@ -45,28 +49,53 @@ def extract_products(target_file='target.html'):
             product_names.append(text)
     
     total_found = len(product_names)
-    print(f"Found a total of {len(product_spans)} products.")
-    print(f"Skipped {sponsored_count} sponsored products.")
-    print(f"Total organic products extracted: {total_found}")
-    
-    if total_found < 40:
-        print(f"Warning: You requested the first 20 and last 20, but only {total_found} organic products were found. Some items may overlap.")
+    print(f"[{target_file}] Found {len(product_spans)} products. Organic: {total_found}. Sponsored: {sponsored_count}")
     
     # Get the first 20 and last 20
     first_20 = product_names[:20]
     last_20 = product_names[-20:] if total_found >= 20 else []
 
-    # Write the first 20 to successful.txt
-    with open('successful.txt', 'w', encoding='utf-8') as f:
-        f.write('\n'.join(first_20))
-    print(f"Successfully wrote {len(first_20)} items to successful.txt")
-        
-    # Write the last 20 to unsuccessful.txt
-    with open('unsuccessful.txt', 'w', encoding='utf-8') as f:
-        f.write('\n'.join(last_20))
-    print(f"Successfully wrote {len(last_20)} items to unsuccessful.txt")
+    return first_20, last_20
 
 if __name__ == '__main__':
-    target = sys.argv[1] if len(sys.argv) > 1 else 'target.html'
-    from bs4 import BeautifulSoup
-    extract_products(target)
+    arg = sys.argv[1] if len(sys.argv) > 1 else None
+    
+    target_files = []
+    if arg:
+        if os.path.isdir(arg):
+            target_files = glob.glob(os.path.join(arg, "*.html"))
+        elif os.path.isfile(arg):
+            target_files = [arg]
+        else:
+            print(f"Error: '{arg}' is not a valid file or directory.")
+            sys.exit(1)
+    else:
+        # Defaults
+        if os.path.exists('target.html'):
+            target_files = ['target.html']
+        elif os.path.isdir('targets'):
+            target_files = glob.glob("targets/*.html")
+        else:
+            print("Error: No target specified and default 'target.html' or 'targets/' not found.")
+            sys.exit(1)
+
+    if not target_files:
+        print("No HTML files found to process.")
+        sys.exit(0)
+
+    all_successful = []
+    all_unsuccessful = []
+
+    for target in target_files:
+        succ, unsucc = extract_products(target)
+        all_successful.extend(succ)
+        all_unsuccessful.extend(unsucc)
+
+    # Write aggregated results
+    with open('successful.txt', 'w', encoding='utf-8') as f:
+        f.write('\n'.join(all_successful))
+    print(f"Successfully wrote {len(all_successful)} total items to successful.txt")
+        
+    with open('unsuccessful.txt', 'w', encoding='utf-8') as f:
+        f.write('\n'.join(all_unsuccessful))
+    print(f"Successfully wrote {len(all_unsuccessful)} total items to unsuccessful.txt")

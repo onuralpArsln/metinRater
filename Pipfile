@@ -21,6 +21,7 @@ pydantic = "*"
 markdown = "*"
 rich = "*"
 tqdm = "*"
+playwright = "*"
 
 [dev-packages]
 
