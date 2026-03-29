@@ -108,7 +108,7 @@ Yanıtını detaylı ama anlaşılır bir şekilde ver. CSV'deki 'S' (Success) G
 """
 
     # Choose model from .env or fallback
-    model_name = os.getenv("GEMINI_MODEL", "gemini-2.5-flash-lite")
+    model_name = os.getenv("GEMINI_MODEL")
 
     try:
         with console.status("[bold green]Waiting for Gemini analysis...[/bold green]", spinner="dots"):
