@@ -22,9 +22,11 @@ python3 -m pipenv install
 echo "⚡ CPU-Optimize Torch kuruluyor..."
 python3 -m pipenv run pip install torch==2.5.1 --index-url https://download.pytorch.org/whl/cpu
 
-# 5. Correct Gemini Library
-echo "🧠 Gemini API kütüphanesi kontrol ediliyor..."
-python3 -m pipenv run pip install google-genai python-dotenv markdown
+# 5. Correct Gemini Library & Playwright
+echo "🧠 Kütüphaneler kontrol ediliyor (Gemini, Playwright, vb.)..."
+python3 -m pipenv run pip install google-genai playwright python-dotenv markdown
+echo "🌐 Playwright tarayıcı motorları kuruluyor..."
+python3 -m pipenv run playwright install
 
 # 6. Create .env if not exists
 if [ ! -f .env ]; then
@@ -32,6 +34,7 @@ if [ ! -f .env ]; then
     echo "# MetinRater Configuration" > .env
     echo "GEMINI_API_KEY=AIzaSyCLbj2kVPcc4FGOSRzb-e2pA6qVf06psXY" >> .env
     echo "GEMINI_MODEL=gemini-2.5-flash-lite" >> .env
+    echo "SCRAPE_ENABLED=false" >> .env
     echo "✅ .env oluşturuldu. (Not: Kendi API anahtarını kullanabilirsin)"
 fi
 

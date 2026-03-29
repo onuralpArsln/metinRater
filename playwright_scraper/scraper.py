@@ -3,7 +3,22 @@ import time
 from urllib.parse import quote
 from playwright.sync_api import sync_playwright
 
-def scrape_trendyol_keywords(keywords_file="keywords.txt", targets_dir="../targets"):
+def scrape_trendyol_keywords(keywords_file=None, targets_dir=None):
+    # Set default paths relative to the script's directory if not provided
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    root_dir = os.path.dirname(script_dir)
+    
+    if keywords_file is None:
+        # Check root first, fallback to script dir
+        root_keywords = os.path.join(root_dir, "keywords.txt")
+        if os.path.exists(root_keywords):
+            keywords_file = root_keywords
+        else:
+            keywords_file = os.path.join(script_dir, "keywords.txt")
+            
+    if targets_dir is None:
+        targets_dir = os.path.join(root_dir, "targets")
+
     # Ensure targets directory exists
     if not os.path.exists(targets_dir):
         os.makedirs(targets_dir)

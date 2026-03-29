@@ -1,46 +1,166 @@
 SUCCESSFUL TEXTS (GREEN):
-X: -0.298, Y: -0.290 | Text: Lina Sarı Pofidik Sandalye Minderi Özel Dikişli Bağcıklı 40x40cm
-X: -0.196, Y: -0.187 | Text: Pofidik Sandalye Minderi, Bağcıklı 40x40
-X: 0.152, Y: -0.002 | Text: Ortopedik Oturma Minderi Hemeroid Kuyruk Sokumu Coccyx Oturma Minderi Visco Minder Siyah
-X: 0.154, Y: -0.030 | Text: Visco Ortopedik Bel Destek Yastığı, Ofis, Araba, Sandalye, Koltuk, Sırt Yastığı Minderi, 38x33x12 cm
-X: -0.327, Y: -0.336 | Text: Candy Pofidik Arkalıklı Yeşil Sandalye Minderi Özel Dikişli Bağcıklı 43x88 Cm
-X: -0.130, Y: 0.049 | Text: ORTOPEDİK BEL YASTIĞI ORTOPEDİK SIRT MİNDERİ ARAÇ BEL DESTEK MİNDERİ ORTOPEDİK YASTIK
-X: -0.217, Y: -0.030 | Text: Gri Bahçe Balkon Salon Sandalye Minderi 40x40 cm
-X: 0.221, Y: 0.009 | Text: Ergonomik Ortopedik Oturma Minderi – Bel ve Kalça Destekli Araba Minderi | Kuyruk Sokumu Destekli
-X: 0.493, Y: 0.018 | Text: Ortopedik Bel ve Sırt Minderi Ofis ve Araç Koltuğu Destek Yastığı
-X: -0.254, Y: -0.179 | Text: Lemoncello Yellow Baskılı Sandalye Minderi Sarı (40x40 cm)
-X: 0.212, Y: -0.060 | Text: Koltuk Sandalye Minderi Kuyruk Sokumu Ortopedik Hafızalı Koltuk Ev Ofis Oto Oturma Minderi
-X: -0.084, Y: 0.055 | Text: % 100 VİSCO ORTOPEDİK OTURMA MİNDERİ % 100 VİSCO ORTOPEDİK BEL MİNDERİ 2 Lİ TAKIM SİYAH
-X: -0.210, Y: -0.156 | Text: Sallanan Sandalye Minderi Pofuduk (120X50)
-X: 0.610, Y: -0.025 | Text: Ortopedik Bel ve Oturma Minderi Seti Araç Ofis Koltuk Sandalye Bel Destek Yastığı
-X: 0.364, Y: 0.041 | Text: Visco Bel Yastığı Sırt Minderi Ortopedik Bel Minderi %100 Visco Destek Minder
-X: -0.280, Y: 0.758 | Text: Giglio Tabure Minderi Gri 35Ø
-X: -0.376, Y: -0.376 | Text: Pofidik Sandalye Minderi Özel Dikişli Bağcıklı Orjinal Pembe Desensiz Seri 40x40 Cm (1 ADET)
-X: 0.321, Y: -0.040 | Text: Cocix Oturma Minderi Oturma Yastığı Koltuk Sandalye Yastığı
-X: -0.204, Y: -0.124 | Text: Makrome Salıncak Minderi ( 80 X 110 Cm ) Siyah (SADECE MİNDER)
-X: -0.275, Y: 0.754 | Text: Giglio Tabure Minderi Krem 35Ø
+X: -0.213, Y: -0.345 | Text: Ev ve Ofis Koltuğu Çalışma Sandalyesi Bilgisayar Sandalyesi Bilgisayar Koltuğu Plastik Ayak
+X: -0.188, Y: -0.282 | Text: Nadya Yönetici Çalışma Koltuğu Ögrenci Koltuğu Bilgisayar Koltuğu Fileli Siyah
+X: -0.083, Y: -0.133 | Text: Dynamic Grey Masajlı Oyuncu Koltuğu
+X: -0.091, Y: -0.113 | Text: Nova Siyah Oyuncu Koltuğu
+X: -0.036, Y: -0.007 | Text: LÜKS OFİS KOLTUĞU ÇALIŞMA KOLTUĞU HAREKETLİ KOLLU DERS ÇALIŞMA KOLTUĞU LÜKS KOLTUK
+X: -0.129, Y: -0.210 | Text: Siyah Fileli Oyuncu Koltuğu,playstation Koltuğu,oyun Koltuğu,oyuncu Sandalyesi,gaming Chair
+X: -0.211, Y: -0.336 | Text: Fileli Yönetici Makam Koltuğu- Siyah Başlıklı Büro Ofis Müdür Koltuğu-bilgisayar Çalışma Sandalyesi
+X: -0.078, Y: -0.078 | Text: MC-8671 Ocean Mavi/Gri Oyuncu Koltuğu
+X: -0.098, Y: -0.161 | Text: Dynamic Black Masajlı Oyuncu Koltuğu
+X: -0.126, Y: -0.158 | Text: Siyah Fileli Sandalye Koltuk Dönerli Sandalye Tekerlekli Ders Çalışma Sandalyesi
+X: -0.188, Y: -0.310 | Text: Obc Defne Fileli Plastik Yönetici Ofis Büro Bilgisayar Çalışma Koltuğu - Sandalyesi
+X: -0.043, Y: -0.118 | Text: Kraken Meteor-1 Profesyonel Oyuncu Koltuğu - 4D Kolçak, Demir İskelet, Ayarlanabilir Gaming Koltuk
+X: -0.198, Y: -0.309 | Text: Kumaş Ofis Koltuğu Çalışma Sandalyesi Klasik Sabit
+X: -0.069, Y: -0.111 | Text: Black Star Işıklı - Masaj Özellikli Oyuncu Koltuğu Black
+X: -0.224, Y: -0.363 | Text: Ev Ve Ofis Çalışma Sandalyesi Bilgisayar Koltuğu
+X: -0.184, Y: -0.272 | Text: Visco Ofis Koltuğu Minderi Seti Ortopedik Bel ve Oturma Desteği ofis İçin Konfor Yastığı
+X: -0.226, Y: -0.349 | Text: Sofya Müdür Ofis Çalışma Koltuğu Öğrenci Sandalyesi Makam Koltuğu Fileli Siyah
+X: -0.112, Y: -0.166 | Text: Eko Çalışma Sandalyesi Tekerlekli,Dönerli Yükseklik Ayarlı
+X: -0.173, Y: -0.239 | Text: Pacers Katlanır Kollu Çalışma Sandalyesi | Ofis ve Bilgisayar Koltuğu | Gri Kumaş - Beyaz Kollar
+X: -0.197, Y: -0.296 | Text: Visco Ofis Koltuğu Minderi Seti Ortopedik Bel ve Oturma Desteği Çalışma ofis Konfor Yastığı
+X: -0.023, Y: -0.002 | Text: R1 Superlıght 18000 Dpı Ultra Hafif Paw3311 Kablosuz Oyuncu Faresi (GRIP TAPE HEDİYELİ)
+X: 0.025, Y: -0.010 | Text: Smx-g39 Comfort Usb 8 Makro+extra Atış Tuşlu 12800dpi Rgb Ledli Gaming Oyuncu Mouse
+X: 0.023, Y: -0.009 | Text: Smx-r47 X-jammer Usb Rgb Drag Click Örgü Kablo 12800 Dpi Makrolu Gaming Mouse Oyuncu Mouse
+X: 0.017, Y: -0.014 | Text: Gamenote MS955WB PAW3311 22.000 DPI RGB Oyuncu Mouse 2.4GHz +Bluetooth +Ekranlı Şarj İstasyonu
+X: 0.030, Y: -0.020 | Text: X15 Rgb Mouse Işıklı 7200 Dpi Gaming Mouse Oyuncu Mouse Makrolu Mouse
+X: 0.005, Y: -0.018 | Text: Gamenote MS966SE Kablosuz Gaming Mouse - Mavi/Beyaz – 3 Mod Bağlantı, 10000 DPI, RGB, BT V5.2
+X: 0.027, Y: 0.014 | Text: MS1034 RGB Gaming Makrolu Programlanabilir Oyuncu Mouse - Beyaz
+X: 0.039, Y: -0.013 | Text: Gamenote MS966WB Profesyonel PMW3325 Ultra Hafif 10.000 DPI RGB Wireless Gaming Oyuncu Mouse
+X: -0.008, Y: -0.057 | Text: X7 7635 RGB LED Gaming Mouse | USB Kablolu | 7 Tuşlu | 1200 2400 DPI | RGB Işıklı
+X: 0.016, Y: -0.019 | Text: Pavilion Gaming 200 Oyuncu Mouse 5JS07AA
+X: 0.018, Y: 0.010 | Text: Blink Beyaz Rgb Makrolu 12800 Dpi E-spor Örgü Kablo Profesyonel Gaming Mouse Oyuncu Mouse
+X: 0.047, Y: 0.012 | Text: Gamenote Ms1033 Rgb Uyumlu 8000 Dpı Ayarlanabilir Ağırlıklı Beyaz Gaming Makrolu Oyuncu Mouse
+X: 0.075, Y: 0.009 | Text: DROP M3 V2 24000 Dpi 3311 Sensör Beyaz RGB Kablosuz 80 Milyon Huano Switch Gaming Oyuncu Mouse
+X: 0.016, Y: 0.011 | Text: Rajin Strike Üç Modlu 12800 Dpi & Kablosuz Gaming Mouse - Beyaz (2.4 + BT5.1 + Type-C)
+X: -0.012, Y: 0.014 | Text: Deathadder Essential Optik Kablolu Beyaz Oyuncu Mouse - (RZ01-03850200-R3M1)
+X: 0.024, Y: -0.015 | Text: Ragnarok Rgb 12.800 Dpı 400 Ips 50g Pmw3389 Makrolu Gaming Oyuncu Mouse
+X: -0.022, Y: -0.013 | Text: X11 SUPERLIGHT 22000 DPI PAW3311 Şarj İstasyonuna Sahip Kablosuz Oyuncu Faresi
+X: 0.020, Y: -0.018 | Text: Game Over PRO WL 24.000 DPI 750 IPS 75G RGB Kablosuz FPS Gaming Oyuncu Mouse
+X: -0.011, Y: -0.039 | Text: Cobra Wired Gaming Mouse: 58g Lightweight Design, RGB Lighting with Underglow, 8500 DPI
+X: -0.002, Y: 0.019 | Text: Nexus X1 12800 Dpi Reflex Örgü Kablolu & Değiştirilebilir Kapaklı Gaming Mouse - Beyaz
+X: -0.058, Y: 0.069 | Text: Kalın Taban Beyaz Lacivert Erkek Snekaer
+X: -0.150, Y: 0.194 | Text: Erkek Günlük Ortopedik Sneaker Ayakkabı
+X: -0.074, Y: 0.075 | Text: Erkek Günlük Hafif Poli  Dikişli Taban Yürüyüş Garantili Spor AYAKKABI
+X: -0.115, Y: 0.156 | Text: Jean Erkek Ultra Hafif Erkek Spor Ayakkabı
+X: -0.137, Y: 0.162 | Text: Unisex Koyu Gri Nefes Alabilen Kumaş Poli Taban Bağcıklı Spor Ayakkabı
+X: -0.224, Y: 0.417 | Text: Azez Siyah Beyaz Unisex Rahat Sneaker Spor Ayakkabı
+X: -0.180, Y: 0.343 | Text: DS STORM Beyaz Siyah Unisex Sneaker
+X: -0.163, Y: 0.244 | Text: Siyah Günlük Erkek Sneaker Ayakkabı -182
+X: -0.152, Y: 0.231 | Text: Porter 207900-2001 Unisex Siyah Spor Ayakkabı
+X: -0.117, Y: 0.149 | Text: Jackson 5Fx Siyah Erkek Sneaker A101942145
+X: -0.120, Y: 0.172 | Text: Unisex Siyah Spor Ayakkabı 020-m 020-m
+X: -0.106, Y: 0.167 | Text: Buz Beyaz 011 Erkek Sneaker günlük ayakkabı
+X: -0.163, Y: 0.306 | Text: Shuffle Unisex Beyaz Sneaker Ayakkabı 30966805
+X: -0.039, Y: 0.006 | Text: erkek bağcıklı su geçirmez ortapedik taban spor ayakkabı sneaker
+X: -0.124, Y: 0.169 | Text: Anzarun Lite 371128-01 Erkek Spor Ayakkabı SİYAH
+X: -0.238, Y: 0.510 | Text: Beyaz Unisex Sneaker
+X: -0.197, Y: 0.404 | Text: Beyaz Mavi Unisex Sneaker
+X: -0.095, Y: 0.123 | Text: Anzarun Lite Ldp Sneaker Renkli
+X: -0.115, Y: 0.165 | Text: Yüksek Taban Beyaz Siyah Günlük Sneakers Ayakkabı
+X: -0.239, Y: 0.446 | Text: Finster Cilt Unisex Sneaker Spor Ayakkabı
+X: 0.271, Y: 0.011 | Text: Red Switch Mini Rgb Oyun Klavyesi Gaming Mekanik 61 Tuşlu 18 Rgb Led Usb Type-c Kablosu Siyah Yeni
+X: 0.268, Y: 0.020 | Text: Gamenote KB870L RGB Backlit Gaming Mekanik Klavye Blue Switch - Beyaz
+X: 0.654, Y: -0.010 | Text: Gamenote KB874L Mekanik Red Switch Gaming %60 Klavye
+X: 0.152, Y: 0.018 | Text: Gamenote Kb876l Mekanik Hisli Gaming Türkçe Q Rgb Işıklı Beyaz Oyuncu Klavyesi
+X: 0.122, Y: -0.006 | Text: Gamenote KB488L RGB Aydınlatmalı Oyuncu Klavyesi - Telefon Tutuculu - Türkçe Q
+X: 0.293, Y: 0.026 | Text: Trol Red Switch Mini Rgb Oyun Klavyesi Gaming Mekanik 62 Tuşlu 18 Led Usb Type-c Kablosu Beyaz LCD
+X: 0.654, Y: -0.010 | Text: Gamenote KB874L Mekanik Red Switch Gaming %60 Klavye
+X: 0.127, Y: -0.022 | Text: Gamenote KB904L Manyetik Switch 8kHz Rapid Trigger Mekanik Klavye - RGB, Hot-Swappable
+X: 0.298, Y: 0.007 | Text: Tylo Red Switch Mini Rgb Oyun Klavyesi Gaming Mekanik 62 Tuşlu 18 Rgb Led Usb Tıp-C Kablosu
+X: 0.654, Y: -0.010 | Text: Gamenote KB874L Mekanik Red Switch Gaming %60 Klavye
+X: 0.289, Y: 0.001 | Text: Mini T9 Mekanik Oyuncu Klavyesi Blue Switch Türkçe Mekanik Oyun Klavyesi
+X: 0.187, Y: 0.030 | Text: Beyaz/ Siyah Rainbow Aydınlatmalı Türkçe Q RED Switch Kablolu Mekanik Gaming Oyuncu Klavyesi
+X: 0.296, Y: 0.005 | Text: Gamenote KB870L RGB Backlit Gaming Mekanik Klavye Blue Switch Siyah Klavye
+X: 0.191, Y: 0.030 | Text: Shield White RED Switch Türkçe Q Rgb Full Metal Panel Mekanik Beyaz Gaming Klavye
+X: 0.114, Y: -0.004 | Text: Ornata V3 X Klavye Usb Su Geçirmez Türkçe Siyah Gaming Oyuncu Klavye
+X: 0.291, Y: 0.021 | Text: Rgb Oyuncu Klavyesi MX-1 Mekanik Gaming Blue Switch Klavye Türkçe Q Beyaz Mini Klavye
+X: 0.213, Y: -0.004 | Text: Gamenote Kb884L Rgb Mekanik Türkçe Klavye 1.06inç Tft-lcd Ekran - Red Switch
+X: 0.242, Y: 0.005 | Text: Odin Pro WL68 LightCore Kablosuz Bluetooth RGB Red Switch Türkçe Siyah Mekanik Gaming Klavye
+X: 0.275, Y: 0.022 | Text: Nimbus Mekanik Klavye Beyaz USB Rainbow Türkçe Red Switch 26 Tuş Anti-Ghosting Oyuncu Klavyesi
+X: 0.104, Y: -0.009 | Text: Gamenote KB923L Pro Wireless Tri-Mode Kablosuz Mekanik RGB Oyuncu Klavyesi – LCD Ekranlı
 
 UNSUCCESSFUL TEXTS (RED):
-X: -0.327, Y: -0.336 | Text: Candy Pofidik Arkalıklı Yeşil Sandalye Minderi Özel Dikişli Bağcıklı 43x88 Cm
-X: -0.130, Y: 0.049 | Text: ORTOPEDİK BEL YASTIĞI ORTOPEDİK SIRT MİNDERİ ARAÇ BEL DESTEK MİNDERİ ORTOPEDİK YASTIK
-X: -0.217, Y: -0.030 | Text: Gri Bahçe Balkon Salon Sandalye Minderi 40x40 cm
-X: 0.221, Y: 0.009 | Text: Ergonomik Ortopedik Oturma Minderi – Bel ve Kalça Destekli Araba Minderi | Kuyruk Sokumu Destekli
-X: 0.493, Y: 0.018 | Text: Ortopedik Bel ve Sırt Minderi Ofis ve Araç Koltuğu Destek Yastığı
-X: -0.254, Y: -0.179 | Text: Lemoncello Yellow Baskılı Sandalye Minderi Sarı (40x40 cm)
-X: 0.212, Y: -0.060 | Text: Koltuk Sandalye Minderi Kuyruk Sokumu Ortopedik Hafızalı Koltuk Ev Ofis Oto Oturma Minderi
-X: -0.084, Y: 0.055 | Text: % 100 VİSCO ORTOPEDİK OTURMA MİNDERİ % 100 VİSCO ORTOPEDİK BEL MİNDERİ 2 Lİ TAKIM SİYAH
-X: -0.210, Y: -0.156 | Text: Sallanan Sandalye Minderi Pofuduk (120X50)
-X: 0.610, Y: -0.025 | Text: Ortopedik Bel ve Oturma Minderi Seti Araç Ofis Koltuk Sandalye Bel Destek Yastığı
-X: 0.364, Y: 0.041 | Text: Visco Bel Yastığı Sırt Minderi Ortopedik Bel Minderi %100 Visco Destek Minder
-X: -0.280, Y: 0.758 | Text: Giglio Tabure Minderi Gri 35Ø
-X: -0.376, Y: -0.376 | Text: Pofidik Sandalye Minderi Özel Dikişli Bağcıklı Orjinal Pembe Desensiz Seri 40x40 Cm (1 ADET)
-X: 0.321, Y: -0.040 | Text: Cocix Oturma Minderi Oturma Yastığı Koltuk Sandalye Yastığı
-X: -0.204, Y: -0.124 | Text: Makrome Salıncak Minderi ( 80 X 110 Cm ) Siyah (SADECE MİNDER)
-X: -0.275, Y: 0.754 | Text: Giglio Tabure Minderi Krem 35Ø
-X: 0.421, Y: -0.024 | Text: Oto Araç Ofis Koltuk Sandalye Bel Destek Minderi ve Visco Cocix Oturma Minderi Seti
-X: -0.077, Y: 0.016 | Text: YUVARLAK EKRU SANDALYE MİNDERİ-LÜKS EVİM
-X: -0.268, Y: -0.194 | Text: 4'lü Gold Krem Pofidik Sandalye Minderi Özel Dikişli Bağcıklı 40x40cm
-X: -0.086, Y: -0.023 | Text: Iç Ve Dış Mekan Güneş Dayanımlı Bank Minderi GRİ GULLFOSS 100-45-8 Cm Sandalye Minderi
+X: -0.036, Y: -0.007 | Text: LÜKS OFİS KOLTUĞU ÇALIŞMA KOLTUĞU HAREKETLİ KOLLU DERS ÇALIŞMA KOLTUĞU LÜKS KOLTUK
+X: -0.129, Y: -0.210 | Text: Siyah Fileli Oyuncu Koltuğu,playstation Koltuğu,oyun Koltuğu,oyuncu Sandalyesi,gaming Chair
+X: -0.211, Y: -0.336 | Text: Fileli Yönetici Makam Koltuğu- Siyah Başlıklı Büro Ofis Müdür Koltuğu-bilgisayar Çalışma Sandalyesi
+X: -0.078, Y: -0.078 | Text: MC-8671 Ocean Mavi/Gri Oyuncu Koltuğu
+X: -0.098, Y: -0.161 | Text: Dynamic Black Masajlı Oyuncu Koltuğu
+X: -0.126, Y: -0.158 | Text: Siyah Fileli Sandalye Koltuk Dönerli Sandalye Tekerlekli Ders Çalışma Sandalyesi
+X: -0.188, Y: -0.310 | Text: Obc Defne Fileli Plastik Yönetici Ofis Büro Bilgisayar Çalışma Koltuğu - Sandalyesi
+X: -0.043, Y: -0.118 | Text: Kraken Meteor-1 Profesyonel Oyuncu Koltuğu - 4D Kolçak, Demir İskelet, Ayarlanabilir Gaming Koltuk
+X: -0.198, Y: -0.309 | Text: Kumaş Ofis Koltuğu Çalışma Sandalyesi Klasik Sabit
+X: -0.069, Y: -0.111 | Text: Black Star Işıklı - Masaj Özellikli Oyuncu Koltuğu Black
+X: -0.224, Y: -0.363 | Text: Ev Ve Ofis Çalışma Sandalyesi Bilgisayar Koltuğu
+X: -0.184, Y: -0.272 | Text: Visco Ofis Koltuğu Minderi Seti Ortopedik Bel ve Oturma Desteği ofis İçin Konfor Yastığı
+X: -0.226, Y: -0.349 | Text: Sofya Müdür Ofis Çalışma Koltuğu Öğrenci Sandalyesi Makam Koltuğu Fileli Siyah
+X: -0.112, Y: -0.166 | Text: Eko Çalışma Sandalyesi Tekerlekli,Dönerli Yükseklik Ayarlı
+X: -0.173, Y: -0.239 | Text: Pacers Katlanır Kollu Çalışma Sandalyesi | Ofis ve Bilgisayar Koltuğu | Gri Kumaş - Beyaz Kollar
+X: -0.197, Y: -0.296 | Text: Visco Ofis Koltuğu Minderi Seti Ortopedik Bel ve Oturma Desteği Çalışma ofis Konfor Yastığı
+X: -0.162, Y: -0.255 | Text: King Deri Yönetici Koltuğu | Makam Koltuğu | Ofis Koltuğu
+X: -0.186, Y: -0.293 | Text: Fileli Siyah Müdür Koltuğu Yönetici Koltuğu Büro Ofis Oyuncu Koltuğu
+X: -0.152, Y: -0.215 | Text: Porziyon Depar Plastik Fileli Ofis Büro Öğrenci Çalışma Koltuğu Sandalyesi Siyah
+X: -0.157, Y: -0.224 | Text: OFİS MAKAM SANDALYESİ Siyah Fileli Bilgisayar Ofis Çalışma Sandalyesi Koltuğu Makam koltuğu AYANAVM
+X: 0.030, Y: -0.020 | Text: X15 Rgb Mouse Işıklı 7200 Dpi Gaming Mouse Oyuncu Mouse Makrolu Mouse
+X: 0.005, Y: -0.018 | Text: Gamenote MS966SE Kablosuz Gaming Mouse - Mavi/Beyaz – 3 Mod Bağlantı, 10000 DPI, RGB, BT V5.2
+X: 0.027, Y: 0.014 | Text: MS1034 RGB Gaming Makrolu Programlanabilir Oyuncu Mouse - Beyaz
+X: 0.039, Y: -0.013 | Text: Gamenote MS966WB Profesyonel PMW3325 Ultra Hafif 10.000 DPI RGB Wireless Gaming Oyuncu Mouse
+X: -0.008, Y: -0.057 | Text: X7 7635 RGB LED Gaming Mouse | USB Kablolu | 7 Tuşlu | 1200 2400 DPI | RGB Işıklı
+X: 0.016, Y: -0.019 | Text: Pavilion Gaming 200 Oyuncu Mouse 5JS07AA
+X: 0.018, Y: 0.010 | Text: Blink Beyaz Rgb Makrolu 12800 Dpi E-spor Örgü Kablo Profesyonel Gaming Mouse Oyuncu Mouse
+X: 0.047, Y: 0.012 | Text: Gamenote Ms1033 Rgb Uyumlu 8000 Dpı Ayarlanabilir Ağırlıklı Beyaz Gaming Makrolu Oyuncu Mouse
+X: 0.075, Y: 0.009 | Text: DROP M3 V2 24000 Dpi 3311 Sensör Beyaz RGB Kablosuz 80 Milyon Huano Switch Gaming Oyuncu Mouse
+X: 0.016, Y: 0.011 | Text: Rajin Strike Üç Modlu 12800 Dpi & Kablosuz Gaming Mouse - Beyaz (2.4 + BT5.1 + Type-C)
+X: -0.012, Y: 0.014 | Text: Deathadder Essential Optik Kablolu Beyaz Oyuncu Mouse - (RZ01-03850200-R3M1)
+X: 0.024, Y: -0.015 | Text: Ragnarok Rgb 12.800 Dpı 400 Ips 50g Pmw3389 Makrolu Gaming Oyuncu Mouse
+X: -0.022, Y: -0.013 | Text: X11 SUPERLIGHT 22000 DPI PAW3311 Şarj İstasyonuna Sahip Kablosuz Oyuncu Faresi
+X: 0.020, Y: -0.018 | Text: Game Over PRO WL 24.000 DPI 750 IPS 75G RGB Kablosuz FPS Gaming Oyuncu Mouse
+X: -0.011, Y: -0.039 | Text: Cobra Wired Gaming Mouse: 58g Lightweight Design, RGB Lighting with Underglow, 8500 DPI
+X: -0.002, Y: 0.019 | Text: Nexus X1 12800 Dpi Reflex Örgü Kablolu & Değiştirilebilir Kapaklı Gaming Mouse - Beyaz
+X: 0.027, Y: -0.044 | Text: Gamenote MS1014 RGB Gaming Oyuncu Mouse – 7200 DPI, 7 Tuş, Ergonomik Tasarım, USB Kablolu
+X: 0.015, Y: 0.010 | Text: Odin Pro WL Beyaz 26K DPI 750 IPS 70G UltraLight RGB Kablosuz Gaming Mouse
+X: 0.038, Y: -0.015 | Text: Gaming Oyuncu Mouse Makro Tuşlu Rgb Ledli Ayarlanabilir Dpı
+X: 0.010, Y: -0.007 | Text: Prox Bluetooth-Kablosuz-Kablolu Şarjlı 12800 Dpı Hafif 59GR Gaming Mouse Oyuncu Mouse BEYAZ
+X: -0.137, Y: 0.162 | Text: Unisex Koyu Gri Nefes Alabilen Kumaş Poli Taban Bağcıklı Spor Ayakkabı
+X: -0.224, Y: 0.417 | Text: Azez Siyah Beyaz Unisex Rahat Sneaker Spor Ayakkabı
+X: -0.180, Y: 0.343 | Text: DS STORM Beyaz Siyah Unisex Sneaker
+X: -0.163, Y: 0.244 | Text: Siyah Günlük Erkek Sneaker Ayakkabı -182
+X: -0.152, Y: 0.231 | Text: Porter 207900-2001 Unisex Siyah Spor Ayakkabı
+X: -0.117, Y: 0.149 | Text: Jackson 5Fx Siyah Erkek Sneaker A101942145
+X: -0.120, Y: 0.172 | Text: Unisex Siyah Spor Ayakkabı 020-m 020-m
+X: -0.106, Y: 0.167 | Text: Buz Beyaz 011 Erkek Sneaker günlük ayakkabı
+X: -0.163, Y: 0.306 | Text: Shuffle Unisex Beyaz Sneaker Ayakkabı 30966805
+X: -0.039, Y: 0.006 | Text: erkek bağcıklı su geçirmez ortapedik taban spor ayakkabı sneaker
+X: -0.124, Y: 0.169 | Text: Anzarun Lite 371128-01 Erkek Spor Ayakkabı SİYAH
+X: -0.238, Y: 0.510 | Text: Beyaz Unisex Sneaker
+X: -0.197, Y: 0.404 | Text: Beyaz Mavi Unisex Sneaker
+X: -0.095, Y: 0.123 | Text: Anzarun Lite Ldp Sneaker Renkli
+X: -0.115, Y: 0.165 | Text: Yüksek Taban Beyaz Siyah Günlük Sneakers Ayakkabı
+X: -0.239, Y: 0.446 | Text: Finster Cilt Unisex Sneaker Spor Ayakkabı
+X: -0.134, Y: 0.159 | Text: Sneaker Spor Ayakkabı Hava Alan Hafif Taban Ortopedik Rahat Ve Kaliteli
+X: -0.122, Y: 0.151 | Text: Günlük Spor Ayakkabı – Hafif ve Şık Sneaker Modeli
+X: -0.094, Y: 0.135 | Text: Skye Clean 380147-04 Unisex Spor Ayakkabı BEYAZ-SİYAH
+X: -0.108, Y: 0.149 | Text: Siyah - Unisex Spor erkek kadın Ayakkabı
+X: 0.122, Y: -0.006 | Text: Gamenote KB488L RGB Aydınlatmalı Oyuncu Klavyesi - Telefon Tutuculu - Türkçe Q
+X: 0.293, Y: 0.026 | Text: Trol Red Switch Mini Rgb Oyun Klavyesi Gaming Mekanik 62 Tuşlu 18 Led Usb Type-c Kablosu Beyaz LCD
+X: 0.654, Y: -0.010 | Text: Gamenote KB874L Mekanik Red Switch Gaming %60 Klavye
+X: 0.127, Y: -0.022 | Text: Gamenote KB904L Manyetik Switch 8kHz Rapid Trigger Mekanik Klavye - RGB, Hot-Swappable
+X: 0.298, Y: 0.007 | Text: Tylo Red Switch Mini Rgb Oyun Klavyesi Gaming Mekanik 62 Tuşlu 18 Rgb Led Usb Tıp-C Kablosu
+X: 0.654, Y: -0.010 | Text: Gamenote KB874L Mekanik Red Switch Gaming %60 Klavye
+X: 0.289, Y: 0.001 | Text: Mini T9 Mekanik Oyuncu Klavyesi Blue Switch Türkçe Mekanik Oyun Klavyesi
+X: 0.187, Y: 0.030 | Text: Beyaz/ Siyah Rainbow Aydınlatmalı Türkçe Q RED Switch Kablolu Mekanik Gaming Oyuncu Klavyesi
+X: 0.296, Y: 0.005 | Text: Gamenote KB870L RGB Backlit Gaming Mekanik Klavye Blue Switch Siyah Klavye
+X: 0.191, Y: 0.030 | Text: Shield White RED Switch Türkçe Q Rgb Full Metal Panel Mekanik Beyaz Gaming Klavye
+X: 0.114, Y: -0.004 | Text: Ornata V3 X Klavye Usb Su Geçirmez Türkçe Siyah Gaming Oyuncu Klavye
+X: 0.291, Y: 0.021 | Text: Rgb Oyuncu Klavyesi MX-1 Mekanik Gaming Blue Switch Klavye Türkçe Q Beyaz Mini Klavye
+X: 0.213, Y: -0.004 | Text: Gamenote Kb884L Rgb Mekanik Türkçe Klavye 1.06inç Tft-lcd Ekran - Red Switch
+X: 0.242, Y: 0.005 | Text: Odin Pro WL68 LightCore Kablosuz Bluetooth RGB Red Switch Türkçe Siyah Mekanik Gaming Klavye
+X: 0.275, Y: 0.022 | Text: Nimbus Mekanik Klavye Beyaz USB Rainbow Türkçe Red Switch 26 Tuş Anti-Ghosting Oyuncu Klavyesi
+X: 0.104, Y: -0.009 | Text: Gamenote KB923L Pro Wireless Tri-Mode Kablosuz Mekanik RGB Oyuncu Klavyesi – LCD Ekranlı
+X: 0.272, Y: -0.009 | Text: Mekanik Oyuncu Klavyesi Red Switch RGB Led Işıklı Kablolu Gaming Klavye
+X: 0.298, Y: 0.000 | Text: Mini T9 Türkçe Q Mekanik Klavye Red Switch Gamer Oyuncu Klavyesi
+X: 0.259, Y: 0.007 | Text: Nimbus Siyah USB Rainbow Türkçe Red Switch 26 Tuş Anti-Ghosting Mekanik Klavye Oyuncu Klavyesi
+X: 0.062, Y: -0.037 | Text: Gamenote KB898L Pro RGB Mekanik Oyuncu Klavye – RGB, Full-Key Rollover, Ses Tekeri, Bilek Destekli
 
 TEST TEXTS (BLUE):
-X: 0.464, Y: 0.019 | Text: Kollu Okuma Yastığı Sırt Minderi TV İzleme Yastığı Ortopedik Bel Destek Fermuarlı
+X: -0.096, Y: -0.111 | Text: Kollu Okuma Yastığı Sırt Minderi TV İzleme Yastığı Ortopedik Bel Destek Fermuarlı

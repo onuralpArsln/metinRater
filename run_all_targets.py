@@ -4,11 +4,14 @@ import glob
 import re
 import sys
 import csv
+import shutil
 from tqdm import tqdm
 from rich.console import Console
 from rich.table import Table
 from rich.panel import Panel
+from dotenv import load_dotenv
 
+load_dotenv()
 console = Console()
 
 def send_notification(title, message):
@@ -55,12 +58,20 @@ def extract_scores_from_output(output):
     return scores
 
 def main():
+    # 0. PHASE 0: SCRAPING (Optional)
+    scrape_enabled = os.getenv("SCRAPE_ENABLED", "false").lower() == "true"
+    if "--scrape" in sys.argv or scrape_enabled:
+        send_notification("MetinRater", "Phase 0: Scraping fresh data...")
+        console.print(Panel("[bold yellow]PHASE 0: Scraping fresh data from Trendyol...[/bold yellow]"))
+        run_command(["playwright_scraper/scraper.py"])
+
     target_files = glob.glob("targets/*.html")
     if not target_files:
-        print("No HTML files found in targets/")
+        print("No HTML files found in targets/. Try running with --scrape or enabling SCRAPE_ENABLED in .env")
         return
 
     # Clear previous results and logs
+    os.makedirs("kategori", exist_ok=True)
     with open("kategori/rapor.txt", "w", encoding="utf-8") as f:
         f.write("--- AGGREGATE BIG-DATA TEST LOG ---\n")
 
@@ -71,27 +82,14 @@ def main():
         if os.path.exists(f_path): 
             os.remove(f_path)
 
-    for target in tqdm(target_files, desc="Extracting Targets", unit="file"):
-        target_name = os.path.basename(target)
-        # console.print(f"  > Extracting: {target_name}") # Move to tqdm desc if needed
-        run_command(["extractor.py", target])
+    # Run extractor in directory mode (processes all files in targets/)
+    run_command(["extractor.py", "targets/"])
 
-        # Aggregate into group files
-        try:
-            for source, dest in [("successful.txt", "grup1.txt"), ("unsuccessful.txt", "grup2.txt")]:
-                if os.path.exists(source):
-                    with open(source, "r", encoding="utf-8") as f:
-                        content = f.read().strip()
-                        if content:
-                            with open(dest, "a", encoding="utf-8") as d_file:
-                                d_file.write(content + "\n")
-        except Exception as e:
-            print(f"Error during aggregation: {e}")
-
-    # Prepare final training sets for Phase 2
-    import shutil
-    if os.path.exists("grup1.txt"): shutil.copy("grup1.txt", "successful.txt")
-    if os.path.exists("grup2.txt"): shutil.copy("grup2.txt", "unsuccessful.txt")
+    # Aggregate results into group files (extractor already creates successful/unsuccessful.txt)
+    # We still want grout1/grup2 for the rest of the existing script's logic if needed, 
+    # but the script mostly uses successful.txt/unsuccessful.txt later.
+    if os.path.exists("successful.txt"): shutil.copy("successful.txt", "grup1.txt")
+    if os.path.exists("unsuccessful.txt"): shutil.copy("unsuccessful.txt", "grup2.txt")
 
     # 2. PHASE 2: AGGREGATE TESTING
     send_notification("MetinRater", "Phase 2: Testing headlines...")
