@@ -19,7 +19,7 @@ def run_agent_reach_web_tool(url):
     try:
         # We try to get HTML or we just get what Jina returns
         result = subprocess.run(
-            ["curl", "-s", f"https://r.jina.ai/{url}"],
+            ["curl", "-s", "--", f"https://r.jina.ai/{url}"],
             capture_output=True, text=True, timeout=30
         )
         return result.stdout
@@ -34,7 +34,7 @@ def run_curl_direct(url):
     print(f"Agent tool executing: Direct curl {url}")
     try:
         result = subprocess.run(
-            ["curl", "-s", "-A", "Mozilla/5.0", url],
+            ["curl", "-s", "-A", "Mozilla/5.0", "--", url],
             capture_output=True, text=True, timeout=30
         )
         return result.stdout
