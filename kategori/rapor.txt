@@ -1,1 +1,209 @@
 --- AGGREGATE BIG-DATA TEST LOG ---
+
+
+--- HEADLINE: Kollu Okuma Yastığı Sırt Minderi TV İzleme Yastığı Ortopedik Bel Destek Fermuarlı | SCRIPT: test1.py ---
+--- RESULTS ---
+
+Text: 'Kollu Okuma Yastığı Sırt Minderi TV İzleme Yastığı Ortopedik Bel Destek Fermuarlı'
+Classification: UNSUCCESSFUL
+(Scores -> Success: 0.048 | Unsuccess: 0.059)
+
+Generating PCA visualization...
+Saved: pca_visualization.png
+Saved: kategori/1_pca_data.txt
+Generating Closeness Bar Chart...
+Saved: kategori/1_similarity_bars.png
+Generating Feature Importance visualization...
+Saved: kategori/1_top_words_success.png
+Saved: kategori/1_top_words_unsuccess.png
+
+Generating Report...
+==================================================
+TEST 1 - REPORT SUMMARY
+==================================================
+YAKLAŞIM (Test 1):
+* Odak Noktası: Sadece kelimelerin sıklığına (frekansına) bakar.
+* Nasıl Çalışır: Hangi kelimenin kaç defa geçtiğini sayar.
+* Neye Bakmaz: Anlama, kelime sırasına, büyük/küçük harfe, noktalama işaretlerine.
+* Sonuç Ne İfade Eder: Eski metinlerle içerdiği ortak kelime sayısının ve sıklığının yüzdesidir.
+
+RESULTS FOR TEST TEXTS:
+
+[Test Text 1]
+Content: 'Kollu Okuma Yastığı Sırt Minderi TV İzleme Yastığı Ortopedik Bel Destek Fermuarlı'
+Classification: UNSUCCESSFUL
+Scores -> Similarity to Success: 0.048 | Similarity to Failure: 0.059
+
+VISUALIZATIONS GENERATED:
+- kategori/1_pca_visualization.png: PCA scatter plot mapping the text neighborhood.
+- kategori/1_similarity_bars.png: 1D closeness chart comparing success vs failure similarity.
+- kategori/1_top_words_success.png: Top 10 words contributing to the Success profile.
+- kategori/1_top_words_unsuccess.png: Top 10 words contributing to the Unsuccess profile.
+
+
+
+
+--- HEADLINE: Kollu Okuma Yastığı Sırt Minderi TV İzleme Yastığı Ortopedik Bel Destek Fermuarlı | SCRIPT: test2.py ---
+Initializing Enhanced TF-IDF Vectorizer...
+
+--- RESULTS (APPROACH 1: PREPROCESSING) ---
+
+Text: 'Kollu Okuma Yastığı Sırt Minderi TV İzleme Yastığı Ortopedik Bel Destek Fermuarlı'
+Classification: UNSUCCESSFUL
+Success Score: 0.047 | Unsuccess Score: 0.060
+Key trigrams/words found in this text:
+  - 'yastığı': score 0.621
+  - 'kollu': score 0.336
+  - 'sırt': score 0.311
+  - 'destek': score 0.293
+  - 'bel destek': score 0.293
+
+Generating PCA visualization...
+Saved: test2_pca.png
+Saved: kategori/2_pca_data.txt
+Generating Closeness Bar Chart...
+Saved: kategori/2_similarity_bars.png
+
+Generating Report...
+==================================================
+TEST 2 - REPORT SUMMARY
+==================================================
+YAKLAŞIM (Test 2):
+* Odak Noktası: Hem tek tek kelimelerin sıklığına hem de kısmi kelime sırasına (yan yana gelen 2 kelimeye) bakar.
+* Nasıl Çalışır: Türkçe bağlaçları temizler ve ikili kelimelerin yan yana gelme sıklığına bakar.
+* Neye Bakmaz: Cümlenin genel anlamı, büyük/küçük harf, noktalama.
+* Sonuç Ne İfade Eder: Yeni metnin geçmişteki metinlerle ne kadar fazla ikili kelime kalıbı paylaştığını gösterir.
+
+RESULTS FOR TEST TEXTS:
+
+[Test Text 1]
+Content: 'Kollu Okuma Yastığı Sırt Minderi TV İzleme Yastığı Ortopedik Bel Destek Fermuarlı'
+Classification: UNSUCCESSFUL
+Scores -> Similarity to Success: 0.047 | Similarity to Failure: 0.060
+Key matching n-grams found in this text:
+  - 'yastığı': TF-IDF score 0.621
+  - 'kollu': TF-IDF score 0.336
+  - 'sırt': TF-IDF score 0.311
+  - 'destek': TF-IDF score 0.293
+  - 'bel destek': TF-IDF score 0.293
+
+VISUALIZATIONS GENERATED:
+- kategori/2_pca.png: PCA scatter plot mapping the text neighborhood.
+- kategori/2_similarity_bars.png: 1D closeness chart comparing success vs failure similarity.
+
+
+
+
+--- HEADLINE: Kollu Okuma Yastığı Sırt Minderi TV İzleme Yastığı Ortopedik Bel Destek Fermuarlı | SCRIPT: test3.py ---
+Initializing TF-IDF Vectorizer...
+Training Logistic Regression Model...
+
+--- RESULTS (APPROACH 2: CLASSIFIER) ---
+
+Text: 'Kollu Okuma Yastığı Sırt Minderi TV İzleme Yastığı Ortopedik Bel Destek Fermuarlı'
+Classification: UNSUCCESSFUL (Confidence: 53.9%)
+Raw Probabilities -> Success: 0.461 | Unsuccess: 0.539
+
+Model's Most Important Keywords:
+Strongest Indicators of Success:
+  - 'lamel' (Weight +0.95)
+  - 'lamel unisex' (Weight +0.95)
+  - 'unisex siyah' (Weight +0.94)
+  - 'yönetici çalışma' (Weight +0.89)
+  - 'gamenote' (Weight +0.81)
+Strongest Indicators of Failure:
+  - 'counter unisex' (Weight -0.98)
+  - 'counter' (Weight -0.98)
+  - 'unisex spor' (Weight -0.68)
+  - 'kadın spor' (Weight -0.68)
+  - 'kadın' (Weight -0.68)
+
+Generating visualizations for test3...
+Saved: kategori/3_feature_importance.png
+Saved: kategori/3_confidence_spectrum.png
+
+Generating PCA visualization...
+Saved: kategori/3_pca.png
+Saved: kategori/3_pca_data.txt
+
+Generating Report...
+==================================================
+TEST 3 - REPORT SUMMARY
+==================================================
+YAKLAŞIM (Test 3):
+* Odak Noktası: Kelimelerin frekansı önemlidir, kelime sırası önemlidir. Anlam önemli değildir.
+* Nasıl Çalışır: Yapay Zeka (Logistic Regression) kullanır. Hangi kelimenin geçmesi başarı şansını ne kadar artırıyor, bunu hesaplar.
+* Sonuç Ne İfade Eder: Sadece benzerlik değil, Net Matematiksel Olasılıktır (Confidence %).
+
+GLOBAL MODEL PROPERTIES:
+Strongest Indicators of Success (Top 5 Positive Coefficients):
+  - 'lamel' (Weight +0.95)
+  - 'lamel unisex' (Weight +0.95)
+  - 'unisex siyah' (Weight +0.94)
+  - 'yönetici çalışma' (Weight +0.89)
+  - 'gamenote' (Weight +0.81)
+Strongest Indicators of Failure (Top 5 Negative Coefficients):
+  - 'counter unisex' (Weight -0.98)
+  - 'counter' (Weight -0.98)
+  - 'unisex spor' (Weight -0.68)
+  - 'kadın spor' (Weight -0.68)
+  - 'kadın' (Weight -0.68)
+
+RESULTS FOR TEST TEXTS:
+
+[Test Text 1]
+Content: 'Kollu Okuma Yastığı Sırt Minderi TV İzleme Yastığı Ortopedik Bel Destek Fermuarlı'
+Classification: UNSUCCESSFUL (Confidence: 53.9%)
+Raw Probabilities -> Success: 0.461 | Failure: 0.539
+
+VISUALIZATIONS GENERATED:
+- kategori/3_feature_importance.png: Horizontal bar chart showing the top positive and negative vocabulary features.
+- kategori/3_confidence_spectrum.png: 1D scale showing where texts land on the probability continuum.
+- kategori/3_pca.png: PCA scatter plot mapping the text neighborhood.
+
+
+
+
+--- HEADLINE: Kollu Okuma Yastığı Sırt Minderi TV İzleme Yastığı Ortopedik Bel Destek Fermuarlı | SCRIPT: test4.py ---
+Loading Pretrained Multilingual NLP Model (This may take a moment the first time)...
+Generating sentence embeddings based on meaning...
+
+--- RESULTS (APPROACH 3: SEMANTIC MEANING) ---
+
+Text: 'Kollu Okuma Yastığı Sırt Minderi TV İzleme Yastığı Ortopedik Bel Destek Fermuarlı'
+Classification: UNSUCCESSFUL
+Semantic Similarity -> to Success: 0.339 | to Failure: 0.347
+
+Generating PCA visualization for Sentence Embeddings...
+Saved: test4_pca.png
+Saved: kategori/4_pca_data.txt
+
+Generating t-SNE visualization for Sentence Embeddings...
+Saved: kategori/4_tsne.png
+
+Generating Closeness Bar Chart...
+Saved: kategori/4_similarity_bars.png
+
+Generating Report...
+==================================================
+TEST 4 - REPORT SUMMARY
+==================================================
+YAKLAŞIM (Test 4):
+* Odak Noktası: Sadece cümlenin GENEL ANLAMINA ve BAĞLAMINA bakar. Kelime frekansı, sırası önemsizdir.
+* Nasıl Çalışır: Çok dilli bir dil modeli (Sentence Transformer) kullanır.
+* Neye Bakmaz: Hangi kelimenin kaç defa geçtiğine (kelime sayımı yapmaz).
+* Sonuç Ne İfade Eder: Olasılık değil, Anlamsal Mesafe (Semantic Similarity) verir.
+
+RESULTS FOR TEST TEXTS:
+
+[Test Text 1]
+Content: 'Kollu Okuma Yastığı Sırt Minderi TV İzleme Yastığı Ortopedik Bel Destek Fermuarlı'
+Classification: UNSUCCESSFUL
+Semantic Distances -> Similarity to Success: 0.339 | Similarity to Failure: 0.347
+
+VISUALIZATIONS GENERATED:
+- kategori/4_pca.png: PCA scatter plot of sentence embeddings.
+- kategori/4_tsne.png: t-SNE scatter plot mapping the exact semantic neighborhood.
+- kategori/4_similarity_bars.png: 1D closeness chart comparing success vs failure similarity.
+
+
